@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
+
+#1. Pokrecemo RewriteEngine
+#2. Namjestamo RewriteCond uslov
+#3. Preusmjeravamo tj. propustamo sve kroz index.php stranicu (sve druge stranice tj. putanje do stranica)
