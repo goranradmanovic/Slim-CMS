@@ -5,6 +5,8 @@ use Slim\Slim;
 
 use Noodlehaus\Config;
 
+use Code\User\User;
+
 //Pokretanje sessije
 session_cache_limiter(false);
 session_start();
@@ -30,6 +32,14 @@ $app = new Slim([
 
 $app->configureMode($app->config('mode'), function() use ($app) {
 	$app->config = Config::load(INC_ROOT . "/app/config/{$app->mode}.php");
+});
+
+//Dodavanje fajla database.php sa konekcijom na bazu podataka
+require_once 'database.php';
+
+//Dodavanje User klase tj.modela u Slim container radi daljeg koristenje u Slim-u
+$app->container->set('user', function() {
+	return new User;
 });
 
 ?>
