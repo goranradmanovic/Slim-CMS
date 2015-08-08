@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "239b0b76841b0e9ef3484f2a425652d8",
+    "hash": "f054035f90fbec457e0e795442ea78df",
     "packages": [
         {
             "name": "alexgarrett/violin",
@@ -624,6 +624,50 @@
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "time": "2015-05-04 12:37:21"
+        },
+        {
+            "name": "samayo/bulletproof",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/samayo/bulletproof.git",
+                "reference": "f9e93ab72112c059912b97f41a3b5a1561efdc2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/samayo/bulletproof/zipball/f9e93ab72112c059912b97f41a3b5a1561efdc2d",
+                "reference": "f9e93ab72112c059912b97f41a3b5a1561efdc2d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/bulletproof.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "samayo"
+                }
+            ],
+            "description": "A simple and secure PHP image uploader",
+            "homepage": "http://github.com/samayo/bulletproof",
+            "keywords": [
+                "image",
+                "security",
+                "upload"
+            ],
+            "time": "2015-06-01 02:22:42"
         },
         {
             "name": "slim/slim",
