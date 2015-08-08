@@ -8,8 +8,4 @@ require_once '../app/start.php';
 
 $app->run();
 
-echo INC_ROOT;
-
-echo $app->config['app.url'];
-
 ?>
