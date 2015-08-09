@@ -41,6 +41,9 @@ $app->configureMode($app->config('mode'), function() use ($app) {
 //Dodavanje fajla database.php sa konekcijom na bazu podataka
 require_once 'database.php';
 
+//Ukljucivanje fajla sa svim putanjama u nasoj aplikaciji
+require_once 'routes.php';
+
 //Dodavanje User klase tj.modela u Slim container radi daljeg koristenje u Slim-u
 $app->container->set('user', function() {
 	return new User;
