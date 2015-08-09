@@ -2,6 +2,7 @@
 
 //Pozivanje svih namespace-ova
 use Slim\Slim;
+use Slim\Views\Twig;
 
 use Noodlehaus\Config;
 
@@ -24,7 +25,10 @@ require_once INC_ROOT . '/vendor/autoload.php';
 
 //Nova instanca Slim klase sa opcijama u konstrktoru
 $app = new Slim([
-	'mode' => file_get_contents(INC_ROOT . '/mode.txt')
+	'mode' => file_get_contents(INC_ROOT . '/mode.txt'),
+	'view' => new Twig(),
+	'templates_path' => INC_ROOT . '/app/views'
+
 ]);
 
 //Ucitaavanje konfiguracijskih postavki iz production ili developmenet fajla,preko 'mode' u konstrktoru Slim k.
@@ -41,5 +45,15 @@ require_once 'database.php';
 $app->container->set('user', function() {
 	return new User;
 });
+
+//Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona
+
+$view = $app->view();
+
+$view->parserOptions = ['debug' => $app->config->get('twig.debug')]; //Dohvatanje twgig opcije iz config fajla
+
+//Konfigurisanje i dodavanje Parser Extensiona,a arg. mu je TwigExtension koji nam omogucava da generisemo URL u views-u
+
+$view->parserExtension = [new TwigExtension];
 
 ?>
