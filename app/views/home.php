@@ -1,5 +1,5 @@
-{% extends templates/default.php %}
+{% extends 'templates/default.php' %}
 
-{% block title %} Home {% endbolck %}
+{% block title %} Home {% endblock %}
 
 {% block content %} Home page {% endblock %}

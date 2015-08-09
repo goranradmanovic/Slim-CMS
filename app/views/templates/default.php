@@ -9,10 +9,10 @@
 	</head>
 	<body>
 		<!--Ukljucivanje fajla u kome ce prikazivati notifikacije za korisnika-->
-		{% extends 'templates/partials/messages.php' %}
+		{% include 'templates/partials/messages.php' %}
 
 		<!--Ukljucivanje fajla za navigaciju sjata-->
-		{% extends 'templates/partials/navigation.php' %}
+		{% include 'templates/partials/navigation.php' %}
 
 		<!--Prikazivanje sadrzaja stranice-->
 		{% block content %}{% endblock %}

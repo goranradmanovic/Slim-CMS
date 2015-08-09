@@ -9,7 +9,7 @@ $capsule = new Capsule;
 
 //Dodavanje konkcije na bazu p. iz production.php ili development.php fajla,uz pomoc Capsule metoda addConnection() sa nizom arg. 
 
-$capsule->addConnections([
+$capsule->addConnection([
 	'driver' => $app->config->get('db.driver'),
 	'host' => $app->config->get('db.host'),
 	'name' => $app->config->get('db.name'),
