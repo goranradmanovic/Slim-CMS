@@ -82,7 +82,53 @@ class User extends Eloquent
 		return 'http://www.gravatar.com/avatar/' . md5($this->email) . '?s=' . $size . '&d=identicon';
 	}
 
+	//Metod za upis remember_identifier-a i rebemebr_token-a u bazu p. ako je korisnik kliknuo na dugme remember me na login formi
 
+	public function updateRememberCredentials($identifier, $token)
+	{
+		$this->update([
+			'remember_identifier' => $identifier,
+			'remember_token' => $token
+		]);
+	}
+
+	//Metod za uklanjanje remember_identifera i remember_tokena iz baze p.
+
+	public function removeRememberCredentials()
+	{
+		//Pozivamo metod updateRememberCredentials($identifier, $token) i kao arg. propustamo null,null vrijednosti koje ce se upisati u bazu p.
+		$this->updateRememberCredentials(null, null);
+	}
+
+	//Metod za provjeru da li korisnik ima adminstartorske privilegije. Arg. mu je ime premisije koju provjeravamo u obliku string 'is_admin'
+
+	public function hasPermission($permission)
+	{
+		//Ovaj metod vraca kljuc ovlastenja iz baze,ako je 1 onda je true,a ako je 0 onda je false
+		//$this->permission se odnosi na metod permission()
+
+		return (bool) $this->permission->{$permission};
+	}
+
+	//Pomocni metod za funk hasPermission koji provjerava admin ovlastenja.Dovoljno je da ovaj metod pozovemo na korisnika
+	//i on ce vratiti iz baze p. true ili false
+
+	public function isAdmin()
+	{
+		return $this->hasPermission('is_admin');
+	}
+
+	//Ovaj metod je poveznica izmedju User k. i hasPermission k.,a ove dvije klase oznacavaju tabele iz baze p. Ovo je dio Eloquenta
+	//Ova funk. vraca tip relacije koji postoji izmedju tabela u bazi p.
+
+	public function permission()
+	{
+		//Korisnik ima jedan set ovlastenja,nema visestruka ovlastenja vec samo jedan red po korisniku iz baze p.
+		//Da bi napravili relaciju koristimo eloquent metod hasOne(),koji kao arg. prima namespace od klase u kojoj su ovlastenja
+		//i strani kljuc iz users_permission teble,a to je 'user_id'
+
+		return $this->hasOne('Code/User/UserPermission', 'user_id');
+	}
 }
 
 ?>
