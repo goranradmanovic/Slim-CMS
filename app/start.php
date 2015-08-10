@@ -49,6 +49,12 @@ $app->container->set('user', function() {
 	return new User;
 });
 
+//Dodavanje Hash klase u Slim container
+
+$app->container->singleton('hash', function() use ($app) {
+	return new Hash($app->config);
+});
+
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona
 
 $view = $app->view();
@@ -57,6 +63,6 @@ $view->parserOptions = ['debug' => $app->config->get('twig.debug')]; //Dohvatanj
 
 //Konfigurisanje i dodavanje Parser Extensiona,a arg. mu je TwigExtension koji nam omogucava da generisemo URL u views-u
 
-$view->parserExtension = [new TwigExtension];
+$view->parserExtensions = [new TwigExtension];
 
 ?>
