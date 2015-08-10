@@ -30,9 +30,8 @@ class Validator extends Violin
 
 		$this->addFieldMessages([
 			'email' => [
-				'uniqueEmail' => 'That email is already in use'.
+				'uniqueEmail' => 'That email is already in use.'
 			],
-
 			'username' => [
 				'uniqueUsername' => 'That username is already in use.'
 			]
