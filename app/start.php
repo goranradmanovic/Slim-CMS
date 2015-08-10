@@ -6,8 +6,12 @@ use Slim\Views\Twig;
 use Slim\Views\TwigExtension;
 
 use Noodlehaus\Config;
+use RandomLib\Factory as RandomLib;
 
 use Code\User\User;
+use Code\Helpers\Hash;
+use Code\Validation\Validator;
+
 
 //Pokretanje sessije
 session_cache_limiter(false);
@@ -44,6 +48,11 @@ require_once 'database.php';
 //Ukljucivanje fajla sa svim putanjama u nasoj aplikaciji
 require_once 'routes.php';
 
+//Dodavanje Midleware-a stanja (state) na Slim container kad korisnik nije autentificiran tj. potvrdjen
+//ako je $app->auth = true; onda imamo user object dodan na ovaj auth i da mozemo dohvatiti podatke o trenutnom ulogovanom kor.
+
+$app->auth = false;
+
 //Dodavanje User klase tj.modela u Slim container radi daljeg koristenje u Slim-u
 $app->container->set('user', function() {
 	return new User;
@@ -53,6 +62,24 @@ $app->container->set('user', function() {
 
 $app->container->singleton('hash', function() use ($app) {
 	return new Hash($app->config);
+});
+
+//Dodavanje Validator klase u Slim conatiner
+
+$app->container->singleton('validation', function() use ($app) {
+	return new Validator($app->user, $app->hash, $app->auth);
+});
+
+//Uljucivanje RandomLib paketa u Slim conatiner
+
+$app->container->singleton('randomlib', function() use ($app) {
+	//Instanciramo RandomLib biblioteku
+
+	$factory = new RandomLib;
+
+	//Metod za generisanje nasumicnih stringova iz RandomLib-a
+
+	return $factory->getMediumStrengthGenerator();
 });
 
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona
