@@ -24,6 +24,25 @@ class Validator extends Violin
 		$this->user = $user;
 		$this->hash = $hash;
 		$this->auth = $auth;
+
+		//Dodavanje custom poruke za uniqueEmail pravilo sa addFieldMessages() met. iz Violin klase
+		//Za svako email polje iz forme koje ima uniqueEmail pravilo dodaj ovu poruku
+
+		$this->addFieldMessages([
+			'email' => [
+				'uniqueEmail' => 'That email is already in use'.
+			],
+
+			'username' => [
+				'uniqueUsername' => 'That username is already in use.'
+			]
+		]);
+	
+		//Dodavanje nase poruke za pravilo koje smo napravili za provjeru korisnikove sifre iz baze p. i one sto je unijeo u polje old password
+
+		$this->addRuleMessages([
+			'matchesCurrentPassword' => 'That does not match your current password.'
+		]);
 	}
 
 	//Funk. za provjeru i validaciju jedinstvenog email korisnika.Ovaj metod pravimo uz pomoc Violin validate() m.
