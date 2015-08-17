@@ -11,7 +11,7 @@ use RandomLib\Factory as RandomLib;
 use Code\User\User;
 use Code\Helpers\Hash;
 use Code\Validation\Validator;
-
+use Code\Middleware\BeforeMiddleware;
 
 //Pokretanje sessije
 session_cache_limiter(false);
@@ -34,6 +34,9 @@ $app = new Slim([
 	'view' => new Twig(),
 	'templates.path' => INC_ROOT . '/app/views'
 ]);
+
+//Ukljucivanje Middleware klasa u Slim aplikaciju uz pomoc add() m.
+$app->add(new BeforeMiddleware);
 
 //Ucitaavanje konfiguracijskih postavki iz production ili developmenet fajla,preko 'mode' u konstrktoru Slim k.
 //A koristimo configureMode() Slim m. da te konf. dodamo u Slim contaner. Coristimo Config klasu iz hasankan paketa i load() m. za povlacenje config. fajla
