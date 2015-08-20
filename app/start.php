@@ -49,6 +49,9 @@ $app->configureMode($app->config('mode'), function() use ($app) {
 //Dodavanje fajla database.php sa konekcijom na bazu podataka
 require_once 'database.php';
 
+//Uljucivanje filters.php fajla da bi onemogucili korisnika da ide na odredjene dijelove aplikacije kroz URL
+require_once 'filters.php';
+
 //Ukljucivanje fajla sa svim putanjama u nasoj aplikaciji
 require_once 'routes.php';
 
