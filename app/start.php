@@ -12,6 +12,7 @@ use Code\User\User;
 use Code\Helpers\Hash;
 use Code\Validation\Validator;
 use Code\Middleware\BeforeMiddleware;
+use Code\Mail\Mailer;
 
 //Pokretanje sessije
 session_cache_limiter(false);
@@ -71,6 +72,25 @@ $app->container->singleton('hash', function() use ($app) {
 
 $app->container->singleton('validation', function() use ($app) {
 	return new Validator($app->user, $app->hash, $app->auth);
+});
+
+//Ukljucivanje PHPMailera i Mailer kalse u Slim container
+
+$app->container->singleton('mail', function() use ($app) {
+	$mailer = new PHPMailera;
+
+	$mailer->isSMTP();
+	$mailer->Host = $app->config->get('mail.host');
+	$mailer->SMTPHost = $app->config->get('mail.smtp.auht');
+	$mailer->SMTPSecure = $app->config->get('mail.smtp_secure');
+	$mailer->Port = $app->config->get('mail.port');
+	$mailer->Username = $app->config->get('mail.username');
+	$mailer->Password = $app->config->get('mail.password');
+	$mailer->isHTML($app->config->get('mail.html'));
+
+	//Return mailer object. $app->view omogucava slanje view-sa sa emailom u sebi korisniku,a $mailer postavlja PHPMailer postavke
+
+	return new Mailer($app->view, $mailer);
 });
 
 //Uljucivanje RandomLib paketa u Slim conatiner
