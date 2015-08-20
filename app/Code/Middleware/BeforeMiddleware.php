@@ -55,7 +55,7 @@ class BeforeMiddleware extends Middleware
 
 			//Provjera da podatci iz cookie-a nisu prazni i da $credentials imaju dva array-a u sebi (rememberIdentifier i rememberToken)
 
-			if (empty(trim($data) || count($credentials) !== 2)
+			if (empty(trim($data) || count($credentials) !== 2))
 			{
 				//Ako je ovo tacno redirektujemo korisnika na home page
 				return $this->app->response->redirect($this->app->urlFor('home'));
