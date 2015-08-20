@@ -56,6 +56,13 @@ $app->post('/register', function() use($app) {
 			'active_hash' => $app->hash->hash($identifier)
 		]);
 
+		//Slanje emaila sa potvrdom o registraciji korisnika,$app->mail je objekat u Slim containeru
+
+		$app->mail->send('email/auth/registered.php', ['user' => $user, 'identifier' => $identifier], function($message) use ($user) {
+			$message->to($user->email); //Slanje email na email korisnika koji je unijo u registracijuku formu
+			$message->subject('Thanks for registering.');
+		});
+
 		//Prikazivanje poruke i notifikacije korisniku uz pomoc flash() m.,a poruku smo nazvali global
 		$app->flash('global', 'You have been registered.');
 
