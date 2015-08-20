@@ -23,14 +23,14 @@ $authenticationCheck = function($required) use ($app)
 $authenticated = function() use ($authenticationCheck)
 {
 	return $authenticationCheck(true);
-}
+};
 
 //Guest midleware tj. filter $authenticationCheck(false)
 
 $guest = function() use ($authenticationCheck)
 {
 	return $authenticationCheck(false);
-}
+};
 
 //Provjera da li je korisnik admin
 
