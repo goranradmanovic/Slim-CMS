@@ -12,6 +12,7 @@ use Code\User\User;
 use Code\Helpers\Hash;
 use Code\Validation\Validator;
 use Code\Middleware\BeforeMiddleware;
+use Code\Middleware\CsrfMiddleware;
 use Code\Mail\Mailer;
 
 //Pokretanje sessije
@@ -36,8 +37,11 @@ $app = new Slim([
 	'templates.path' => INC_ROOT . '/app/views'
 ]);
 
-//Ukljucivanje Middleware klasa u Slim aplikaciju uz pomoc add() m.
+//Ukljucivanje BeforeMiddleware klasa u Slim aplikaciju uz pomoc add() m.
 $app->add(new BeforeMiddleware);
+
+//Ukljucivanje CsrfMiddleware klase u Slim aplikaciju uz pomoc add() m.
+$app->add(new CsrfMiddleware);
 
 //Ucitaavanje konfiguracijskih postavki iz production ili developmenet fajla,preko 'mode' u konstrktoru Slim k.
 //A koristimo configureMode() Slim m. da te konf. dodamo u Slim contaner. Coristimo Config klasu iz hasankan paketa i load() m. za povlacenje config. fajla
