@@ -40,7 +40,7 @@ class CsrfMiddleware extends Middleware
 		//cemo provjeriti token. Slim getMethod() koji vraca vrijednost o kome se dr. metodu radi (put(),get(),post() i sl.)
 		//['POST','PUT','DELETE'] su metodi
 
-		if (in_array($this->app->request()->getMehod(), ['POST', 'PUT', 'DELETE']))
+		if (in_array($this->app->request()->getMethod(), ['POST', 'PUT', 'DELETE']))
 		{
 			//Ako je ovo tacno i ako se trazeni metod nalazi u nizu koji provjravamo,onda trbamo povuci poslati (submitted) token
 			//tako sto cemo povuci ime kljuca tokena iz config/development.php, i onda trebamo provjeriti da li je dostupan,a ako
@@ -60,7 +60,7 @@ class CsrfMiddleware extends Middleware
 		//Prebacivanje i dijeljenje podata sa ove stranice tj. imena tokena i vrijednosti tokena na dr. stranicama iz views foldera
 
 		$this->app->view()->appendData([
-			'csrf_key' => $this->key;
+			'csrf_key' => $this->key,
 			'csrf_token' => $token
 		]);
 	}
