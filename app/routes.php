@@ -6,5 +6,6 @@ require_once INC_ROOT . '/app/routes/home.php';
 require_once INC_ROOT . '/app/routes/auth/register.php';
 require_once INC_ROOT . '/app/routes/auth/login.php';
 require_once INC_ROOT . '/app/routes/auth/activate.php';
+require_once INC_ROOT . '/app/routes/auth/logout.php';
 
 ?>
