@@ -51,7 +51,7 @@ class User extends Eloquent
 		onda vracamo username koji mora uvjek biti unesen u bazu p. prilikom regsitracije korisnika
 		?: znaci da se jedna od ove dvije vrijednosti output tj. prikaze na stanici*/
 
-		return getFullName() ?: $this->username;
+		return $this->getFullName() ?: $this->username;
 	}
 
 	//Metod za aktivaciju korisnickog racuna
