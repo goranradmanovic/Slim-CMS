@@ -1,7 +1,7 @@
 <?php
 
 //Imenovanje klase i foldera
-namespace Code\Message;
+namespace Code\Mail;
 
 class Message
 {
