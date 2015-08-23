@@ -23,7 +23,7 @@ $app->get('/activate', $guest(), function() use ($app) {
 	//Provjera da li korisnika ne mozemo naci ili da li hash 'active_hash' ne slaze sa hasiranim identifierom koji smo poslai
 	//u emailu
 
-	if (!$user || !$app->hahsCheck($user->active_hash, $hashedIdentifier))
+	if (!$user || !$app->hash->hashCheck($user->active_hash, $hashedIdentifier))
 	{
 		//Poruka upozorenja za korisnika
 		$app->flash('global', 'There was problem activating your account');
