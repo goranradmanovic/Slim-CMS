@@ -30,7 +30,8 @@ return [
 	'mail' => [
 		'smtp_auth' => true,
 		'smtp_secure' => 'tls',
-		'host' => 'milosdakic89@gmail.com',
+		'host' => 'smtp.gmail.com',
+		'username' => 'milosdakic89@gmail.com',
 		'password' => 'm1I9l9O8s9',
 		'port' => 587,
 		'html' => true
