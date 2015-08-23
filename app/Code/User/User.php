@@ -24,7 +24,8 @@ class User extends Eloquent
 		'active_hash',
 		'recover_hash',
 		'remember_identifier',
-		'remember_token'
+		'remember_token',
+		'img_path'
 	];
 
 	//Metod za dohvatanje punog imena korisnika
@@ -80,6 +81,16 @@ class User extends Eloquent
 		//kao sto stoji u upustvu sa gravatar stranice
 
 		return 'http://www.gravatar.com/avatar/' . md5($this->email) . '?s=' . $size . '&d=identicon';
+	}
+
+	//Metod za dohvatanje profilne slike tj. putanje od slike iz baze p.
+
+	public function getProfileImgPath()
+	{
+		//Provjera da li putanja do profilen slike iz uploads foldera postoji u bazi p.
+		//Ako putanja do profilne slike iz uploads foldera postoji u bazi p. onda nam vrati putanju do slike
+
+		return !$this->img_path ?: $this->img_path;
 	}
 
 	//Metod za upis remember_identifier-a i rebemebr_token-a u bazu p. ako je korisnik kliknuo na dugme remember me na login formi
