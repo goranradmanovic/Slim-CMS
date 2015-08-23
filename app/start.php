@@ -84,11 +84,11 @@ $app->container->singleton('validation', function() use ($app) {
 //Ukljucivanje PHPMailera i Mailer kalse u Slim container
 
 $app->container->singleton('mail', function() use ($app) {
-	$mailer = new PHPMailera;
+	$mailer = new PHPMailer;
 
 	$mailer->isSMTP();
 	$mailer->Host = $app->config->get('mail.host');
-	$mailer->SMTPHost = $app->config->get('mail.smtp.auht');
+	$mailer->SMTPAuth = $app->config->get('mail.smtp_auth');
 	$mailer->SMTPSecure = $app->config->get('mail.smtp_secure');
 	$mailer->Port = $app->config->get('mail.port');
 	$mailer->Username = $app->config->get('mail.username');
