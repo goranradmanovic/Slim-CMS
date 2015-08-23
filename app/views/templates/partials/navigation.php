@@ -1,7 +1,7 @@
 <!--Navigacija stranice-->
 
 {% if auth %}
-	<p>Hello, {{ auth.getFullNameOrUsername }} <img src="" alt="Your profile picture"></p>
+	<p>Hello, {{ auth.getFullNameOrUsername }} <img src="{{ auth.getProfileImgPath }}" alt="Your profile picture"></p>
 {% endif %}
 <menu>
 	<ul>
