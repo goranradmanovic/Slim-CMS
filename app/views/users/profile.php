@@ -1,6 +1,6 @@
 {% extends 'templates/default.php' %}
 
-{% block title %} {{ user.getFullNameOrUsername }} {% endtitle %}
+{% block title %} {{ user.getFullNameOrUsername }} {% endblock %}
 
 {% block content %}
 	
