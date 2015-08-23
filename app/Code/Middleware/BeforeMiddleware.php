@@ -38,6 +38,20 @@ class BeforeMiddleware extends Middleware
 
 			$this->app->auth = $this->app->user->where('id', $_SESSION[$this->app->config->get('auth.session')])->first();
 		}
+
+		//Pokretanje metoda za provjeru cookia
+		$this->checkRememberMe();
+
+		//$this->auth nam je potreban na views/partials/navigation.php stranici da bi mogli sakriti linkove ako je korisnik
+		//vec ulogovan zato uz pomoc appendData() m. dijelimo te tj. prebacujemo te korisnicke podatke na navigation.php str.
+		//arg. meto. je nize podataka koje zelimo prebaciti na navigation.php str. 'baseUrl' nam sluzi za stvaranje linka
+		//u email koji saljemo korisniku da bi mogao kliknuti i aktivirati nalog. 'baseUrl' ce nam biti varijabla koju cemo
+		//iskoristiti na views/email/auth/registerd.php koju zapravo saljemo u obliku email korisniku
+
+		$this->app->view()->appendData([
+			'auth' => $this->app->auth,
+			'baseUrl' => $this->app->config->get('app.url')
+		]);
 	}
 
 	//Metod koji provjerava cookie. Kad zavrsimo sa sessijom i kad se opet vratimo na stranicu,ovaj metod ce provjeriti da li postoji cookie u
