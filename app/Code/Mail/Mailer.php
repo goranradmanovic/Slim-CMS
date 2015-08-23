@@ -6,13 +6,13 @@ namespace Code\Mail;
 
 class Mailer
 {
-	protected $views; //Ovo ce biti views koji cemo prikazati sa Slim metodom render()
+	protected $view; //Ovo ce biti views koji cemo prikazati sa Slim metodom render()
 	protected $mailer; //Ovo ce biti PHPMailer paket koji cemo propistiti u constuctor ove klase
 
 	//U konstruktor ubacujemo $views i $mailer kao dependencies da bi ih mogli prikazati u viewsu
-	public function __construct($views, $mailer)
+	public function __construct($view, $mailer)
 	{
-		$this->views = $views;
+		$this->view = $view;
 		$this->mailer = $mailer;
 	}
 
@@ -35,7 +35,7 @@ class Mailer
 		//koji ce onda otici na register.php i preuzeti views ('email/auth/registered.php') i uz pomoc render() metoda poslati ga
 		//kao tijelo emila
 
-		$this->message->body($this->view->render($template));
+		$message->body($this->view->render($template));
 
 		//Pozivamo callback funkciju sa register.php zajedno sa $message = new Message($this->mailer); da bi mogli koristiti
 		//Message metode. callback func. uzima param. $message i onda prilikom svog izvrsavanje koristi to() i subject() m.
@@ -44,7 +44,7 @@ class Mailer
 
 		//Slanje email poruke
 		
-		$this->message->send();
+		$this->mailer->send();
 	}
 }
 
