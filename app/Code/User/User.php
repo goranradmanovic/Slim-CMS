@@ -25,7 +25,8 @@ class User extends Eloquent
 		'recover_hash',
 		'remember_identifier',
 		'remember_token',
-		'img_path'
+		'img_path',
+		'img_title'
 	];
 
 	//Metod za dohvatanje punog imena korisnika
