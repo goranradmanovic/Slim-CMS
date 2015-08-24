@@ -7,8 +7,8 @@
 		
 		<div>
 			<label for="photo-title">Photo Title</label>
-			<input type="text" name="title" id="photo-title" placeholder="Enter photo title" required>
-			{% if errors.has('title') %}{{ errors.first('title') }}{% endif %}
+			<input type="text" name="img_title" id="photo-title" placeholder="Enter photo title" required>
+			{% if errors.has('img_title') %}{{ errors.first('img_title') }}{% endif %}
 		</div>
 
 		<div>
