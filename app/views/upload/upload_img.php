@@ -14,6 +14,7 @@
 		<div>
 			<label for="input-file">File Input</label>
 			<input type="file" name="picture" id="input-file" required>
+			{% if errors.has('picture') %}{{ errors.first('picture') }}{% endif %}
 		</div>
 
 		<div>
