@@ -7,13 +7,13 @@
 		
 		<div>
 			<label for="photo-title">Photo Title</label>
-			<input type="text" name="img_title" id="photo-title" placeholder="Enter photo title" required>
+			<input type="text" name="img_title" id="photo-title" placeholder="Enter photo title">
 			{% if errors.has('img_title') %}{{ errors.first('img_title') }}{% endif %}
 		</div>
 
 		<div>
 			<label for="input-file">File Input</label>
-			<input type="file" name="picture" id="input-file" required>
+			<input type="file" name="picture" id="input-file">
 			{% if errors.has('picture') %}{{ errors.first('picture') }}{% endif %}
 		</div>
 
