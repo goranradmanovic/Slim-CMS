@@ -6,7 +6,7 @@
 	
 	<h2>{{ user.username }}</h2>
 
-	<img src="" alt="Profile picture for {{ user.getFullNameOrUsername }}">
+	<img src="{{ user.getProfileImg }}" title="{{ user.img_title }}" alt="Profile picture for {{ user.getFullNameOrUsername }}">
 
 	<dl>
 		{% if user.getFullName %}
