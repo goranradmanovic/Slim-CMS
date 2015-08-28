@@ -7,6 +7,7 @@ use Slim\Views\TwigExtension;
 
 use Noodlehaus\Config;
 use RandomLib\Factory as RandomLib;
+use BulletProof\Image;
 
 use Code\User\User;
 use Code\Helpers\Hash;
@@ -110,6 +111,14 @@ $app->container->singleton('randomlib', function() use ($app) {
 	//Metod za generisanje nasumicnih stringova iz RandomLib-a
 
 	return $factory->getMediumStrengthGenerator();
+});
+
+//Uklucivanje BulletProof klase u Slim2 conatiner
+
+$app->container->set('image', function() {
+	$image = new Image($_FILES); //Konstruktor ove klase ne prima ni jedan parametar
+
+	return $image;
 });
 
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona
