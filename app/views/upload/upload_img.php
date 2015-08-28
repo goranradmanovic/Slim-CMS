@@ -18,7 +18,7 @@
 		</div>
 
 		<div>
-			<input type="hidden" name="MAX_FILE_SIZE" value="30000"> <!--Ogranicavanje velicine fajla za slanje-->
+			<input type="hidden" name="MAX_FILE_SIZE" value="1048576"> <!--Ogranicavanje velicine fajla za slanje-->
 			<input type="submit" value="Upload">
 			<input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
 		</div>
