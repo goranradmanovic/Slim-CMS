@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f054035f90fbec457e0e795442ea78df",
+    "hash": "dfefac2b583058b6bc61ce0a9295bb53",
     "packages": [
         {
             "name": "alexgarrett/violin",
@@ -627,16 +627,16 @@
         },
         {
             "name": "samayo/bulletproof",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/samayo/bulletproof.git",
-                "reference": "f9e93ab72112c059912b97f41a3b5a1561efdc2d"
+                "reference": "533c16a6794131efdee1d8f1e6b811c06a3e7194"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/samayo/bulletproof/zipball/f9e93ab72112c059912b97f41a3b5a1561efdc2d",
-                "reference": "f9e93ab72112c059912b97f41a3b5a1561efdc2d",
+                "url": "https://api.github.com/repos/samayo/bulletproof/zipball/533c16a6794131efdee1d8f1e6b811c06a3e7194",
+                "reference": "533c16a6794131efdee1d8f1e6b811c06a3e7194",
                 "shasum": ""
             },
             "require": {
@@ -667,7 +667,7 @@
                 "security",
                 "upload"
             ],
-            "time": "2015-06-01 02:22:42"
+            "time": "2015-08-04 13:32:10"
         },
         {
             "name": "slim/slim",
@@ -831,25 +831,29 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.19.0",
+            "version": "v1.21.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "edbeaf43b0a606cdaadc32a11d2673614a377b90"
+                "reference": "ca8d3aa90b6a01c82e07909fe815d6b443e75a23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/edbeaf43b0a606cdaadc32a11d2673614a377b90",
-                "reference": "edbeaf43b0a606cdaadc32a11d2673614a377b90",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ca8d3aa90b6a01c82e07909fe815d6b443e75a23",
+                "reference": "ca8d3aa90b6a01c82e07909fe815d6b443e75a23",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.7"
             },
+            "require-dev": {
+                "symfony/debug": "~2.7",
+                "symfony/phpunit-bridge": "~2.7"
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.19-dev"
+                    "dev-master": "1.21-dev"
                 }
             },
             "autoload": {
@@ -884,7 +888,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-07-31 13:45:26"
+            "time": "2015-08-26 08:58:31"
         }
     ],
     "packages-dev": [],
