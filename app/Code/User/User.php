@@ -91,7 +91,20 @@ class User extends Eloquent
 		//Provjera da li putanja do profilen slike iz uploads foldera postoji u bazi p.
 		//Ako putanja do profilne slike iz uploads foldera ne postoji u bazi p. onda nam vrati null u suprotonme vrati putanju do slike
 
-		return !$this->img_path ? null : $this->img_path;
+		return !$this->img_path ? 'assets/icons/Avatar.svg' : $this->img_path;
+	}
+
+	//Metod za brisanje profilene slike
+
+	public function deleteProfileImg()
+	{
+		if (isset($this->img_path))
+		{
+			$this->update([
+				'img_path' => null,
+				'img_title' => null
+			]);
+		}
 	}
 
 	//Metod za upis remember_identifier-a i rebemebr_token-a u bazu p. ako je korisnik kliknuo na dugme remember me na login formi
