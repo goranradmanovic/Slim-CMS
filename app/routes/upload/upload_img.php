@@ -88,15 +88,12 @@ $app->post('/upload', function() use ($app) {
 			{	
 				//Ispis greske i redirekcija na upload_img.php stranicu
 				$app->flash('global', $image['error']);
-				$app->response->redirect($app->urlFor('upload'));
+				return $app->response->redirect($app->urlFor('upload'));
 			}
 		}
 	}
 
-	$app->render('/upload/upload_img.php', [
-		'errors' => $v->errors(),
-		'request' => $request
-	]);
+	$app->render('/upload/upload_img.php', ['errors' => $v->errors()]);
 
 })->name('upload.post');
 
