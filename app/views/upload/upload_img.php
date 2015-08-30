@@ -13,7 +13,8 @@
 
 		<div>
 			<label for="input-file">File Input</label>
-			<input type="file" name="picture" id="input-file" required>
+			<input type="file" name="picture" id="input-file" required><br/>
+			<small>You can attach files up to 1MB</small>
 			{% if errors.has('picture') %}{{ errors.first('picture') }}{% endif %}
 		</div>
 

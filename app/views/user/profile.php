@@ -18,6 +18,9 @@
 		<dt>Email</dt>
 		<dd>{{ user.email }}</dd>
 
+		<dt>Upload Profile picture</dt>
+		<dd><a href="{{ urlFor('upload') }}">Upload Profile Picture</a></dd>
+
 		<dt>Delete Profile picture</dt>
 		<dd><a href="{{ urlFor('delete-img') }}">Delete picture</a></dd>
 
