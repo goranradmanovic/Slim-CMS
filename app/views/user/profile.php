@@ -17,5 +17,9 @@
 
 		<dt>Email</dt>
 		<dd>{{ user.email }}</dd>
+
+		<dt>Delete Profile picture</dt>
+		<dd><a href="{{ urlFor('delete-img') }}">Delete picture</a></dd>
+
 	</dl>
 {% endblock %}
