@@ -149,7 +149,7 @@ class User extends Eloquent
 		//Da bi napravili relaciju koristimo eloquent metod hasOne(),koji kao arg. prima namespace od klase u kojoj su ovlastenja
 		//i strani kljuc iz users_permission teble,a to je 'user_id'
 
-		return $this->hasOne('Code/User/UserPermission', 'user_id');
+		return $this->hasOne('Code\User\UserPermission', 'user_id');
 	}
 }
 
