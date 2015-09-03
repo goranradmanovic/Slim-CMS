@@ -56,6 +56,11 @@ $app->post('/register', function() use($app) {
 			'active_hash' => $app->hash->hash($identifier)
 		]);
 
+		//Upisujemo u users_permissions tabelu iz baze p. ovlasti koje ima korisnik.Sa Eloquent create() m. upisujemo u bazu p.
+		//ovlastenja iz staticke var. $default iz UserPermission klase
+
+		$user->permission()->create(UserPermission::$default);
+
 		//Slanje emaila sa potvrdom o registraciji korisnika,$app->mail je objekat u Slim containeru
 
 		$app->mail->send('email/auth/registered.php', ['user' => $user, 'identifier' => $identifier], function($message) use ($user) {
@@ -71,7 +76,6 @@ $app->post('/register', function() use($app) {
 
 		return $app->response->redirect($app->urlFor('home'));
 	}
-
 
 	//Ako su se desila greska na formi za unos podataka,prikazacemo te greska na views/auth/register.php stranici i 
 	//zadrzati ono sto je korisnik vec unio u formu. Propustanje varijabli u Twig Slim views se vrsi uz pomoc niza koji je
