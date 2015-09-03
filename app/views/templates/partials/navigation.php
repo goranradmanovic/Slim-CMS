@@ -17,9 +17,9 @@
 			<li><a href="{{ urlFor('user.profile', {username: auth.username}) }}">Your Profile</a></li>
 
 			<!--Ako je korisnik admin prikazujemo mu ovaj link,a ako nije onda ga sakrijemo od njega-->
-			{# {% if user.isAdmin %}
-
-			{% endif %} #}
+			{% if user.isAdmin %}
+				<a href="{{ urlFor('user.all') }}">All users</a>
+			{% endif %}
 			
 		{% else %}
 			<li><a href="{{ urlFor('register') }}">Register</a></li>
