@@ -15,7 +15,7 @@
 
 		{% for user in users %}
 			<div class="user">
-				<a href="{{ urlFor('user.profile', {username: user.username})}}">{{ user.username }}</a>
+				<a href="{{ urlFor('user.profile', {username: user.username}) }}">{{ user.username }}</a>
 
 				<!--Provjera da li korisnik ima puno ime i prezime i ispis ako ima-->
 
