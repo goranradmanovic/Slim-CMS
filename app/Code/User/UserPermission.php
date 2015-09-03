@@ -15,14 +15,18 @@ class UserPermission extends Eloquent
 	//Definiramo fillable polja u koja se moze upisivati u bazu p.
 
 	protected $fillable = [
-		'is_admin'
+		'is_admin',
+		'is_moderator',
+		'can_post_topic'
 	];
 
 	//Definiranje default vrijednosti kad se korisnik registruje,a mozemo staviti jos polja iz baze p. ovdje ako nam treba
 	//npr. ako zelimo da korisnik ima pravo da nesto stavi na blog ili slicno
 
 	public static $default = [
-		'is_admin' => false
+		'is_admin' => false,
+		'is_moderator' => true,
+		'can_post_topic' => true
 	];
 }
 
