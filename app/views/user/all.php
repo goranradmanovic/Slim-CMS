@@ -15,19 +15,38 @@
 
 		{% for user in users %}
 			<div class="user">
-				<a href="{{ urlFor('user.profile', {username: user.username}) }}">{{ user.username }}</a>
+				<table>
+					<thead>
+						<tr>
+							<th>User profile</th>
+							<th>User name</th>
+							<th>Admin</th>
+							<th>Moderator</th>
+							<th>Can post content</th>
+						</tr>
+					</thead>
 
-				<!--Provjera da li korisnik ima puno ime i prezime i ispis ako ima-->
+					<tbody>
+						<tr>
+							<!--Link do korisnikovog profila-->
+							<td><a href="{{ urlFor('user.profile', {username: user.username}) }}">{{ user.username }}</a></td>
 
-				{% if user.getFullName %}
-					<h3>{{ user.getFullName }}</h3>
-				{% endif %}
+							<!--Provjera da li korisnik ima puno ime i prezime i ispis ako ima-->
+							{% if user.getFullName %}
+								<td>{{ user.getFullname }}</td>
+							{% else %}
+								<td></td>
+							{% endif %}
 
-				<!--Provjera korisnikovih priviliegija-->
-
-				{% if user.isAdmin %}
-					<small>Admin</small>
-				{% endif %}
+							<!--Provjera korisnikovih priviliegija-->
+							{% if user.isAdmin %}
+								<td>Admin</td>
+							{% else %}
+								<td></td>
+							{% endif %}
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		{% endfor %}
 
