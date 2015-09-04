@@ -18,6 +18,7 @@
 
 			<!--Ako je korisnik admin prikazujemo mu ovaj link,a ako nije onda ga sakrijemo od njega-->
 			{% if user.isAdmin %}
+				<li><a href="{{ urlFor('admin.example') }}">Admin area</a></li>
 				<li><a href="{{ urlFor('user.all') }}">All users</a></li>
 			{% endif %}
 			
