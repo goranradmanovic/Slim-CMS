@@ -12,7 +12,7 @@ $app->get('/admin/example', $admin(), function () use ($app) {
 
 	//Prikazivanje example.php stranice iz views/admin foldera
 
-	$app->redner('admin/example.php');
+	$app->render('admin/example.php');
 
 })->name('admin.example');
 
