@@ -3,6 +3,8 @@
 {% block title %}Reset password{% endblock %}
 
 {% block content %}
+	<h3>Enter your new password.</h3>
+	
 	<form action="{{ urlFor('password.reset.post') }}?email={{ email }}&identifier={{ identifier|url_encode }}" method="post" autocomplete="off">
 		<div>
 			<label for="password">Password</label>
