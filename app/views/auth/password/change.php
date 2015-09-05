@@ -6,9 +6,9 @@
 	
 	<form action="{{ urlFor('password.change.post') }}" method="post" autocomplete="off">
 		<div>
-			<label for="old_password">Old Password</label>
-			<input type="password" name="old_password" id="old_password">
-			{% if errors.has('old_password') %}{{ errors.first('old_password') }}{% endif %}
+			<label for="password_old">Old Password</label>
+			<input type="password" name="password_old" id="old_password">
+			{% if errors.has('password_old') %}{{ errors.first('password_old') }}{% endif %}
 		</div>
 
 		<div>
