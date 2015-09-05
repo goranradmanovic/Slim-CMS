@@ -88,7 +88,7 @@ class Validator extends Violin
 		//Provjera da li je ovaj korisnik ulogovan i da li se sifra koju je unijeo korisnik u polje old password slaze sa onom iz baze p.
 		//tj. da li dva hash od ovih sifri podudaraju. $value je vrijednost koju je obezbjedio korisnik tj. ono sto je unijeo u polje old password
 
-		if ($this->auht && $this->hash->passwordCheck($value, $this->auth->password))
+		if ($this->auth && $this->hash->passwordCheck($value, $this->auth->password))
 		{
 			//Ako je ovo istinito tj. ako se sifre slazu vracamo true
 
