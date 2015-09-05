@@ -68,7 +68,7 @@ $app->post('/recover-password', $guest(), function() use ($app) {
 
 			$app->mail->send('email/auth/password/recover.php', ['user' => $user, 'identifier' => $identifier], function ($message) use ($user) {
 				$message->to($user->email);
-				$message->subject('Recover your password.')
+				$message->subject('Recover your password.');
 			});
 
 			//Info poruka za korisnika i redirekcija na home page
