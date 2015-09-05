@@ -22,7 +22,10 @@
 
 		<div>
 			<input type="submit" value="Log in">
+			<!--Csrf token i zastita,prebacivanje imena tokena i vrijednosti iz CsrfMiddleware-a-->
 			<input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+
+			<a href="{{ urlFor('password.recover') }}">Forgot your password?</a>
 		</div>
 	</form>
 {% endblock %}
