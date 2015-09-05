@@ -14,6 +14,7 @@ require_once INC_ROOT . '/app/routes/upload/upload_img.php';
 require_once INC_ROOT . '/app/routes/admin/example.php';
 require_once INC_ROOT . '/app/routes/errors/404.php';
 require_once INC_ROOT . '/app/routes/auth/password/change.php';
+require_once INC_ROOT . '/app/routes/auth/password/recover.php';
 
 
 ?>
