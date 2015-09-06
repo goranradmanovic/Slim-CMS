@@ -42,7 +42,7 @@ class User extends Eloquent
 
 		//Ako postoji ime i prezime u bazi p.,i ako je to tacno vracamo vrijednosti imena i prezimena iz baze p.
 
-		return "{$this->fist_name} {$this->last_name}";
+		return "{$this->first_name} {$this->last_name}";
 	}
 
 	//Metod za dohvatanje punog imena i prezimena ili username iz baze p.
