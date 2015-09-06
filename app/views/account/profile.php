@@ -23,8 +23,8 @@
 		</div>
 
 		<div>
-			<input type="sumbit" value="Update">
-			<input="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
+			<input type="submit" value="Update">
+			<input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
 		</div>
 	</form>
 {% endblock %}
