@@ -64,7 +64,7 @@ class BeforeMiddleware extends Middleware
 		if ($this->app->getCookie($this->app->config->get('auth.remember')) && !$this->app->auth)
 		{
 			//Dohvatamo podatke iz Cookia i razdvajamo identifier od tokena koje smo satavili sa '---'
-			$data = $this->app->config->get('auth.remember');
+			$data = $this->app->getCookie($this->app->config->get('auth.remember'));
 			$credentials = explode('___', $data);
 
 			//Provjera da podatci iz cookie-a nisu prazni i da $credentials imaju dva array-a u sebi (rememberIdentifier i rememberToken)
@@ -78,7 +78,7 @@ class BeforeMiddleware extends Middleware
 			{
 				//U suprotnome dohvatamo identifier i token iz cookia i hasiramo token
 				$identifier = $credentials[0];
-				$token = $credentials[1];
+				$token = $this->app->hash->hash($credentials[1]);
 
 				//Dohvatamo krosinika iz baze ciji je remember_identifier jednak $identiferu iz cookia
 				$user = $this->app->user->where('remember_identifier', $identifier)->first();
