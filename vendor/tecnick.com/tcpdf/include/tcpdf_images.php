@@ -160,14 +160,6 @@ class TCPDF_IMAGES {
 	 * @public static
 	 */
 	public static function _parsejpeg($file) {
-		// check if is a local file
-		if (!@file_exists($file)) {
-			// try to encode spaces on filename
-			$tfile = str_replace(' ', '%20', $file);
-			if (@file_exists($tfile)) {
-				$file = $tfile;
-			}
-		}
 		$a = getimagesize($file);
 		if (empty($a)) {
 			//Missing or incorrect image file
@@ -297,8 +289,8 @@ class TCPDF_IMAGES {
 		$trns = '';
 		$data = '';
 		$icc = false;
-		$n = TCPDF_STATIC::_freadint($f);
 		do {
+			$n = TCPDF_STATIC::_freadint($f);
 			$type = fread($f, 4);
 			if ($type == 'PLTE') {
 				// read palette
@@ -346,7 +338,6 @@ class TCPDF_IMAGES {
 			} else {
 				TCPDF_STATIC::rfread($f, $n + 4);
 			}
-			$n = TCPDF_STATIC::_freadint($f);
 		} while ($n);
 		if (($colspace == 'Indexed') AND (empty($pal))) {
 			// Missing palette
