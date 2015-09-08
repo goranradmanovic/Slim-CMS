@@ -18,8 +18,9 @@
 				<table>
 					<thead>
 						<tr>
-							<th>User profile</th>
-							<th>User name</th>
+							<th>Picture</th>
+							<th>Username</th>
+							<th>Full name</th>
 							<th>Admin</th>
 							<th>Moderator</th>
 							<th>Can post content</th>
@@ -28,22 +29,21 @@
 
 					<tbody>
 						<tr>
+							<!--Dohvatanje korisnikove profilne slike-->
+
+							<td><img src="{{ user.getProfileImg }}" alt="User_profile.jpg" width="25px" height="25px"></td>
+
 							<!--Link do korisnikovog profila-->
 							<td><a href="{{ urlFor('user.profile', {username: user.username}) }}">{{ user.username }}</a></td>
 
 							<!--Provjera da li korisnik ima puno ime i prezime i ispis ako ima-->
-							{% if user.getFullName %}
-								<td>{{ user.getFullname }}</td>
-							{% else %}
-								<td></td>
-							{% endif %}
-
-							<!--Provjera korisnikovih priviliegija-->
-							{% if user.isAdmin %}
-								<td>Admin</td>
-							{% else %}
-								<td></td>
-							{% endif %}
+							<td>{{ user.getFullname ? user.getFullname : 'No' }}</td> 
+							
+							<td>{{ user.isAdmin ? 'Admin' : 'No' }}</td> <!--Provjera korisnikovih priviliegija-->
+						
+							<td>{{ user.isModerator ? 'Moderator' : 'No' }}</td> <!--Provjera korisnikovih priviliegija-->
+							
+							<td>{{ user.canPostTopic ? 'Yes' : 'No' }}</td> <!--Provjera korisnikovih priviliegija-->
 						</tr>
 					</tbody>
 				</table>
