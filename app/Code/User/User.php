@@ -140,6 +140,20 @@ class User extends Eloquent
 		return $this->hasPermission('is_admin');
 	}
 
+	//Pomocni metod za provjeru da li je korisnik moderator i ima moderatorska ovlastenja
+
+	public function isModerator()
+	{
+		return $this->hasPermission('is_moderator');
+	}
+
+	//Funkcija za provjeru da li kroisnik moze postaviti neki post ili clanak
+
+	public function canPostTopic()
+	{
+		return $this->hasPermission('can_post_topic');
+	}
+
 	//Ovaj metod je poveznica izmedju User k. i hasPermission k.,a ove dvije klase oznacavaju tabele iz baze p. Ovo je dio Eloquenta
 	//Ova funk. vraca tip relacije koji postoji izmedju tabela u bazi p.
 
