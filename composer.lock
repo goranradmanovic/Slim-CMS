@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c01d0b19894a84ff67b24fe023cbb374",
+    "hash": "1fdc85f9c57e70eaef77a8457767e87c",
     "packages": [
         {
             "name": "alexgarrett/violin",
@@ -874,16 +874,16 @@
         },
         {
             "name": "tecnick.com/tcpdf",
-            "version": "6.2.11",
+            "version": "6.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/TCPDF.git",
-                "reference": "354433a33946ae7497c3eab291eaaf814bccbfab"
+                "reference": "a2e8f5b505a7a14a4ed960313c4baf699fd1f4bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/354433a33946ae7497c3eab291eaaf814bccbfab",
-                "reference": "354433a33946ae7497c3eab291eaaf814bccbfab",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/a2e8f5b505a7a14a4ed960313c4baf699fd1f4bb",
+                "reference": "a2e8f5b505a7a14a4ed960313c4baf699fd1f4bb",
                 "shasum": ""
             },
             "require": {
@@ -933,7 +933,7 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2015-08-02 12:30:27"
+            "time": "2015-01-28 18:51:40"
         },
         {
             "name": "twig/twig",
