@@ -30,7 +30,6 @@ define('INC_ROOT', dirname(__DIR__));
 //Ukljucivanje autoload.php fajla
 require_once INC_ROOT . '/vendor/autoload.php';
 
-
 //Nova instanca Slim klase sa opcijama u konstrktoru
 $app = new Slim([
 	'mode' => file_get_contents(INC_ROOT . '/mode.txt'),
@@ -119,6 +118,14 @@ $app->container->set('image', function() {
 	$image = new Image($_FILES); //Konstruktor ove klase ne prima ni jedan parametar
 
 	return $image;
+});
+
+//Ukljucivanje TCPDF klase u Slim2 container
+
+$app->container->set('pdf', function() {
+	//Vraca novu instancu TCPDF klase.Arg. konstruktora su iz dokumentacije
+
+	return new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 });
 
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona
