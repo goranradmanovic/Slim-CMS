@@ -11,23 +11,23 @@
 		<p>No registered users.</p>
 	{% else %}
 
-		<!--Prolaz kroz sve el. $users var koja je niz sa svim korisnicim aiz baze-->
+		<div class="user">
+			<table>
+				<thead>
+					<tr>
+						<th>Picture</th>
+						<th>Username</th>
+						<th>Full name</th>
+						<th>Active</th>
+						<th>Admin</th>
+						<th>Moderator</th>
+						<th>Can post content</th>
+					</tr>
+				</thead>
 
-		{% for user in users %}
-			<div class="user">
-				<table>
-					<thead>
-						<tr>
-							<th>Picture</th>
-							<th>Username</th>
-							<th>Full name</th>
-							<th>Admin</th>
-							<th>Moderator</th>
-							<th>Can post content</th>
-						</tr>
-					</thead>
-
-					<tbody>
+				<tbody>
+					<!--Prolaz kroz sve el. $users var koja je niz sa svim korisnicim aiz baze-->
+					{% for user in users %}
 						<tr>
 							<!--Dohvatanje korisnikove profilne slike-->
 
@@ -37,7 +37,9 @@
 							<td><a href="{{ urlFor('user.profile', {username: user.username}) }}">{{ user.username }}</a></td>
 
 							<!--Provjera da li korisnik ima puno ime i prezime i ispis ako ima-->
-							<td>{{ user.getFullname ? user.getFullname : 'No' }}</td> 
+							<td>{{ user.getFullname ? user.getFullname : 'No' }}</td>
+
+							<td>{{ user.active ? 'Yes' : 'No'}}</td>
 							
 							<td>{{ user.isAdmin ? 'Admin' : 'No' }}</td> <!--Provjera korisnikovih priviliegija-->
 						
@@ -45,10 +47,18 @@
 							
 							<td>{{ user.canPostTopic ? 'Yes' : 'No' }}</td> <!--Provjera korisnikovih priviliegija-->
 						</tr>
-					</tbody>
-				</table>
-			</div>
-		{% endfor %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	
+
+		<!--Linkovi za PDF I XLSX prikaz tabele-->
+
+		<div>
+			<a href="{{ urlFor('assets.pdf') }}" >PDF table</a>
+			<a href="#">XLSX table</a>
+		</div>
 
 	{% endif %}
 
