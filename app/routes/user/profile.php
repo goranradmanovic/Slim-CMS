@@ -2,7 +2,7 @@
 
 //Get URL putanja. :username je vriejdnost koju saljemo preko URL-a,a u callbasc funk. hvatamo tu vrijednost
 
-$app->get('/u/:username', function($username) use ($app) {
+$app->get('/u/:username', $authenticated(), function($username) use ($app) {
 
 	//Dohvatanje svih korisnikovih podataka iz baze p.
 	$user = $app->user->where('username', $username)->first();
