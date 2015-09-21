@@ -128,6 +128,14 @@ $app->container->set('pdf', function() {
 	return new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 });
 
+//Ukljucivanje XLSXWriter klase u Slim2 container
+
+$app->container->set('xlsx', function () {
+	//Vraca novu instancu XLSXWriter klase
+
+	return new XLSXWriter();
+});
+
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona
 
 $view = $app->view();
