@@ -56,8 +56,8 @@
 		<!--Linkovi za PDF I XLSX prikaz tabele-->
 
 		<div>
-			<a href="{{ urlFor('assets.pdf') }}" >PDF table</a>
-			<a href="#">XLSX table</a>
+			<a href="{{ urlFor('assets.pdf') }}" download>PDF table</a>
+			<a href="{{ urlFor('assets.xlsx') }}" download>XLSX table</a>
 		</div>
 
 	{% endif %}
