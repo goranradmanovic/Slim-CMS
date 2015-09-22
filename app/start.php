@@ -116,9 +116,9 @@ $app->container->singleton('randomlib', function() use ($app) {
 //Uklucivanje BulletProof klase u Slim2 conatiner
 
 $app->container->set('image', function() {
-	$image = new Image($_FILES);
-
-	return $image;
+	//Nova instanca Image klase za upload slika
+	
+	return new Image($_FILES);
 });
 
 //Ukljucivanje TCPDF klase u Slim2 container
