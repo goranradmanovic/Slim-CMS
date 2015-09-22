@@ -15,6 +15,7 @@ use Code\Validation\Validator;
 use Code\Middleware\BeforeMiddleware;
 use Code\Middleware\CsrfMiddleware;
 use Code\Mail\Mailer;
+use Code\Article;
 
 //Pokretanje sessije
 session_cache_limiter(false);
@@ -115,7 +116,7 @@ $app->container->singleton('randomlib', function() use ($app) {
 //Uklucivanje BulletProof klase u Slim2 conatiner
 
 $app->container->set('image', function() {
-	$image = new Image($_FILES); //Konstruktor ove klase ne prima ni jedan parametar
+	$image = new Image($_FILES);
 
 	return $image;
 });
@@ -133,7 +134,16 @@ $app->container->set('pdf', function() {
 $app->container->set('xlsx', function () {
 	//Vraca novu instancu XLSXWriter klase
 
-	return new XLSXWriter();
+	return new XLSXWriter;
+});
+
+//Ukljucivanje Article klase u Slim container
+
+$app->container->set('article', function () {
+
+	//Vracamo novu instancu Article klase
+
+	return new Article;
 });
 
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona
