@@ -6,7 +6,7 @@
 	<form action="{{ urlFor('article.post') }}" method="post" autocomplete="off">
 		<div>
 			<label for="title">Title</label>
-			<input type="text" name="title" id="title" {% ifrequest.post('title') %} value="{{ request.post('title') }}" {% endif %}>
+			<input type="text" name="title" id="title" {% if request.post('title') %} value="{{ request.post('title') }}" {% endif %}>
 			{% if errors.has('title') %} {{ errors.first('title') }} {% endif %}
 		</div>
 
