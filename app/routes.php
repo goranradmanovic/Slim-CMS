@@ -19,5 +19,6 @@ require_once INC_ROOT . '/app/routes/auth/password/reset.php';
 require_once INC_ROOT . '/app/routes/account/profile.php';
 require_once INC_ROOT . '/app/routes/assets/pdf.php';
 require_once INC_ROOT . '/app/routes/assets/xlsx.php';
+require_once INC_ROOT . '/app/routes/articles/article.php';
 
 ?>
