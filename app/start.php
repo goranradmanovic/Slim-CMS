@@ -15,7 +15,7 @@ use Code\Validation\Validator;
 use Code\Middleware\BeforeMiddleware;
 use Code\Middleware\CsrfMiddleware;
 use Code\Mail\Mailer;
-use Code\Article;
+use Code\Article\Article;
 
 //Pokretanje sessije
 session_cache_limiter(false);
