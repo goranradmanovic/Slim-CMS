@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
+    'Code\\Article\\Article' => $baseDir . '/app/Code/Article/Article.php',
     'Code\\Helpers\\Hash' => $baseDir . '/app/Code/Helpers/Hash.php',
     'Code\\Mail\\Mailer' => $baseDir . '/app/Code/Mail/Mailer.php',
     'Code\\Mail\\Message' => $baseDir . '/app/Code/Mail/Message.php',
