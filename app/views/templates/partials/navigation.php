@@ -15,6 +15,7 @@
 
 			<!--Propustamo placeholder username: i vrijednost auth.username da bi se generisao link profilnu stranicu odredjenog korisnika-->
 			<li><a href="{{ urlFor('user.profile', {username: auth.username}) }}">Your Profile</a></li>
+			<li><a href="{{ urlFor('register') }}">Register</a></li>
 			<li><a href="{{ urlFor('password.change') }}">Change password</a></li>
 			<li><a href="{{ urlFor('account.profile') }}">Update profile</a></li>
 			<li><a href="{{ urlFor('articles.article') }}">Publish Article</a></li>
@@ -26,7 +27,6 @@
 			{% endif %}
 			
 		{% else %}
-			<li><a href="{{ urlFor('register') }}">Register</a></li>
 			<li><a href="{{ urlFor('login') }}">Login</a></li>
 		{% endif %}
 	</ul>
