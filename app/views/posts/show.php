@@ -3,14 +3,21 @@
 {% block title %} Post {% endblock%}
 
 {% block content %}
-	<a href="{{ urlFor('home') }}">Back</a>
+	<a href="{{ urlFor('posts.all_posts') }}">Back</a>
 
-	<h2>{{ post.title }}</h2>
+	{% for post in post %}
 
-	<p>{{ post.text }}</p>
+		<h2>{{ post.title }}</h2>
 
-	<div class="author">
-		<p>By {{ post.getUsernameOrFullName() }} on {{ post.created_at }}.</p>
-	</div>
-	
+		<p>{{ post.text }}</p>
+
+		<div class="author">
+
+			{% if post.first_name %}
+				<p>By {{ [post.first_name, post.last_name]|join(' ') }} on {{ post.created_at }}.</p>
+			{% else %}
+				<p>By {{ post.username }} on {{ post.created_at }}.</p>
+			{% endif %}
+		</div> 
+	{% endfor %}
 {% endblock %}
