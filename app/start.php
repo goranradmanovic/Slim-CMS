@@ -139,7 +139,7 @@ $app->container->set('xlsx', function () {
 
 //Ukljucivanje Article klase u Slim container
 
-$app->container->set('article', function () {
+$app->container->set('article', function () use ($app) {
 
 	//Vracamo novu instancu Article klase
 
