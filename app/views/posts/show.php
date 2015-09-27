@@ -10,7 +10,7 @@
 	<p>{{ post.text }}</p>
 
 	<div class="author">
-		<p>By {{ post.getUsernameOrFullName() }} on post.created.</p>
+		<p>By {{ post.getUsernameOrFullName() }} on {{ post.created_at }}.</p>
 	</div>
 	
 {% endblock %}
