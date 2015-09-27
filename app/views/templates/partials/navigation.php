@@ -6,6 +6,7 @@
 <menu>
 	<ul>
 		<li><a href="{{ urlFor('home') }}">Home</a></li>
+		<li><a href="{{ urlFor('posts.all_posts') }}">News</a></li>
 
 		<!--Ako je korisnik ulogovan onda ne zelimo da prikazjemo link za register i login stranicu,
 			a ako je korisnik potvrdjen autentificiran onda cemo prikazati link za logout-->
