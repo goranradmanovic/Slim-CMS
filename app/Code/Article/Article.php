@@ -7,7 +7,10 @@ namespace Code\Article;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Article extends Eloquent
-{
+{	
+	//Varijabla u kojoj cemo cuvati dependencie injection od User klase
+	protected $user;
+
 	//Definisanje tabele
 	protected $table = 'articles';
 
