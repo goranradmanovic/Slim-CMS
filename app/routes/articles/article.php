@@ -21,19 +21,16 @@ $app->post('/articles/article', $authenticated(), function () use ($app) {
 
 	//Validacija polja iz forme
 	$v->validate([
-		'title' => [$title, 'required|alpha|max(55)'],
-		'article' => [$article, 'required|alpha']
+		'title' => [$title, 'required|alnum|max(55)'],
+		'article' => [$article, 'required']
 	]);
-
-	var_dump($article);
-	die();
 
 	//Ako je validacija prosla uspijesno
 
 	if ($v->passes())
 	{
-		$app->article->update([
-			'user_id' => $app->user->id,
+		$app->article->create([
+			'user_id' => $app->auth->id,
 			'title' => $title,
 			'text' => $article
 		]);
