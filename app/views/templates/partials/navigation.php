@@ -20,6 +20,7 @@
 			<li><a href="{{ urlFor('password.change') }}">Change password</a></li>
 			<li><a href="{{ urlFor('account.profile') }}">Update profile</a></li>
 			<li><a href="{{ urlFor('articles.article') }}">Publish Article</a></li>
+			<li><a href="{{ urlFor('articles.edit') }}">Edit Article</a></li>
 
 			<!--Ako je korisnik admin prikazujemo mu ovaj link,a ako nije onda ga sakrijemo od njega-->
 			{% if auth.isAdmin %}
