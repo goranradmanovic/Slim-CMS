@@ -21,6 +21,7 @@ require_once INC_ROOT . '/app/routes/assets/pdf.php';
 require_once INC_ROOT . '/app/routes/assets/xlsx.php';
 require_once INC_ROOT . '/app/routes/articles/article.php';
 require_once INC_ROOT . '/app/routes/articles/edit_article.php';
+require_once INC_ROOT . '/app/routes/articles/delete_article.php';
 require_once INC_ROOT . '/app/routes/post/all_posts.php';
 require_once INC_ROOT . '/app/routes/post/show.php';
 
