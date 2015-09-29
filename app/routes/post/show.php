@@ -4,7 +4,7 @@
 //Propsutanje var. kojoj mozemo pistupiti i vidjti koji post iz baze zelimo prikazati korisniku,i koju dohvatamo
 //uz pomoc URL-a i GET-a,prvi param je putanja,onda tu var. postId propustamo u closure funck kao param
 
-$app->get('/posts/:postId', $guest(), function($postId) use ($app) {
+$app->get('/posts/:postId', function($postId) use ($app) {
 
 	//Dohvatanje postova iz baze sa specificnim id-em npr. (1,2,3) kojeg dobijamo kroz URL
 	//:postId je PDO placeholder koji poslije zamjenimo sa stvarnom vrijednoscu i nema veza sa :postId iz URL-a
