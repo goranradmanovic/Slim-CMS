@@ -2,7 +2,7 @@
 
 //Get putanja do fajla
 
-$app->get('/posts/all_posts', $guest(), function() use ($app) {
+$app->get('/posts/all_posts', function() use ($app) {
 
 	//$posts = $app->article->query("SELECT articles.*, CONCAT(users.first_name, ' ', users.last_name) AS author FROM articles LEFT JOIN users ON articles.user_id = users.id")->get();
 
