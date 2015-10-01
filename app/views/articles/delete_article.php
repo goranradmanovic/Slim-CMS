@@ -13,6 +13,8 @@
 			<div class="article">
 				<article>
 					<h4>{{ article.title }}</h4>
+
+					<p>Author {{ article.getArticleAuthor() }}</p>
 					<span>Created</span>
 					<time pubdate datetime="{{ article.created_at|date('d/m/Y @ H:i:s') }}">{{ article.created_at|date('d/m/Y @ H:i:s')  }}</time>
 					<p>{{ article.text[:50]}} ...</p>
