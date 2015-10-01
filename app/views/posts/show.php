@@ -12,12 +12,7 @@
 		<p>{{ post.text }}</p>
 
 		<div class="author">
-
-			{% if post.first_name %}
-				<p>By {{ [post.first_name, post.last_name]|join(' ') }} on {{ post.created_at }}.</p>
-			{% else %}
-				<p>By {{ post.username }} on {{ post.created_at }}.</p>
-			{% endif %}
+			<p>By {{ post.getArticleAuthor() }} on {{ post.created_at }}.</p>
 		</div> 
 	{% endfor %}
 {% endblock %}
