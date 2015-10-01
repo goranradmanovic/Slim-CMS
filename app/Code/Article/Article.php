@@ -48,6 +48,22 @@ class Article extends Eloquent
 	{
 		$this->where('id', $id)->where('user_id', $user_id)->delete();
 	}
+
+	//Funkcija za pravljenje relacije prema users tabeli iz baze p.  i omogucavanje povlacenja korisnickih podataka
+	//Eloquent pravi relaciju prema User modelu tj. users t. iz baze p. i povezuje korisnicki 'id' sa 'user_id' iz
+	//articles t. iz baze p. tj. Articles modelom
+	
+	public function user()
+	{
+		return $this->belongsTo('Code\User\User');
+	}
+
+	//Funkcija za dohvatanje autora clanka
+
+	public function getArticleAuthor()
+	{
+		return $this->user->getFullNameOrUsername();
+	}
 }
 
 ?>
