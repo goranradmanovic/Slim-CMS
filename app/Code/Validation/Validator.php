@@ -6,7 +6,8 @@ namespace Code\Validation;
 //Koristenje drugih paketa
 use Violin\Violin;
 use Code\User\User;
-use Code\Helpers\Hash; 
+use Code\Helpers\Hash;
+use Code\Album\Album;
 
 class Validator extends Violin
 {
@@ -16,13 +17,17 @@ class Validator extends Violin
 	//Properti Validator klase u kome ce biti instanca Hash klase
 	protected $hash;
 
+	//Properti Validator klase u kome ce biti instanca Album klase
+	protected $album;
+
 	//Trenutni ulogovani korisnik
 	protected $auth;
 
-	public function __construct(User $user, Hash $hash, $auth = null)
+	public function __construct(User $user, Hash $hash, Album $album, $auth = null)
 	{
 		$this->user = $user;
 		$this->hash = $hash;
+		$this->album = $album;
 		$this->auth = $auth;
 
 		//Dodavanje custom poruke za uniqueEmail pravilo sa addFieldMessages() met. iz Violin klase
@@ -34,6 +39,9 @@ class Validator extends Violin
 			],
 			'username' => [
 				'uniqueUsername' => 'That username is already in use.'
+			],
+			'title'=> [
+				'uniqueAlbumName' => 'That album name is already in use.'
 			]
 		]);
 	
@@ -97,6 +105,16 @@ class Validator extends Violin
 
 		//U suprotnome ako se sifre ne slazu,vracamo false
 		return false;
+	}
+
+	//Metod za validaciju jedinstvenog imena abluma
+
+	public function validate_uniqueAlbumName($value, $input, $args)
+	{
+		//Ako u bazi postoji neki title i funk. count() vrati 1 to znaci da je taj title zauzet
+		//$value je vrijednost koju smo pokupili iz forme,ako neki 'title' postoji to bi bilo true,a mi provjeravamo da li to nije istinito tj. netacno
+	
+		return ! (bool) $this->album->where('title', $value)->count();
 	}
 }
 
