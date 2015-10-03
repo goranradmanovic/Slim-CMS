@@ -7,7 +7,7 @@
 	<ul>
 		<li><a href="{{ urlFor('home') }}">Home</a></li>
 		<li><a href="{{ urlFor('posts.all_posts') }}">News</a></li>
-		<li><a href="{{ urlFor('upload.gallery') }}">Gallery</a></li>
+		<li><a href="{{ urlFor('gallery') }}">Gallery</a></li>
 
 		<!--Ako je korisnik ulogovan onda ne zelimo da prikazjemo link za register i login stranicu,
 			a ako je korisnik potvrdjen autentificiran onda cemo prikazati link za logout-->
@@ -23,6 +23,7 @@
 			<li><a href="{{ urlFor('articles.article') }}">Publish Article</a></li>
 			<li><a href="{{ urlFor('articles.edit') }}">Edit Article</a></li>
 			<li><a href="{{ urlFor('articles.delete') }}">Delete Article</a></li>
+			<li><a href="{{ urlFor('#') }}">Photos</a></li>
 
 			<!--Ako je korisnik admin prikazujemo mu ovaj link,a ako nije onda ga sakrijemo od njega-->
 			{% if auth.isAdmin %}
