@@ -16,6 +16,7 @@ use Code\Middleware\BeforeMiddleware;
 use Code\Middleware\CsrfMiddleware;
 use Code\Mail\Mailer;
 use Code\Article\Article;
+use Code\Album\Album;
 
 //Pokretanje sessije
 session_cache_limiter(false);
@@ -144,6 +145,15 @@ $app->container->set('article', function () use ($app) {
 	//Vracamo novu instancu Article klase
 
 	return new Article;
+});
+
+//Ukljucivanje Album klase u Slim container
+
+$app->container->set('album', function () use ($app) {
+
+	//Vracamo novu instancu Album klase
+
+	return new Album;
 });
 
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona
