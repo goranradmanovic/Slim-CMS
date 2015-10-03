@@ -2,13 +2,13 @@
 
 //Stvaranje putanje do register.php iz views/auth foldera
 
-$app->get('/register', function() use($app) {
+$app->get('/register', $authenticated(), function () use ($app) {
 	$app->render('/auth/register.php');
 })->name('register');
 
 //Post putanja za obradu podataka
 
-$app->post('/register', function() use($app) {
+$app->post('/register', $authenticated(), function () use ($app) {
 
 	//Dohvatanje Slimovog request objekta u kome se nalaze svi podatci poslati iz forme
 	$request = $app->request;
