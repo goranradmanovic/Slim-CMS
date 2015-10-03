@@ -80,7 +80,7 @@ $app->container->singleton('hash', function() use ($app) {
 //Dodavanje Validator klase u Slim conatiner
 
 $app->container->singleton('validation', function() use ($app) {
-	return new Validator($app->user, $app->hash, $app->auth);
+	return new Validator($app->user, $app->hash, $app->album, $app->auth);
 });
 
 //Ukljucivanje PHPMailera i Mailer kalse u Slim container
