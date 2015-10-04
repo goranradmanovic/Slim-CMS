@@ -9,4 +9,5 @@ return array(
     $vendorDir . '/danielstjules/stringy/src/Create.php',
     $vendorDir . '/illuminate/support/helpers.php',
     $vendorDir . '/samayo/bulletproof/src/bulletproof.php',
+    $vendorDir . '/samayo/bulletproof/src/utils/func.image-resize.php',
 );
