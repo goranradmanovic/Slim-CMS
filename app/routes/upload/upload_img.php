@@ -1,6 +1,6 @@
 <?php
 
-require_once '../vendor/samayo/bulletproof/src/utils/func.image-resize.php'; //Ukljucivanje funkcije za smanjivanje resize slike
+//Upload Profile Image
 
 //Get URL putanja
 
@@ -35,7 +35,7 @@ $app->post('/upload', function() use ($app) {
 
 	//Validacija polja iz forme
 	$v->validate([
-		'img_title' => [$img_title, 'required|alnumDash|min(4)'],
+		'img_title' => [$img_title, 'required|min(4)'],
 		'picture' => [$_FILES['picture']['name'], 'required']
 	]);
 	
@@ -57,7 +57,16 @@ $app->post('/upload', function() use ($app) {
 
 			//Provjera da li je slika ucitana na zeljenu lokaciju
 			if($upload)
-			{
+			{	
+				//Dohvatanje stare korisnikove slike i njeno brisanje it uploads/profile_img foldera
+				//Sistemska putanje do profilene slike korisnika
+				//(C:/xampp/htdocs/Vijezbe/Church/app/uploads/profile_img/155e339180caf9_gokqijelpmfhn.jpeg)
+				//Zato sto file_exists() f. uzima sistemsku putanju,a ne url putanju do file da bi se izvrsila
+
+				$profile_img_path = str_replace($app->config->get('app.url'), $_SERVER['DOCUMENT_ROOT'], $app->auth->img_path);
+
+				file_exists($profile_img_path) ? unlink($profile_img_path) : null; //Provjera da li profilna slika postoji u uploads/profile_img
+
 				//Smanjivanje slike na zeljenu velicinu
 				$resize = Bulletproof\resize (
 							$image->getFullPath(), 
