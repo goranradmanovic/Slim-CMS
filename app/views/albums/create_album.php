@@ -7,7 +7,7 @@
 	<div class="photos">
 		
 		<ul>
-			<li><a href="#">Add Photos</a></li>
+			<li><a href="{{ urlFor('upload.photos') }}">Add Photos</a></li>
 		</ul>
 
 		<div class="">

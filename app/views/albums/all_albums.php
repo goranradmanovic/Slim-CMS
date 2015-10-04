@@ -8,7 +8,7 @@
 
 		<ul>
 			<li><a href="{{ urlFor('albums.create_album') }}">+ Create Album</a></li>
-			<li><a href="#">Add Photos</a></li>
+			<li><a href="{{ urlFor('upload.photos') }}">Add Photos</a></li>
 		</ul>
 
 		<div class="">
