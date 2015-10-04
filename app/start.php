@@ -17,6 +17,7 @@ use Code\Middleware\CsrfMiddleware;
 use Code\Mail\Mailer;
 use Code\Article\Article;
 use Code\Album\Album;
+use Code\Photo\Photo;
 
 //Pokretanje sessije
 session_cache_limiter(false);
@@ -154,6 +155,15 @@ $app->container->set('album', function () use ($app) {
 	//Vracamo novu instancu Album klase
 
 	return new Album;
+});
+
+//Ukljucivanje Photo klase u Slim container
+
+$app->container->set('photo', function () use ($app) {
+
+	//Vracamo novu instancu Album klase
+
+	return new Photo;
 });
 
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona
