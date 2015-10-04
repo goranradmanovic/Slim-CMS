@@ -13,6 +13,10 @@
             "vendor/tecnickcom/tcpdf/tools",
             "vendor/tecnickcom/tcpdf/tools",
             "vendor/mk-j/php_xlsxwriter/xlsxwriter.class.php"
+        ],
+
+        "files": [
+            "vendor/samayo/bulletproof/src/utils/func.image-resize.php"
         ]
     },
 
