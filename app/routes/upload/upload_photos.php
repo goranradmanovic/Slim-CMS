@@ -24,8 +24,13 @@ $app->post('/upload_photos', $authenticated(), function () use ($app) {
 	$request = $app->request;
 
 	//Kupljenje podataka iz forme
-	(int) $albums = $request->post('albums');
+	$album_id = $request->post('albums');
 	$photos = $_FILES['photos']['name'];
+	$size = $_FILES['photos']['size'];
+	$type = $_FILES['photos']['type'];
+	
+	//Dohvatanje imena albuma,radi ucitavanje slika u njega
+	$album_name = $app->album->where('id', $album_id)->select('title')->first();
 
 	//Dohvatanje validacijske klase
 	$v = $app->validation;
@@ -33,13 +38,29 @@ $app->post('/upload_photos', $authenticated(), function () use ($app) {
 	//Provjera da li je validacija prosla uspijesno
 
 	if ($v->validate([
-		'albums' => [$albums, 'required'],
-		'photos' => [$photos, 'required']
+		'albums' => [$album_id, 'required'],
+		'photos' => [$_FILES['photos']['name'], 'required']
 	]));
 
+	//Ako je validacija prosla uspijesno
 
-	var_dump($albums);
-	var_dump($photos);
+	if ($v->passes())
+	{
+		$image = $app->image; //Dohvatanje image klase za rad sa slikama
+
+		$allowedMIME = ['jpg','jpeg','png']; //Dozvoljeni niz ekstenzija
+
+		//Namjestanje dozvoljenog niza estenzija,dozvoljene velicine fajla,dozvoljene dizmenzije slike,i smijestanje u profile_img folder.
+
+		$image->setMime($allowedMIME)->setSize(1000, 5242880)->setDimension(1250, 1250)->setLocation(INC_ROOT . '\app\uploads\gallery' . $album_name['title']);
+	
+		//Provjera da li uplodovana slika postoji
+
+		$image['photos'];
+
+		$image->upload();
+
+	}
 	
 	//Dohvatanje st. iz viewsa
 	return $app->render('upload/upload_photos.php', [
