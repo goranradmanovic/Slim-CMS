@@ -30,7 +30,11 @@ $app->post('/create_album', $authenticated(), function () use ($app) {
 
 	//Ako je validacija prosla uspijesno
 	if ($v->passes())
-	{
+	{	
+		//Kreiramo folder za slike koji ce se zvati kao ime albuma
+		mkdir(INC_ROOT . '\app\uploads\gallery\\' . $title);
+
+		//Upisujemo podatke u bazu p.
 		$app->album->create([
 			'user_id' => $app->auth->id,
 			'title' => $title
