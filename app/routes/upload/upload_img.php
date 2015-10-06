@@ -4,14 +4,14 @@
 
 //Get URL putanja
 
-$app->get('/upload', function() use ($app) {
+$app->get('/upload', $authenticated(), function() use ($app) {
 	$app->render('/upload/upload_img.php');
 })->name('upload');
 
 
 //Post putanja za obradu podataka iz forme
 
-$app->post('/upload', function() use ($app) {
+$app->post('/upload', $authenticated(), function() use ($app) {
 
 	//Dohvatanje Slim request objekata
 	$request = $app->request;
@@ -47,7 +47,7 @@ $app->post('/upload', function() use ($app) {
 
 		$allowedMIME = ['jpg','jpeg','png']; //Dozvoljeni niz ekstenzija za upload
 
-		//Nmjestanje dozvoljenog niza estenzija,dozvoljene velicine fajla,dozvoljene dizmenzije slike,i smijestanje u profile_img folder.
+		//Namjestanje dozvoljenog niza estenzija,dozvoljene velicine fajla,dozvoljene dizmenzije slike,i smijestanje u profile_img folder.
 		$image->setMime($allowedMIME)->setSize(1000, 1048576)->setDimension(500, 500)->setLocation(INC_ROOT . '\app\uploads\profile_img');
 
 		//Provjera da li uplodovana slika postoji
