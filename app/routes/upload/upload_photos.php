@@ -24,13 +24,14 @@ $app->post('/upload_photos', $authenticated(), function () use ($app) {
 	$request = $app->request;
 
 	//Kupljenje podataka iz forme
-	$album_id = $request->post('albums');
+	$albumId = $request->post('albums');
 	$photos = $_FILES['photos']['name'];
 	$size = $_FILES['photos']['size'];
 	$type = $_FILES['photos']['type'];
+	$tmp = $_FILES['photos']['tmp_name'];
 	
 	//Dohvatanje imena albuma,radi ucitavanje slika u njega
-	$album_name = $app->album->where('id', $album_id)->select('title')->first();
+	$albumName = $app->album->where('id', $albumId)->select('title')->first();
 
 	//Dohvatanje validacijske klase
 	$v = $app->validation;
@@ -38,7 +39,7 @@ $app->post('/upload_photos', $authenticated(), function () use ($app) {
 	//Provjera da li je validacija prosla uspijesno
 
 	if ($v->validate([
-		'albums' => [$album_id, 'required'],
+		'albums' => [$albumId, 'required'],
 		'photos' => [$_FILES['photos']['name'], 'required']
 	]));
 
@@ -46,20 +47,31 @@ $app->post('/upload_photos', $authenticated(), function () use ($app) {
 
 	if ($v->passes())
 	{
-		$image = $app->image; //Dohvatanje image klase za rad sa slikama
+		
+
+		$images = $app->image; //Dohvatanje image klase za rad sa slikama
 
 		$allowedMIME = ['jpg','jpeg','png']; //Dozvoljeni niz ekstenzija
 
 		//Namjestanje dozvoljenog niza estenzija,dozvoljene velicine fajla,dozvoljene dizmenzije slike,i smijestanje u profile_img folder.
 
-		$image->setMime($allowedMIME)->setSize(1000, 5242880)->setDimension(1250, 1250)->setLocation(INC_ROOT . '\app\uploads\gallery' . $album_name['title']);
+		//$images->setMime($allowedMIME)->setSize(1000, 5242880)->setDimension(1250, 1250)->setLocation(INC_ROOT . "\app\uploads\gallery\\$albumName->title");
 	
 		//Provjera da li uplodovana slika postoji
 
-		$image['photos'];
+		if (is_object($images))
+		{
+			echo '<pre>' , var_dump($images) , '</pre>';
+			
+			foreach ($images as $image)
+			{
+				
+				echo '<pre>' , var_dump($image) , '</pre>';
 
-		$image->upload();
-
+			}
+		}
+					
+				
 	}
 	
 	//Dohvatanje st. iz viewsa

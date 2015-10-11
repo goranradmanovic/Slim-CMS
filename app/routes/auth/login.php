@@ -60,9 +60,9 @@ $app->post('/login', function() use($app) {
 				$user->updateRememberCredentials($rememberIdentifier, $app->hash->hash($remeberToken));
 
 				//Setiranje Cookie-a uz pomoc Slim metoda setCookie() u koje kao ar. propustamo ime cookiea,vrijednost i duzinu trajanja
-				//isto kao i u obicni cookie kad pravimo
+				//isto kao i u obicni cookie kad pravimo,dodatni sigurnosni atributi su '/', path, null - domain, null - HTTPS i true - httponly
 
-				$app->setCookie($app->config->get('auth.remember'), "{$rememberIdentifier}___{$remeberToken}", Carbon::parse('+1 week')->timestamp);
+				$app->setCookie($app->config->get('auth.remember'), "{$rememberIdentifier}___{$remeberToken}", Carbon::parse('+1 week')->timestamp, '/', null, null, true);
 			}
 
 			//Prikaivanje potvrden poruke korisniku o uspijesnom logovanju
