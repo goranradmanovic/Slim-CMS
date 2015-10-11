@@ -12,7 +12,8 @@
             "vendor/tecnickcom/tcpdf/include/barcodes/",
             "vendor/tecnickcom/tcpdf/tools",
             "vendor/tecnickcom/tcpdf/tools",
-            "vendor/mk-j/php_xlsxwriter/xlsxwriter.class.php"
+            "vendor/mk-j/php_xlsxwriter/xlsxwriter.class.php",
+            "vendor/flourish-classes/"
         ],
 
         "files": [
