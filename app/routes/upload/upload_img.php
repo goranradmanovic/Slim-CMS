@@ -48,7 +48,7 @@ $app->post('/upload', $authenticated(), function() use ($app) {
 		$allowedMIME = ['jpg','jpeg','png']; //Dozvoljeni niz ekstenzija za upload
 
 		//Namjestanje dozvoljenog niza estenzija,dozvoljene velicine fajla,dozvoljene dizmenzije slike,i smijestanje u profile_img folder.
-		$image->setMime($allowedMIME)->setSize(1000, 1048576)->setDimension(500, 500)->setLocation(INC_ROOT . '\app\uploads\profile_img');
+		$image->setMime($allowedMIME)->setSize(1000, 1048576)->setDimension(500, 500)->setLocation(INC_ROOT . '\app\uploads\profile_img\\');
 
 		//Provjera da li uplodovana slika postoji
 		if($image['picture'])
