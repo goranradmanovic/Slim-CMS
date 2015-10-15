@@ -161,9 +161,16 @@ $app->container->set('album', function () use ($app) {
 
 $app->container->set('photo', function () use ($app) {
 
-	//Vracamo novu instancu Album klase
+	//Vracamo novu instancu Photo klase
 
 	return new Photo;
+});
+
+$app->container->set('fupload', function () use ($app) {
+
+	//Vracamo novu instancu fUpload klase
+
+	return new fUpload;
 });
 
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona
