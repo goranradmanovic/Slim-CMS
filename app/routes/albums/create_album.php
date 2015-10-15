@@ -32,7 +32,7 @@ $app->post('/create_album', $authenticated(), function () use ($app) {
 	if ($v->passes())
 	{	
 		//Kreiramo folder za slike koji ce se zvati kao ime albuma
-		mkdir(INC_ROOT . '\app\uploads\gallery\\' . $title);
+		mkdir(INC_ROOT . '/app/uploads/gallery/' . $title);
 
 		//Upisujemo podatke u bazu p.
 		$app->album->create([
@@ -41,7 +41,6 @@ $app->post('/create_album', $authenticated(), function () use ($app) {
 		]);
 
 		//Redirekcija korisnika i prikazivanje info poruke
-
 		$app->flash('global', 'You have create new album');
 		$app->redirect($app->urlFor('photos.photos'));
 	}
