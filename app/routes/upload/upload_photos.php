@@ -4,7 +4,7 @@
 
 //Get putanja
 
-$app->get('/upload_photos',$authenticated(), function () use ($app) {
+$app->get('/upload_photos', $authenticated(), function () use ($app) {
 
 	//Dohvatanje svih korisnikovih albuma  koje je kreirao i slanje na views da se iskoristi za dropdovn listu
 	$albums = $app->album->getUserAlbums($app->auth->id);
@@ -20,6 +20,9 @@ $app->get('/upload_photos',$authenticated(), function () use ($app) {
 
 $app->post('/upload_photos', $authenticated(), function () use ($app) {
 
+	//Dohvatanje Photos klase
+	$photo = $app->photo;
+
 	//Request objekat
 	$request = $app->request;
 
@@ -28,10 +31,12 @@ $app->post('/upload_photos', $authenticated(), function () use ($app) {
 	$photos = $_FILES['photos']['name'];
 	$size = $_FILES['photos']['size'];
 	$type = $_FILES['photos']['type'];
-	$tmp = $_FILES['photos']['tmp_name'];
 	
 	//Dohvatanje imena albuma,radi ucitavanje slika u njega
 	$albumName = $app->album->where('id', $albumId)->select('title')->first();
+
+	//Direktorijum za ucitavanje slika
+	$uploadDir = INC_ROOT . "\app\uploads\gallery\\$albumName->title\\";
 
 	//Dohvatanje validacijske klase
 	$v = $app->validation;
@@ -47,31 +52,50 @@ $app->post('/upload_photos', $authenticated(), function () use ($app) {
 
 	if ($v->passes())
 	{
-		
+		//Nova instanca fUpload klase
+		$uploader = $app->fupload;
 
-		$images = $app->image; //Dohvatanje image klase za rad sa slikama
+		//Setiranje dozvoljenih ekstenzija
+		$uploader->setMIMETypes(array(
+			'image/jpg',
+			'image/jpeg',
+			'image/png',
+		), 'The file uploaded in not an allowed image type.');
 
-		$allowedMIME = ['jpg','jpeg','png']; //Dozvoljeni niz ekstenzija
+		//Ogranicavanje velicine fajla
+		$uploader->setMaxSize('5MB');
 
-		//Namjestanje dozvoljenog niza estenzija,dozvoljene velicine fajla,dozvoljene dizmenzije slike,i smijestanje u profile_img folder.
+		//Validacija ucitanog fajla
+		$error = $uploader->validate('photos', TRUE);
 
-		//$images->setMime($allowedMIME)->setSize(1000, 5242880)->setDimension(1250, 1250)->setLocation(INC_ROOT . "\app\uploads\gallery\\$albumName->title");
-	
-		//Provjera da li uplodovana slika postoji
+		//Folder za smijestanje slika
+		$dir = new fDirectory($uploadDir);
 
-		if (is_object($images))
-		{
-			echo '<pre>' , var_dump($images) , '</pre>';
-			
-			foreach ($images as $image)
-			{
-				
-				echo '<pre>' , var_dump($image) , '</pre>';
+		//Var. u kojoj cuvamo ucitane slike u obliku niza
+		$files = array();
 
-			}
+		//Prebrojavanje ucitanih slika
+		$uploaded = fUpload::count('photos');
+
+		//Pokrecmo for petlju da izlista i ucita sve slike jednu po jednu
+		for ($i = 0; $i < $uploaded; $i++)
+		{	
+			//Prolaz kroz sve ucitane slike i ucitavanje jedne po jedne u odredjeni folder
+		    $files[] = $uploader->move($dir, 'photos', $i);
+
+		    //Upis svih slika u bazu podataka
+		    $photo->create([
+		    	'user_id' => $app->auth->id,
+		    	'album_id' => $albumId,
+		    	'path' => $uploadDir . $photos[$i],
+		    	'size' => $size[$i],
+		    	'type' => $type[$i]
+		    ]);
 		}
-					
-				
+
+		//Redirekcija na upload st. sa porukom
+		$app->flash('global', 'Your photos has been uploaded.');
+		return $app->response->redirect($app->urlFor('upload.photos'));
 	}
 	
 	//Dohvatanje st. iz viewsa
