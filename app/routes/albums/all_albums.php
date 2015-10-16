@@ -10,7 +10,7 @@ $app->get('/all_albums', $authenticated(), function () use ($app) {
 
 	//Dohvatanje stranice iz viewsa i slanje podataka
 	return $app->render('/albums/all_albums.php', [
-		'albums' => $albums
+		'albums' => $albums,
 	]);
 
 })->name('ablums.all_albums');
