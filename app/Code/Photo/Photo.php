@@ -21,14 +21,12 @@ class Photo extends Eloquent
 	];
 
 	//Metod za dohvatanje svih slika
-
 	public function getPhotos()
 	{
 		return $this->select('*')->get();
 	}
 
 	//Dohvatanje svih korisnikovih slika
-
 	public function getUserPhotos($user_id)
 	{
 		return $this->where('user_id', $user_id)->get();
@@ -44,6 +42,12 @@ class Photo extends Eloquent
 	public function deletePhoto($id)
 	{
 		return $this->destroy($id);
+	}
+
+	//Putanja do foldera gdje se nalaze slike
+	public function getPhotoPath()
+	{
+		return $this->path;
 	}
 
 }
