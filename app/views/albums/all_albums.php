@@ -21,11 +21,15 @@
 		{% for album in albums %}
 
 			<div class="album">
-				
-				<img src="" alt="Album photos">
+				<div>
+					<a href=""><img src="{{ album.getAlbumThumbnail.path }}" alt="Album photos"/></a>
+				</div>
 
-				<a href="">{{ album.title }}</a>
+				<div>
+					<a href="">{{ album.title }}</a>
 
+					<p>{{ album.countPhotosInAlbum }} photos</p>
+				</div>
 			</div>
 
 		{% endfor %}
