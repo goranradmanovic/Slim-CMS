@@ -83,11 +83,14 @@ $app->post('/upload_photos', $authenticated(), function () use ($app) {
 			//Prolaz kroz sve ucitane slike i ucitavanje jedne po jedne u odredjeni folder
 		    $files[] = $uploader->move($dir, 'photos', $i);
 
+		    //Promjena apsolutne putanje u http:// putanju slike
+			$path = str_replace(dirname(dirname(INC_ROOT)), $app->config->get('app.url'), $uploadDir . $photos[$i]);
+
 		    //Upis svih slika u bazu podataka
 		    $photo->create([
 		    	'user_id' => $app->auth->id,
 		    	'album_id' => $albumId,
-		    	'path' => $uploadDir . $photos[$i],
+		    	'path' => $path,
 		    	'size' => $size[$i],
 		    	'type' => $type[$i]
 		    ]);
