@@ -29,13 +29,19 @@ class Photo extends Eloquent
 	//Dohvatanje svih korisnikovih slika
 	public function getUserPhotos($user_id)
 	{
-		return $this->where('user_id', $user_id)->get();
+		return $this->select('id','path')->where('user_id', $user_id)->get();
 	}
 
 	//Dohvatanje slika iz odredjenog albuma
 	public function getAlbumPhotos($album_id)
 	{
 		return $this->where('album_id', $album_id)->get();
+	}
+
+	//Metod za dohvatanje jedne slike
+	public function getPhoto($id)
+	{
+		return $this->select('path')->where('id', $id)->first();
 	}
 
 	//Brisanje odredjene slike
