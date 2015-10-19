@@ -50,15 +50,7 @@ class Album extends Eloquent
 	public function getAlbumThumbnail()
 	{
 		//Dohvatanje prve slike iz albuma tj. njene putanje
-		if ($this->photo->where('album_id', $this->id)->first(['path']) === NULL)
-			{return 'http://localhost/Vijezbe/Church/public/assets/icons/Avatar.svg';}
-		else
-		{
-			return $this->photo->where('album_id', $this->id)->first(['path']);
-		}
-	
-		//is_null($path) ? 'http://localhost/Vijezbe/Church/public/assets/icons/Avatar.svg' : '';
-	
+		return $this->photo->where('album_id', $this->id)->whereNotNull('album_id')->first(['path']);
 	}
 
 	//Metod za povlacenje svih slika iz jednog albuma iz baze podataka
