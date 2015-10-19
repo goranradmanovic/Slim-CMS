@@ -22,7 +22,8 @@
 
 			<div class="album">
 				<div>
-					<a href="{{ urlFor('albums.album_photos') }}?id={{ album.id }}"><img src="{{ album.getAlbumThumbnail.path }}" alt="Album photos" width="200px" height="200px" /></a>
+					<a href="{{ urlFor('albums.album_photos') }}?id={{ album.id }}">
+					<img src="{{ album.getAlbumThumbnail.path }}" alt="Album photos" width="200px" height="200px"/></a>
 				</div>
 
 				<div>
