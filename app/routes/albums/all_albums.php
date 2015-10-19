@@ -5,7 +5,6 @@
 $app->get('/all_albums', $authenticated(), function () use ($app) {
 
 	//Dohvatanje svih albuma od specificnog korisnika
-
 	$albums = $app->album->getUserAlbums($app->auth->id);
 
 	//Dohvatanje stranice iz viewsa i slanje podataka
@@ -13,6 +12,6 @@ $app->get('/all_albums', $authenticated(), function () use ($app) {
 		'albums' => $albums,
 	]);
 
-})->name('ablums.all_albums');
+})->name('albums.all_albums');
 
 ?>

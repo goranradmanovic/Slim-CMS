@@ -14,7 +14,7 @@
 		<div class="">
 			<ul>
 				<li><a href="#">Your Photos</a></li>
-				<li><a href="{{ urlFor('ablums.all_albums') }}">Albums</a></li>
+				<li><a href="{{ urlFor('albums.all_albums') }}">Albums</a></li>
 			</ul>
 		</div>
 
@@ -22,16 +22,20 @@
 
 			<div class="album">
 				<div>
-					<a href=""><img src="{{ album.getAlbumThumbnail.path }}" alt="Album photos"/></a>
+					<a href="{{ urlFor('albums.album_photos') }}?id={{ album.id }}"><img src="{{ album.getAlbumThumbnail.path }}" alt="Album photos" width="200px" height="200px" /></a>
 				</div>
 
 				<div>
-					<a href="">{{ album.title }}</a>
+					<a href="{{ urlFor('albums.album_photos') }}?id={{ album.id }}">{{ album.title }}</a>
 
 					<p>{{ album.countPhotosInAlbum }} photos</p>
+
+					{% if auth %}
+						<a href="{{ urlFor('albums.delete_album') }}?id={{ album.id }}">Delete Album</a>
+					{% endif %}
 				</div>
 			</div>
-
+			<hr>
 		{% endfor %}
 	</div>
 {% endblock %}
