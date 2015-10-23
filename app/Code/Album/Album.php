@@ -43,20 +43,27 @@ class Album extends Eloquent
 	//Metod za brojeanje slika u odredjenom albumu
 	public function countPhotosInAlbum()
 	{
-		return $this->photo->select('id')->where('album_id', $this->id)->count();
+		return $this->photo()->select('id')->where('album_id', $this->id)->count();
 	}
 
 	//Metod za dohvatanje prve slike u Albumu
 	public function getAlbumThumbnail()
 	{
 		//Dohvatanje prve slike iz albuma tj. njene putanje
-		return $this->photo->where('album_id', $this->id)->whereNotNull('album_id')->first(['path']);
+		return $this->photo()->where('album_id', $this->id)->first(['path']);
 	}
 
 	//Metod za povlacenje svih slika iz jednog albuma iz baze podataka
 	public function DisplayAlbumPhotos($albumId)
 	{
-		return $this->find($albumId)->photo->where('album_id', $albumId)->get(['path']); //Ovo je Eloquent dinamcki properti
+		$path = $this->photo()->where('album_id', $albumId)->get(['path']);
+
+		if (count(get_object_vars($path)) === 0)
+		{
+			return $path = null;
+		}
+
+		return $path;
 	}
 
 	//Metod za prikazivanje svih korisnikovih slika
