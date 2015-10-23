@@ -12,7 +12,7 @@
 
 		<div class="">
 			<ul>
-				<li><a href="#">Your Photos</a></li>
+				<li><a href="{{ urlFor('photos.all_photos') }}">Your Photos</a></li>
 				<li><a href="{{ urlFor('albums.all_albums') }}">Albums</a></li>
 			</ul>
 		</div>

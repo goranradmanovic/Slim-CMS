@@ -13,7 +13,7 @@
 
 		<div class="">
 			<ul>
-				<li><a href="#">Your Photos</a></li>
+				<li><a href="{{ urlFor('photos.all_photos') }}">Your Photos</a></li>
 				<li><a href="{{ urlFor('albums.all_albums') }}">Albums</a></li>
 			</ul>
 		</div>
@@ -23,7 +23,11 @@
 			<div class="album">
 				<div>
 					<a href="{{ urlFor('albums.album_photos') }}?id={{ album.id }}">
-					<img src="{{ album.getAlbumThumbnail.path }}" alt="Album photos" width="200px" height="200px"/></a>
+					{% if album.getAlbumThumbnail.path is null %}
+						<img src="{{ baseUrl }}/Vijezbe/Church/public/assets/icons/Album.svg" alt="Album photos" width="200px" height="200px"/></a>
+					{% else %}
+						<img src="{{ album.getAlbumThumbnail.path }}" alt="Album photos" width="200px" height="200px"/></a>
+					{% endif %}
 				</div>
 
 				<div>
