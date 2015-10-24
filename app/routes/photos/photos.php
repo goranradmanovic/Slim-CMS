@@ -9,5 +9,4 @@ $app->get('/photos', $authenticated(), function () use ($app) {
 
 })->name('photos.photos');
 
-
 ?>
