@@ -47,13 +47,13 @@ class Photo extends Eloquent
 	//Brisanje odredjene slike
 	public function deletePhoto($id)
 	{
-		return $this->destroy($id);
+		$this->destroy($id);
 	}
 
 	//Putanja do foldera gdje se nalaze slike
-	public function getPhotoPath()
+	public function getPhotoPath($id)
 	{
-		return $this->path;
+		return $this->select('path')->where('id', $id)->first();
 	}
 
 }
