@@ -4,19 +4,27 @@
 
 $app->get('/album_photos', function () use ($app) {
 
-	//Provjera da li u GET-u postoji ID od albuma
+	//Request objekat
+	$request = $app->request;
 
-	if (!isset($_GET['id']))
-	{
+	//Album objekta
+	$album = $app->album;
+
+	//Dohvatanje ID od albuma iz URL-a
+	(int) $albumId = $request->get('id');
+
+	//Provjera da li u GET-u postoji ID od albuma
+	if (!isset($albumId))
+	{	
+		//Redirekcija korisnika na st. sa svim albumima
 		return $app->redirect($app->urlFor('albums.all_albums'));
 	}
 
-	(int) $albumId = $_GET['id'];
-
-	$album = $app->album;
-
+	//Metod za prikazivanje svih slika iz odredjenog albuma
 	$albumPhotos = $album->DisplayAlbumPhotos($albumId);
 
+	//var_dump($albumPhotos); die;
+	//Slanje podataka na view od svih slika iz albuma
 	return $app->render('/albums/album_photos.php', [
 		'albumPhotos' => $albumPhotos
 	]);
