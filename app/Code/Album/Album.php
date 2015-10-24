@@ -56,14 +56,16 @@ class Album extends Eloquent
 	//Metod za povlacenje svih slika iz jednog albuma iz baze podataka
 	public function DisplayAlbumPhotos($albumId)
 	{
-		$path = $this->photo()->where('album_id', $albumId)->get(['path']);
-
+		var_dump($this->photo()->select('path')->where('album_id', $albumId)->get());
+		var_dump($this->photo()->where('album_id', $albumId)->get(['path'])); die;
+		/*
+		var_dump($path); die;
 		if (count(get_object_vars($path)) === 0)
 		{
-			return $path = null;
+			return null;
 		}
 
-		return $path;
+		return $path;*/
 	}
 
 	//Metod za prikazivanje svih korisnikovih slika
