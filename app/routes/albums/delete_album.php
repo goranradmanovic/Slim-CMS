@@ -4,14 +4,17 @@
 
 $app->get('/delete_album', $authenticated(), function () use ($app) {
 
+	//Request objekat
+	$request = $app->request;
+
+	//Dohvatanje vriejdnosti tj. ID od albuma
+	(int) $albumId = $request->get('id');
+
 	//Provjera da li je ID od albuma poslat u GET-u,a ako nije redirekcija korisnika nazad
 	if (!isset($_GET['id']))
 	{
 		return $app->redirect($app->urlFor('albums.all_albums'));
 	}
-
-	//Dohvatanje vriejdnosti tj. ID od albuma
-	(int) $albumId = $_GET['id'];
 
 	//Dohvatanje imena albuma
 	$albumTitle = $app->album->getAlbumTitle($albumId);
@@ -39,7 +42,7 @@ $app->get('/delete_album', $authenticated(), function () use ($app) {
 	$app->album->DeleteAlbum($albumId, $app->auth->id);
 
 	//Prikazivanje potvrdne poruke korisniku i redirekcija na st. sa svim albumima
-	$app->flash('global', 'You are successfuly deleted album.');
+	$app->flash('global', 'You are successfully deleted album.');
 	return $app->redirect($app->urlFor('albums.all_albums'));
 
 })->name('albums.delete_album');
