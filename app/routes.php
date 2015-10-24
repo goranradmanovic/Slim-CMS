@@ -29,6 +29,7 @@ require_once INC_ROOT . '/app/routes/gallery/gallery.php';
 require_once INC_ROOT . '/app/routes/photos/photos.php';
 require_once INC_ROOT . '/app/routes/photos/all_photos.php';
 require_once INC_ROOT . '/app/routes/photos/photo.php';
+require_once INC_ROOT . '/app/routes/photos/delete_photo.php';
 require_once INC_ROOT . '/app/routes/albums/create_album.php';
 require_once INC_ROOT . '/app/routes/albums/all_albums.php';
 require_once INC_ROOT . '/app/routes/albums/album_photos.php';
