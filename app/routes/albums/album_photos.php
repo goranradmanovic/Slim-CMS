@@ -1,7 +1,6 @@
 <?php
 
 //Get putanja do fajla
-
 $app->get('/album_photos', function () use ($app) {
 
 	//Request objekat
@@ -23,10 +22,9 @@ $app->get('/album_photos', function () use ($app) {
 	//Metod za prikazivanje svih slika iz odredjenog albuma
 	$albumPhotos = $album->DisplayAlbumPhotos($albumId);
 
-	//var_dump($albumPhotos); die;
 	//Slanje podataka na view od svih slika iz albuma
 	return $app->render('/albums/album_photos.php', [
-		'albumPhotos' => $albumPhotos
+		'albumPhotos' => $albumPhotos,
 	]);
 
 })->name('albums.album_photos');
