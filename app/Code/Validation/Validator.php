@@ -8,6 +8,7 @@ use Violin\Violin;
 use Code\User\User;
 use Code\Helpers\Hash;
 use Code\Album\Album;
+use ReCaptcha\ReCaptcha;
 
 class Validator extends Violin
 {
@@ -20,15 +21,19 @@ class Validator extends Violin
 	//Properti Validator klase u kome ce biti instanca Album klase
 	protected $album;
 
+	//Properti Validator klase u kome ce biti instanca ReCaptcha klase
+	protected $recaptcha;
+	
 	//Trenutni ulogovani korisnik
 	protected $auth;
 
-	public function __construct(User $user, Hash $hash, Album $album, $auth = null)
+	public function __construct(User $user, Hash $hash, Album $album, ReCaptcha $recaptcha, $auth = null)
 	{
 		$this->user = $user;
 		$this->hash = $hash;
 		$this->album = $album;
 		$this->auth = $auth;
+		$this->recaptcha = $recaptcha;
 
 		//Dodavanje custom poruke za uniqueEmail pravilo sa addFieldMessages() met. iz Violin klase
 		//Za svako email polje iz forme koje ima uniqueEmail pravilo dodaj ovu poruku
@@ -42,6 +47,9 @@ class Validator extends Violin
 			],
 			'title'=> [
 				'uniqueAlbumName' => 'That album name is already in use.'
+			],
+			'g-recaptcha-response' => [
+				'validReCaptcha' => 'Please check in the Captcha field.'
 			]
 		]);
 	
@@ -115,6 +123,21 @@ class Validator extends Violin
 		//$value je vrijednost koju smo pokupili iz forme,ako neki 'title' postoji to bi bilo true,a mi provjeravamo da li to nije istinito tj. netacno
 	
 		return ! (bool) $this->album->where('title', $value)->count();
+	}
+
+	//Metod za validaciju ReCaptcha-e
+
+	public function validate_validReCaptcha($value, $input, $args)
+	{
+		//Validacija g-recaptcha-response polja iz forme
+		$response = $this->recaptcha->verify($value);
+
+		//Provjera da li validacija g-recaptcha-response polja iz forme nije prosla uspijesno
+		if (!$response->isSuccess())
+		{
+			//Dohvatamo greske
+			return ! (bool) $response->getErrorCodes();
+		}	
 	}
 }
 
