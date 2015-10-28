@@ -8,6 +8,7 @@ use Slim\Views\TwigExtension;
 use Noodlehaus\Config;
 use RandomLib\Factory as RandomLib;
 use BulletProof\Image;
+use ReCaptcha\ReCaptcha;
 
 use Code\User\User;
 use Code\Helpers\Hash;
@@ -35,7 +36,7 @@ require_once INC_ROOT . '/vendor/autoload.php';
 
 //Nova instanca Slim klase sa opcijama u konstrktoru
 $app = new Slim([
-	'mode' => file_get_contents(INC_ROOT . '/mode.txt'),
+	'mode' => file_get_contents(INC_ROOT . '/mode.php'),
 	'view' => new Twig(),
 	'templates.path' => INC_ROOT . '/app/views'
 ]);
@@ -81,7 +82,7 @@ $app->container->singleton('hash', function() use ($app) {
 //Dodavanje Validator klase u Slim conatiner
 
 $app->container->singleton('validation', function() use ($app) {
-	return new Validator($app->user, $app->hash, $app->album, $app->auth);
+	return new Validator($app->user, $app->hash, $app->album, $app->recaptcha, $app->auth);
 });
 
 //Ukljucivanje PHPMailera i Mailer kalse u Slim container
@@ -171,6 +172,15 @@ $app->container->set('fupload', function () use ($app) {
 	//Vracamo novu instancu fUpload klase
 
 	return new fUpload;
+});
+
+//Ukljucivanje Google ReCaptcha klase u Slim container
+
+$app->container->set('recaptcha', function () use ($app) {
+
+	//Vracamo novu instancu ReCaptcha klase
+
+	return new ReCaptcha('6LcOyw8TAAAAALgaLKfOQTNo39xuCOB16E8ZpAvr');
 });
 
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona
