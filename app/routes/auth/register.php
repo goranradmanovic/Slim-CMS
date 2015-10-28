@@ -1,5 +1,7 @@
 <?php
 
+use Code\User\UserPermission; //Koristenje UserPermission klase
+
 //Stvaranje putanje do register.php iz views/auth foldera
 
 $app->get('/register', $authenticated(), function () use ($app) {
@@ -18,8 +20,9 @@ $app->post('/register', $authenticated(), function () use ($app) {
 	$username = $request->post('username');
 	$password = $request->post('password');
 	$passwordConfirm = $request->post('password_confirm');
+	$gRecaptcha = $request->post('g-recaptcha-response'); //Google ReCaptcha polje
 
-	//validaciju izvrsavamo prije registracije korisnika i smijestanja u bazu p.
+	//Validaciju izvrsavamo prije registracije korisnika i smijestanja u bazu p.
 
 	$v = $app->validation; // 'validation' je ime Validator klase koje smo uljucili u slim conatiner
 
@@ -29,7 +32,8 @@ $app->post('/register', $authenticated(), function () use ($app) {
 		'email' => [$email, 'required|email|uniqueEmail'],
 		'username' => [$username, 'required|alnumDash|max(20)|uniqueUsername'],
 		'password' => [$password, 'required|min(6)'],
-		'password_confirm' => [$passwordConfirm, 'required|matches(password)']
+		'password_confirm' => [$passwordConfirm, 'required|matches(password)'],
+		'g-recaptcha-response'=> [$gRecaptcha, 'validReCaptcha']
 	]);
 
 	//Provjera da li je validacija prosla uspiejsno sa passes() m.
