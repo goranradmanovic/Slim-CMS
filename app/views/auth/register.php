@@ -29,6 +29,11 @@
 		</div>
 
 		<div>
+			<div class="g-recaptcha" data-sitekey="6LcOyw8TAAAAAN1Gi8cdHilH1RuXPXESYwR-zP5q"></div> <!--Google ReCaptcha-->
+			{% if errors.has('g-recaptcha-response') %} {{ errors.first('g-recaptcha-response') }} {% endif %}
+		</div>
+		
+		<div>
 			<input type="submit" value="Register">
 			<input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
 		</div>
