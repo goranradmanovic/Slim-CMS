@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2914f588ef8fe6a02edbf4ddb5d1d08b",
-    "content-hash": "e2e42beaca93c5f31888eddac6ac6750",
+    "hash": "e087016008676858f96cc4adbcceda56",
+    "content-hash": "3eaafac9efde6291c6e2ab67ea43f79c",
     "packages": [
         {
             "name": "alexgarrett/violin",
@@ -174,6 +174,51 @@
                 "string"
             ],
             "time": "2014-12-20 21:24:13"
+        },
+        {
+            "name": "google/recaptcha",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/google/recaptcha.git",
+                "reference": "2b7e00566afca82a38a1d3adb8e42c118006296e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/google/recaptcha/zipball/2b7e00566afca82a38a1d3adb8e42c118006296e",
+                "reference": "2b7e00566afca82a38a1d3adb8e42c118006296e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.5.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ReCaptcha\\": "src/ReCaptcha"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Client library for reCAPTCHA, a free service that protect websites from spam and abuse.",
+            "homepage": "http://www.google.com/recaptcha/",
+            "keywords": [
+                "Abuse",
+                "captcha",
+                "recaptcha",
+                "spam"
+            ],
+            "time": "2015-09-02 17:23:59"
         },
         {
             "name": "hassankhan/config",
@@ -523,127 +568,6 @@
             "description": "A Base Security Library",
             "homepage": "https://github.com/ircmaxell/PHP-SecurityLib",
             "time": "2013-04-30 18:00:34"
-        },
-        {
-            "name": "mikehaertl/php-shellcommand",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mikehaertl/php-shellcommand.git",
-                "reference": "ac7d139cd3e6bbdff3254fd2eac7deb30117961d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/php-shellcommand/zipball/ac7d139cd3e6bbdff3254fd2eac7deb30117961d",
-                "reference": "ac7d139cd3e6bbdff3254fd2eac7deb30117961d",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "mikehaertl\\shellcommand\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Härtl",
-                    "email": "haertl.mike@gmail.com"
-                }
-            ],
-            "description": "An object oriented interface to shell commands",
-            "keywords": [
-                "shell"
-            ],
-            "time": "2015-07-07 08:34:45"
-        },
-        {
-            "name": "mikehaertl/php-tmpfile",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mikehaertl/php-tmpfile.git",
-                "reference": "e34d43fa546d09f434b59ea8c05d4e4d55d55687"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/php-tmpfile/zipball/e34d43fa546d09f434b59ea8c05d4e4d55d55687",
-                "reference": "e34d43fa546d09f434b59ea8c05d4e4d55d55687",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "mikehaertl\\tmp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Haertl",
-                    "email": "haertl.mike@gmail.com"
-                }
-            ],
-            "description": "A convenience class for temporary files",
-            "keywords": [
-                "files"
-            ],
-            "time": "2014-07-09 11:08:51"
-        },
-        {
-            "name": "mikehaertl/phpwkhtmltopdf",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mikehaertl/phpwkhtmltopdf.git",
-                "reference": "dd9aa056bbdd7222e6bf2848d036bf9c3a2930cd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/phpwkhtmltopdf/zipball/dd9aa056bbdd7222e6bf2848d036bf9c3a2930cd",
-                "reference": "dd9aa056bbdd7222e6bf2848d036bf9c3a2930cd",
-                "shasum": ""
-            },
-            "require": {
-                "mikehaertl/php-shellcommand": "^1.0.2",
-                "mikehaertl/php-tmpfile": "^1.0.0",
-                "php": ">=5.0.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "mikehaertl\\wkhtmlto\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Haertl",
-                    "email": "haertl.mike@gmail.com"
-                }
-            ],
-            "description": "A slim PHP wrapper around wkhtmltopdf with an easy to use and clean OOP interface",
-            "homepage": "http://mikehaertl.github.com/phpwkhtmltopdf/",
-            "keywords": [
-                "pdf",
-                "wkhtmltoimage",
-                "wkhtmltopdf"
-            ],
-            "time": "2015-06-30 17:32:10"
         },
         {
             "name": "mk-j/php_xlsxwriter",
