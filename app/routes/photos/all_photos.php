@@ -2,7 +2,7 @@
 
 //Get putanja
 
-$app->get('/all_photos', $authenticated(), function () use ($app) {
+$app->get('/all_photos', $authenticated(), function() use ($app) {
 
 	//Dohvatanje Photo klase iz Slim cont.
 	$photo = $app->photo;
