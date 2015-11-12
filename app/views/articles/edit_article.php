@@ -7,13 +7,14 @@
 	<div>
 		<label for="titles">Titles</label>
 		{% for title in titles %}
-			<button type="submit" id="titles"><a href="{{ urlFor('articles.edit') }}?id={{ title.id }}">{{ title.title }}</a></button>
+			<button type="submit" id="titles"><a href="{{ urlFor('articles.edit', {'uid': auth.id, 'aid': title.id}) }}">{{ title.title }}</a></button>
+			<small>Created at: <time>{{ title.created_at|date("d/m/Y") }}</time></small>
 		{% endfor %}
 	</div>
 
-	{% if articles %} <!--Ako postoji clanak u bazi sa specificnim id dohvatamo taj clanak na get routu i saljemo ga ovamo u articles var.-->
-		{% for article in articles %} <!--Prolaz korz sve el. clanka-->
-			<form action="{{ urlFor('articles.edit.post') }}?id={{ article.id }}" method="post" autocomplete="off">
+	{% for article in articles %} <!--Prolaz korz sve el. clanka-->
+		{% if article.id %} <!--Ako postoji clanak u bazi sa specificnim id dohvatamo taj clanak na get routu i saljemo ga ovamo u articles var.-->
+			<form action="{{ urlFor('articles.edit.post', {'id': article.id}) }}" method="post" autocomplete="off">
 				<div>
 					<label for="title">Title</label>
 					<input type="text" name="title" id="title" value="{{ article.title }}">
@@ -31,6 +32,7 @@
 					<input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
 				</div>
 			</form>
-		{% endfor %}
-	{% endif %}
+		{% endif %}
+	{% endfor %}
+
 {% endblock %}

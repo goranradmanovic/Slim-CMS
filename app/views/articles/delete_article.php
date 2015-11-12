@@ -20,7 +20,7 @@
 					<p>{{ article.text[:50]}} ...</p>
 				</article>
 
-				<a href="{{ urlFor('articles.delete') }}?id={{ article.id }}">Delete Article</a>
+				<a href="{{ urlFor('articles.delete', {'id': article.id}) }}">Delete Article</a>
 				<hr >
 			</div>
 
