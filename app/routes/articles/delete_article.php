@@ -2,16 +2,10 @@
 
 //Get putanja i obrada podataka u get() m.
 
-$app->get('/articles/delete', $authenticated(), function () use ($app) {
+$app->get('/articles/delete/:id', $authenticated(), function($id) use ($app) {
 
 	//Dohvatanje svih clanaka koje je objavio trenutni autentificirani korisnik
-	$articles = $app->article->where('user_id', '=', $app->auth->id)->get();
-
-	//Dohvatanje request objekta
-	$request = $app->request;
-
-	//Dohvatanje id od clanka
-	(int) $id = $request->get('id');
+	$articles = $app->article->where('user_id', $app->auth->id)->get();
 
 	//Ako je id setovan tj. postoji u URL-u i dohvacen je iz URL-a
 	if (isset($id))
