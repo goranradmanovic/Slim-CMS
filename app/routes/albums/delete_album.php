@@ -2,22 +2,12 @@
 
 //Get putanja do fajla
 
-$app->get('/delete_album', $authenticated(), function () use ($app) {
+$app->get('/delete_album/:id', $authenticated(), function($id) use($app) {
 
-	//Request objekat
-	$request = $app->request;
-
-	//Dohvatanje vriejdnosti tj. ID od albuma
-	(int) $albumId = $request->get('id');
-
-	//Provjera da li je ID od albuma poslat u GET-u,a ako nije redirekcija korisnika nazad
-	if (!isset($_GET['id']))
-	{
-		return $app->redirect($app->urlFor('albums.all_albums'));
-	}
+	$app->response()->header('Content-Type', 'application/json'); //Namjestanje headera
 
 	//Dohvatanje imena albuma
-	$albumTitle = $app->album->getAlbumTitle($albumId);
+	$albumTitle = $app->album->getAlbumTitle($id);
 
 	//Putanja do foldera koji brisemo
 	$dirPath = INC_ROOT . '\app\uploads\gallery\\' . $albumTitle->title;
@@ -39,11 +29,23 @@ $app->get('/delete_album', $authenticated(), function () use ($app) {
 	rmdir($dirPath);
 
 	//Brisanje albuma i slika iz baze p. uz pomoc DeleteAlbum funk. iz Album klase
-	$app->album->DeleteAlbum($albumId, $app->auth->id);
-
-	//Prikazivanje potvrdne poruke korisniku i redirekcija na st. sa svim albumima
-	$app->flash('global', 'You are successfully deleted album.');
-	return $app->redirect($app->urlFor('albums.all_albums'));
+	(bool) $result = $app->album->DeleteAlbum($id, $app->auth->id);
+	
+	//Odgovor server o uspijesnom ili ne uspijesnom brisanju fajlova i foldera
+	if ($result)
+	{
+		echo json_encode(array(
+			"status" => true,
+			"message" => "Album deleted successfully."
+		));
+	}
+	else
+	{
+		echo json_encode(array(
+			"status" => false,
+			"message" => "Album id {$id} does not exist."
+		));
+	}
 
 })->name('albums.delete_album');
 
