@@ -21,7 +21,7 @@ $app->post('/articles/article', $authenticated(), function () use ($app) {
 
 	//Validacija polja iz forme
 	$v->validate([
-		'title' => [$title, 'required|alnum|max(55)'],
+		'title' => [$title, 'required|max(55)'],
 		'article' => [$article, 'required']
 	]);
 
