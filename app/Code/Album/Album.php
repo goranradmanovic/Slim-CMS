@@ -76,7 +76,10 @@ class Album extends Eloquent
 	//Metod za brisanje albuma i slika iz albuma iz baze p.
 	public function DeleteAlbum($albumId, $userId)
 	{
-		$this->find($albumId)->photo->where('album_id', $albumId)->where('user_id', $userId)->delete();
+		//Brisanje slika iz odredjenog albuma iz baze p.
+		$this->find($albumId)->photo()->where('album_id', $albumId)->where('user_id', $userId)->delete();
+
+		//Brisanje albuma iz baze p.
 		$this->find($albumId)->where('id', $albumId)->where('user_id', $userId)->delete();
 	}
 }
