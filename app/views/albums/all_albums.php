@@ -22,7 +22,7 @@
 
 			<div class="album">
 				<div>
-					<a href="{{ urlFor('albums.album_photos') }}?id={{ album.id }}">
+					<a href="{{ urlFor('albums.album_photos', {'id': album.id}) }}">
 					{% if album.getAlbumThumbnail.path is null %}
 						<img src="{{ baseUrl }}/Vijezbe/Church/public/assets/icons/Album.svg" alt="Album photos" width="200px" height="200px"/></a>
 					{% else %}
@@ -31,12 +31,12 @@
 				</div>
 
 				<div>
-					<a href="{{ urlFor('albums.album_photos') }}?id={{ album.id }}">{{ album.title }}</a>
+					<a href="{{ urlFor('albums.album_photos', {'id': album.id}) }}">{{ album.title }}</a>
 
 					<p>{{ album.countPhotosInAlbum }} photos</p>
 
 					{% if auth %}
-						<a href="{{ urlFor('albums.delete_album') }}?id={{ album.id }}">Delete Album</a>
+						<a href="#" id="btnDelete" data-identity="{{ album.id }}">Delete Album</a>
 					{% endif %}
 				</div>
 			</div>

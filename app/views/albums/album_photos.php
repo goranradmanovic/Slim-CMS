@@ -10,7 +10,7 @@
 			<p>There's no photos in this album.</p>
 		{% else %}
 			{% for albumPhoto in albumPhotos %}
-				<a href="{{ urlFor('photos.photo') }}?id={{ albumPhoto.id }}"><img src="{{ albumPhoto.path  }}" alt="Album Photo.jpg" width="206px" height="206px"></a>
+				<a href="{{ urlFor('photos.photo', {'id': albumPhoto.id}) }}"><img src="{{ albumPhoto.path  }}" alt="Album Photo.jpg" width="206px" height="206px"></a>
 			{% endfor %}
 		{% endif %}
 
