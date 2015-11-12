@@ -1,28 +1,24 @@
 <?php
 
-//Get putanja do ovog fajla
+//Get putanja do ovog fajla (':uid' - user id, ':aid' - article id)
 
-$app->get('/articles/edit', $authenticated(), function() use ($app) {
-	
-	//Dohvatanje naslova clanaka i njihov id od specificnog autora tih clanaka
-	$titles = $app->article->where('user_id', '=', $app->auth->id)->select('id','title')->get();
+$app->get('/articles/edit/:uid/:aid', $authenticated(), function($uid, $aid) use ($app) {
 
-	//Request objekat
-	$request = $app->request;
-
-	//Dohvatanje id od clanka iz URL tj. Get var. i kastovanje u int radi sigurnosti
-	(int) $id = $request->get('id');
-
-	if (!isset($id))
+	//Prvojera id od korisnika koji saljemo iz main navigacije sajta i trenutno autenficiranog korisnika,da nebi doslo do editovanj tudjih clanaka
+	if ($uid != $app->auth->id)
 	{
-		//Ako id od clanka ne postoji u get supergolobalnoj var. tj. nije poslat preko URL-a i ne postoji u URL-u
-		//onda namjestamo var articles na null tako da nam na views-u views/articles/edit_articles.php ne prikazuje formu za editovanje clanka
-		$articles = null;
+		//Prikazivanje poruke korisniku i redirekcija
+		$app->flash('danger', 'You can edit only yours articles.');
+		return $app->redirect($app->urlFor('home'));
 	}
 
-	//Dohvatanje clanaka iz baze p.
-	$articles = $app->article->select('id','title','text')->where('id', '=', $id)->get();
+	//Dohvatanje naslova clanaka i njihov id od specificnog autora tih clanaka
+	$titles = $app->article->where('user_id', $uid)->select('id','title','created_at')->get();
 
+	//Dohvatanje clanaka iz baze p.
+	$articles = $app->article->select('id','title','text')->where('id', $aid)->get();
+	
+	//Vracamo rendovani views sa podatcima iz baze p.
 	return $app->render('/articles/edit_article.php', [
 		'titles' => $titles,
 		'articles' => $articles
@@ -32,13 +28,12 @@ $app->get('/articles/edit', $authenticated(), function() use ($app) {
 
 //Post putanja do fajla
 
-$app->post('/articles/edit', $authenticated(), function() use ($app) {
+$app->post('/articles/edit/:id', $authenticated(), function($id) use ($app) {
 
 	//Request objekat
 	$request = $app->request;
 
 	//Dohvatanje polja i vrijdnosti iz forme i id od clanka iz URL-a
-	$id = $request->get('id');
 	$title = $request->post('title');
 	$text = $request->post('text');
 
@@ -57,7 +52,7 @@ $app->post('/articles/edit', $authenticated(), function() use ($app) {
 	if ($v->passes())
 	{
 		//Updatujemo red u bazi p. u zavisnosti od id. where() m. mora biti prije update() m.
-		$app->article->where('id', '=', $id)->update([
+		$app->article->where('id', $id)->update([
 			'title' => $title,
 			'text' => $text
 		]);
