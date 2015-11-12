@@ -55,7 +55,6 @@ class Photo extends Eloquent
 	{
 		return $this->select('path')->where('id', $id)->first();
 	}
-
 }
 
 ?>
