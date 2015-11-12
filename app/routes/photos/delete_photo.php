@@ -2,26 +2,13 @@
 
 //Get putanja
 
-$app->get('/delete_photo', $authenticated(), function () use ($app) {
-
-	//Request objekat za kupljenje podataka iz GET-a
-	$request = $app->request;
+$app->get('/delete_photo/:id', $authenticated(), function($id) use ($app) {
 
 	//Dohvatanje Photo objekta
 	$photo = $app->photo;
 
-	//Dohvatanje ID od slike iz URL-a
-	(int) $photoId = $request->get('id');
-
-	//Provjera da li je ID od slike setovan tj. namjesten i da li postoji
-	if (!isset($photoId))
-	{	
-		//Redirekcija korisnika na st. sa svim slikama
-		return $app->redirect($app->urlFor('photos.all_photos'));
-	}
-
 	//Dohvatanje putanje do slike koju brisemo
-	$photoPath = $app->photo->getPhotoPath($photoId);
+	$photoPath = $app->photo->getPhotoPath($id);
 
 	//Dohvatanje stare korisnikove slike i njeno brisanje it uploads/profile_img foldera
 	//Sistemska putanje do profilene slike korisnika
@@ -34,7 +21,7 @@ $app->get('/delete_photo', $authenticated(), function () use ($app) {
 	file_exists($AbsPhotoPath) ? unlink($AbsPhotoPath) : null;
 
 	//Brisanje slike iz baze p.
-	$photo->deletePhoto($photoId);
+	$photo->deletePhoto($id);
 
 	//Obavjetenje korisnika o brisanje slike i redirekcija na st. sa svim slikama
 	$app->flash('global', 'You are successfully deleted photo.');
