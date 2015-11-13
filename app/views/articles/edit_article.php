@@ -4,16 +4,38 @@
 
 {% block content %}
 
-	<div>
-		<label for="titles">Titles</label>
-		{% for title in titles %}
-			<button type="submit" id="titles"><a href="{{ urlFor('articles.edit', {'uid': auth.id, 'aid': title.id}) }}">{{ title.title }}</a></button>
-			<small>Created at: <time>{{ title.created_at|date("d/m/Y") }}</time></small>
-		{% endfor %}
-	</div>
+	{% if titles is empty %}
+		<p>You do not have any articles.</p>
+	{% else %}
+		<div>
+			<h3>Click title for editing.</h3>
+			<label for="titles">Titles</label>
+			{% for title in titles %}
+
+				<div class="article-info">
+					<button type="submit" id="titles"><a href="{{ urlFor('articles.edit', {'uid': auth.id, 'aid': title.id}) }}">{{ title.title }}</a></button>
+				
+					<div class="article">
+						<article>
+							<h4>{{ title.title }}</h4>
+
+							<p>Author {{ title.getArticleAuthor() }}</p>
+							<span>Created</span>
+							<time pubdate datetime="{{ title.created_at|date('d/m/Y @ H:i:s') }}">{{ title.created_at|date('d/m/Y @ H:i:s') }}</time>
+							<p>{{ title.text[:50]}} ...</p>
+						</article>
+
+						<small><a href="{{ urlFor('articles.delete', {'id': title.id}) }}">Delete Article</a></small>
+					</div>
+				</div><br><hr>
+				
+			{% endfor %}
+		</div>
+	{% endif %}
 
 	{% for article in articles %} <!--Prolaz korz sve el. clanka-->
 		{% if article.id %} <!--Ako postoji clanak u bazi sa specificnim id dohvatamo taj clanak na get routu i saljemo ga ovamo u articles var.-->
+			<h3>Article editing form</h3>
 			<form action="{{ urlFor('articles.edit.post', {'id': article.id}) }}" method="post" autocomplete="off">
 				<div>
 					<label for="title">Title</label>
