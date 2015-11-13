@@ -13,7 +13,7 @@ $app->get('/articles/edit/:uid/:aid', $authenticated(), function($uid, $aid) use
 	}
 
 	//Dohvatanje naslova clanaka i njihov id od specificnog autora tih clanaka
-	$titles = $app->article->where('user_id', $uid)->select('id','title','created_at')->get();
+	$titles = $app->article->where('user_id', $uid)->select('id','user_id','title','text','created_at')->get();
 
 	//Dohvatanje clanaka iz baze p.
 	$articles = $app->article->select('id','title','text')->where('id', $aid)->get();
