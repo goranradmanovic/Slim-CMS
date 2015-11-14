@@ -4,8 +4,7 @@
 
 return [
 	'app' => [
-		'url' => 'http://localhost',
-		'public' => '/Vijezbe/Church/public/',
+		'url' => '',
 		'hash' => [
 			'algo' => PASSWORD_BCRYPT,
 			'cost' => 10
