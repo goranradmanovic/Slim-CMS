@@ -50,8 +50,7 @@ class BeforeMiddleware extends Middleware
 
 		$this->app->view()->appendData([
 			'auth' => $this->app->auth,
-			'baseUrl' => $this->app->config->get('app.url'),
-			'public' => $this->app->config->get('app.public'),
+			'baseUrl' => $this->app->config->get('app.url')
 		]);
 	}
 
