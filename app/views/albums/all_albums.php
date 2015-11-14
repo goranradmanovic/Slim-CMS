@@ -24,7 +24,7 @@
 				<div>
 					<a href="{{ urlFor('albums.album_photos', {'id': album.id}) }}">
 					{% if album.getAlbumThumbnail.path is null %}
-						<img src="{{ baseUrl }}/Vijezbe/Church/public/assets/icons/Album.svg" alt="Album photos" width="200px" height="200px"/></a>
+						<img src="{{ baseUrl }}assets/icons/Album.svg" alt="Album photos" width="200px" height="200px"/></a>
 					{% else %}
 						<img src="{{ album.getAlbumThumbnail.path }}" alt="Album photos" width="200px" height="200px"/></a>
 					{% endif %}
