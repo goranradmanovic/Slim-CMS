@@ -91,7 +91,7 @@ class User extends Eloquent
 		//Provjera da li putanja do profilen slike iz uploads foldera postoji u bazi p.
 		//Ako putanja do profilne slike iz uploads foldera ne postoji u bazi p. onda nam vrati null u suprotonme vrati putanju do slike
 
-		return !$this->img_path ? 'http://localhost/Vijezbe/Church/public/assets/icons/Avatar.svg' : $this->img_path;
+		return !$this->img_path ? $app->config->get('app.url') . 'assets/icons/Avatar.svg' : $this->img_path;
 	}
 
 	//Metod za brisanje profilene slike
