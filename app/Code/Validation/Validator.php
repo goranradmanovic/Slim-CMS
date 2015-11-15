@@ -47,16 +47,14 @@ class Validator extends Violin
 			],
 			'title'=> [
 				'uniqueAlbumName' => 'That album name is already in use.'
-			],
-			'g-recaptcha-response' => [
-				'validReCaptcha' => 'Please check in the Captcha field.'
 			]
 		]);
 	
 		//Dodavanje nase poruke za pravilo koje smo napravili za provjeru korisnikove sifre iz baze p. i one sto je unijeo u polje old password
 
 		$this->addRuleMessages([
-			'matchesCurrentPassword' => 'That does not match your current password.'
+			'matchesCurrentPassword' => 'That does not match your current password.',
+			'validReCaptcha' => 'Please check in the Captcha field.'
 		]);
 	}
 
@@ -133,11 +131,17 @@ class Validator extends Violin
 		$response = $this->recaptcha->verify($value);
 
 		//Provjera da li validacija g-recaptcha-response polja iz forme nije prosla uspijesno
-		if (!$response->isSuccess())
+		if ($response->isSuccess())
 		{
-			//Dohvatamo greske
-			return ! (bool) $response->getErrorCodes();
-		}	
+			//Google recaptcha metod za dohvatanje gresaka
+			//return $response->getErrorCodes();
+
+			//Ako je validacija prosla uspijesno vracamo (bool) true vriejdnost
+			return true;
+		}
+		
+		//Ako je validacija propala vracamo (bool) false
+		return false;
 	}
 }
 
