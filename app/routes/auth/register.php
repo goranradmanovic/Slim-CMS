@@ -26,7 +26,7 @@ $app->post('/register', $authenticated(), function () use ($app) {
 
 	$v = $app->validation; // 'validation' je ime Validator klase koje smo uljucili u slim conatiner
 
-	//Metod iz Violin k. koji provjerava polja iz forme
+	//Metod iz Violin k. koji provjerava polja iz forme validReCaptcha
 
 	$v->validate([
 		'email' => [$email, 'required|email|uniqueEmail'],
