@@ -5,6 +5,7 @@
 return [
 	'app' => [
 		'url' => '',
+		'public' => '',
 		'hash' => [
 			'algo' => PASSWORD_BCRYPT,
 			'cost' => 10
