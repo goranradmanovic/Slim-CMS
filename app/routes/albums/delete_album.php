@@ -30,7 +30,7 @@ $app->get('/delete_album/:id', $authenticated(), function($id) use($app) {
 
 	//Brisanje albuma i slika iz baze p. uz pomoc DeleteAlbum funk. iz Album klase
 	(bool) $result = $app->album->DeleteAlbum($id, $app->auth->id);
-	
+
 	//Odgovor server o uspijesnom ili ne uspijesnom brisanju fajlova i foldera
 	if ($result)
 	{
