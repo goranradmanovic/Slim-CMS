@@ -6,6 +6,7 @@ return [
 	'app' => [
 		'url' => 'http://localhost',
 		'public' => '/Vijezbe/Church/public/',
+		'profile_uploads' => '/Vijezbe/Church/app/uploads/profile_img/',
 		'hash' => [
 			'algo' => PASSWORD_BCRYPT,
 			'cost' => 10
