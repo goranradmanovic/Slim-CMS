@@ -11,13 +11,20 @@ Zepto(function($){
 		console.log(e, xhr, options);
 	});
 
-	// Call delete car function when button is clicked
+	// Call delete album function when button is clicked
 	$('#btnDelete').live('click', function(event) {
 			//Definiranje var
 			var $this = $(this),
 				albumId = $this.data('identity');
 			
 			deleteAlbum(albumId); //Brisanje albuma sa odredjenim ID-em
+			return false; //Onemogucavanje defaultnog ponasanja linka
+		}
+	);
+
+	//Call deleteProfileImg function when button is clicked
+	$('#btnDelete').live('click', function(event) {
+			deleteProfileImg(); //Brisanje albuma sa odredjenim ID-em
 			return false; //Onemogucavanje defaultnog ponasanja linka
 		}
 	);
@@ -91,6 +98,57 @@ Zepto(function($){
 				else
 				{
 					swal("Cancelled", "Your album is safe :)", "error");
+				}
+			}
+		);	
+	}
+
+	//Funkcija za brisanje korisnikove profilne slike
+	function deleteProfileImg()
+	{
+		//Sweetaler funk. za prikazivanje poruke i dugmeta za cancel i confirm
+		swal({
+			title: "Are you sure?",
+			text: "You will not be able to recover this photo!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes, delete it!",
+			cancelButtonText: "No, cancel please!",
+			closeOnConfirm: false,
+			closeOnConfirm: false,
+			showLoaderOnConfirm: true,
+			closeOnCancel: false,
+			},
+			
+			function(isConfirm)
+			{	
+				//Ako je stisnuto na dugme confirm
+				if (isConfirm)
+				{
+					//AJAX zahtijev za brisanje
+					$.ajax({
+						type: 'GET',
+						url: rootURL + 'delete_img',
+						success: function(data) {
+
+							$('body').html(data);
+							
+							
+						},
+						error: function(xhr, type, textStatus, errorThrown) {
+							console.log(xhr, type, errorThrown, textStatus);
+						}
+					});
+					
+					//Odgadjamo izvrsavanje poruke na pola sec. dok se ajax zahtijav izvrsi
+					setTimeout(function(){
+						swal("Deleted!", "Your photo has been deleted.", "success");
+					}, 550);
+				}
+				else
+				{
+					swal("Cancelled", "Your photo is safe :)", "error");
 				}
 			}
 		);	
