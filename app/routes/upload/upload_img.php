@@ -47,12 +47,19 @@ $app->post('/upload', $authenticated(), function() use ($app) {
 
 		$allowedMIME = ['jpg','jpeg','png']; //Dozvoljeni niz ekstenzija za upload
 
+		//Folder za smijestanje korisnickih slika od profila
+		$userDir = INC_ROOT . "\app\uploads\profile_img\\{$app->auth->username}\\";
+
+		//Stvaranje korisnickog foldera za profilne slike koji ce se zvati kao njihovo username
+		$userUploadFolder = fDirectory::create($userDir);
+
 		//Namjestanje dozvoljenog niza estenzija,dozvoljene velicine fajla,dozvoljene dizmenzije slike,i smijestanje u profile_img folder.
-		$image->setMime($allowedMIME)->setSize(1000, 1048576)->setDimension(500, 500)->setLocation(INC_ROOT . '\app\uploads\profile_img\\');
+		$image->setMime($allowedMIME)->setSize(1000, 1048576)->setDimension(500, 500)->setLocation($userUploadFolder);
 
 		//Provjera da li uplodovana slika postoji
 		if($image['picture'])
-		{
+		{	
+			//Izvrsavanje uploada slike
 			$upload = $image->upload(); 
 
 			//Provjera da li je slika ucitana na zeljenu lokaciju
@@ -63,9 +70,9 @@ $app->post('/upload', $authenticated(), function() use ($app) {
 				//(C:/xampp/htdocs/Vijezbe/Church/app/uploads/profile_img/155e339180caf9_gokqijelpmfhn.jpeg)
 				//Zato sto file_exists() f. uzima sistemsku putanju,a ne url putanju do file da bi se izvrsila
 
-				$profile_img_path = str_replace($app->config->get('app.url'), $_SERVER['DOCUMENT_ROOT'], $app->auth->img_path);
+				$profileImgPath = str_replace($app->config->get('app.url'), $_SERVER['DOCUMENT_ROOT'], $app->auth->img_path);
 
-				file_exists($profile_img_path) ? unlink($profile_img_path) : null; //Provjera da li profilna slika postoji u uploads/profile_img
+				file_exists($profileImgPath) ? unlink($profileImgPath) : null; //Provjera da li profilna slika postoji u uploads/profile_img
 
 				//Smanjivanje slike na zeljenu velicinu
 				$resize = Bulletproof\resize (
@@ -78,7 +85,7 @@ $app->post('/upload', $authenticated(), function() use ($app) {
 				);
 
 				//Dohvatanje putanje do slike i imena slike
-				$img_path = $app->config->get('app.url') . '/Vijezbe/Church/app/uploads/profile_img/' . $image->getName() . '.' . $image->getMime();
+				$img_path = $app->config->get('app.url') . $app->config->get('app.profile_uploads') . $app->auth->username . '/' . $image->getName() . '.' . $image->getMime();
 
 				$user = $app->auth; //Cuvanje korisnikovih podataka u var.
 
