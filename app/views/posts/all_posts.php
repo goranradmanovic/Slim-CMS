@@ -16,7 +16,7 @@
 				<p>{{ post.text[:50] }}</p>
 
 				<div class="author">
-					<p>{{ post.getArticleAuthor() }}</p>
+					<p>By {{ post.getArticleAuthor() }}</p>
 				</div>
 			</div>
 			

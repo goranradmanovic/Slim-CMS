@@ -12,7 +12,7 @@
 		<p>{{ post.text }}</p>
 
 		<div class="author">
-			<p>By {{ post.getArticleAuthor() }} on {{ post.created_at }}.</p>
+			<p>By {{ post.getArticleAuthor() }} on {{ post.created_at|date('d/m/Y H:m:i') }}.</p>
 		</div> 
 	{% endfor %}
 {% endblock %}
