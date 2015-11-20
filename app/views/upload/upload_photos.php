@@ -3,6 +3,9 @@
 {% block title %} Upload Photos {% endblock %}
 
 {% block content %}
+
+	<!--Ukljucivanje potos navigacije-->
+	{% include 'photos/templates/partials/photos_navigation.php' %}
 	
 	<form action="{{ urlFor('upload.photos.post') }}" method="post" enctype="multipart/form-data">
 		<div>
