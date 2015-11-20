@@ -1,26 +1,50 @@
 <?php
 
 //Get putanja do ove stranice
+$app->get('/delete_img', function() use ($app) {
 
-$app->get('/delete-img', function() use ($app) {
+	//Putanja do korisnickog foldera sa profilnim slikama
+	$dirPath = INC_ROOT . '\app\uploads\profile_img\\' . $app->auth->username;
 
-	//Sistemska putanje do profilene slike korisnika
-	//(C:/xampp/htdocs/Vijezbe/Church/app/uploads/profile_img/155e339180caf9_gokqijelpmfhn.jpeg)
-	//Zato sto file_exists() f. uzima sistemsku putanju,a ne url putanju do file da bi se izvrsila
+	//Rekurzivni Iterator Direktorija i Rekurzivni Iterator Iteratora
+	$recDir = new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS);
 
-	$profile_img_path = str_replace($app->config->get('app.url'), $_SERVER['DOCUMENT_ROOT'], $app->auth->img_path);
+	//Iterator ce proci korz sve fajlove u dir. prvo pa i obrisati ih iz foldera da bi mogli koristiti rmdir()
+	$recIter = new RecursiveIteratorIterator($recDir, RecursiveIteratorIterator::CHILD_FIRST);
 
-	//Provjera da li profilna slika postoji u uploads/profile_img
+	//Prolaz kroz direktoriji i izlistavanje svih fajlova u njemu
+	foreach ($recIter as $file)
+	{
+		//Brisemo sve fajlove iz foldera
+		$file->isDir() ? rmdir($file) : unlink($file);
+	}
 
-	file_exists($profile_img_path) ? unlink($profile_img_path) : null;
+	//Brisemo zeljeni folder posto smo ga ispraznili od fajlova
+	rmdir($dirPath);
 
 	//Brisanje slike iz baze p.
-	$app->user->deleteProfileImg();
+	$result = $app->user->deleteProfileImg();
+
+	//Odgovor server o uspijesnom ili ne uspijesnom brisanju fajlova i foldera
+	if ((bool)$result)
+	{
+		echo json_encode(array(
+			"status" => true,
+			"message" => "Photo deleted successfully.",
+			'user' => $app->auth->username
+		));
+	}
+
+	echo json_encode(array(
+			"status" => true,
+			"message" => "Photo deleted successfully.",
+			'user' => $app->auth->username
+	));
 
 	//Prikazivanje potvrdne poruke korisniku i redirekcija na user profile stranicu
-	$app->flash('global', 'Your profile picture is successfuly deleted.');
-	return $app->response->redirect($app->urlFor('user.profile', ["username" => "{$app->auth->username}"]));
+	//$app->flash('global', 'Your profile picture is successfuly deleted.');
+	//return $app->response->redirect($app->urlFor('user.profile', ["username" => "{$app->auth->username}"]));
 
-})->name('delete-img');
+})->name('delete_img');
 
 ?>
