@@ -18,7 +18,7 @@ class Article extends Eloquent
 		'text'
 	];
 
-	//Funkcija za dohvatanje nsalova clanka
+	//Funkcija za dohvatanje naslova clanka
 
 	public function getTitle()
 	{
@@ -62,7 +62,11 @@ class Article extends Eloquent
 
 	public function getArticleAuthor()
 	{
-		return $this->user->getFullNameOrUsername();
+		//Dohvatanje korisnickog imena, imena i prezimena iz baze p.
+		$user = $this->user()->select('username', 'first_name', 'last_name')->first();
+
+		//Provjeravamo da li ne postoji ime od korisnika u bazi p.,ako ne postoji vracamo samo korisnicko ime,a ako postoji vracamo puno ime i prez.
+		return ! (bool) $user->first_name ? $user->username : $user->first_name . ' ' . $user->last_name;
 	}
 }
 
