@@ -81,6 +81,8 @@ class Album extends Eloquent
 
 		//Brisanje albuma iz baze p.
 		$this->find($albumId)->where('id', $albumId)->where('user_id', $userId)->delete();
+
+		return true;
 	}
 }
 
