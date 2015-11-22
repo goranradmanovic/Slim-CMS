@@ -12,7 +12,7 @@ Zepto(function($){
 	});
 
 	// Call delete album function when button is clicked
-	$('#btnDelete').live('click', function(event) {
+	$('#btnDeleteAlbum').live('click', function(event) {
 			//Definiranje var
 			var $this = $(this),
 				albumId = $this.data('identity');
@@ -82,8 +82,8 @@ Zepto(function($){
 					$.ajax({
 						type: 'GET',
 						url: rootURL + 'delete_album/' + id,
-						success: function(response) {
-							console.log(response);
+						success: function(data) {
+							console.log(data);
 						},
 						error: function(xhr, type, textStatus, errorThrown) {
 							console.log(xhr, type, errorThrown, textStatus);
@@ -131,10 +131,7 @@ Zepto(function($){
 						type: 'GET',
 						url: rootURL + 'delete_img',
 						success: function(data) {
-
-							$('body').html(data);
-							
-							
+							console.log(data);	
 						},
 						error: function(xhr, type, textStatus, errorThrown) {
 							console.log(xhr, type, errorThrown, textStatus);
