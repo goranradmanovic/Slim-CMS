@@ -31,7 +31,7 @@
 						<p>{{ album.countPhotosInAlbum }} photos</p>
 
 						{% if auth %}
-							<a href="#" id="btnDelete" data-identity="{{ album.id }}">Delete Album</a>
+							<a href="#" id="btnDeleteAlbum" data-identity="{{ album.id }}">Delete Album</a>
 						{% endif %}
 					</div>
 				</div>
