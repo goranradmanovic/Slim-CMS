@@ -106,6 +106,8 @@ class User extends Eloquent
 			'img_path' => null,
 			'img_title' => null
 		]);
+
+		return true;
 	}
 
 	//Metod za upis remember_identifier-a i rebemebr_token-a u bazu p. ako je korisnik kliknuo na dugme remember me na login formi
