@@ -22,9 +22,9 @@
 		<dd><a href="{{ urlFor('upload') }}">Upload Profile Picture</a></dd>
 
 		<dt>Delete Profile picture</dt>
-		<dd><a href="{{ urlFor('delete_img') }}">Delete picture</a></dd>
+		{# <dd><a href="{{ urlFor('delete_img') }}">Delete picture</a></dd> #} {# Dugme za brisanje profil slike na PHP nacin #}
 
-		<a href="#" id="btnDelete">Delete picture</a>
+		<dd><a href="#" id="btnDelete">Delete picture</a></dd>
 
 	</dl>
 {% endblock %}
