@@ -3,6 +3,8 @@
 //Get putanja do ove stranice
 $app->get('/delete_img', function() use ($app) {
 
+	$app->response()->header('Content-Type', 'application/json'); //Namjestanje headera
+	
 	//Putanja do korisnickog foldera sa profilnim slikama
 	$dirPath = INC_ROOT . '\app\uploads\profile_img\\' . $app->auth->username;
 
@@ -23,10 +25,10 @@ $app->get('/delete_img', function() use ($app) {
 	rmdir($dirPath);
 
 	//Brisanje slike iz baze p.
-	$result = $app->user->deleteProfileImg();
+	(bool) $result = $app->user->deleteProfileImg();
 
 	//Odgovor server o uspijesnom ili ne uspijesnom brisanju fajlova i foldera
-	if ((bool)$result)
+	if ($result)
 	{
 		echo json_encode(array(
 			"status" => true,
@@ -34,12 +36,13 @@ $app->get('/delete_img', function() use ($app) {
 			'user' => $app->auth->username
 		));
 	}
-
-	echo json_encode(array(
-			"status" => true,
-			"message" => "Photo deleted successfully.",
-			'user' => $app->auth->username
-	));
+	else
+	{
+		echo json_encode(array(
+			"status" => false,
+			"message" => "Photo does not exist."
+		));
+	}
 
 	//Prikazivanje potvrdne poruke korisniku i redirekcija na user profile stranicu
 	//$app->flash('global', 'Your profile picture is successfuly deleted.');
