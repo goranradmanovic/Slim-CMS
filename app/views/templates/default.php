@@ -12,6 +12,7 @@
 		<meta name="robots" content="index, follow, all">
 		<meta name="keywords" content="blog, cms, photos, articles">
 		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/sweetalert.css">
+		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/lightgallery.css">
 		<title>Website | {% block title %}{% endblock %}</title>
 	</head>
 	<body>
@@ -24,9 +25,13 @@
 		<!--Prikazivanje sadrzaja stranice-->
 		{% block content %}{% endblock %}
 
+		<script src='{{ baseUrl }}{{ public }}assets/js/sweetalert.min.js'></script>
 		<script defer src='https://www.google.com/recaptcha/api.js'></script>
 		<script defer src='{{ baseUrl }}{{ public }}assets/js/zepto-min.js'></script>
-		<script src='{{ baseUrl }}{{ public }}assets/js/sweetalert.min.js'></script>
+		<script defer src='{{ baseUrl }}{{ public }}assets/js/jquery-2.1.4.min.js'></script>
+		<script defer src='{{ baseUrl }}{{ public }}assets/js/lightgallery.js'></script>
+		<script defer src='{{ baseUrl }}{{ public }}assets/js/lg-thumbnail.js'></script>
+		<script defer src='{{ baseUrl }}{{ public }}assets/js/lg-fullscreen.js'></script>
 		<script defer src='{{ baseUrl }}{{ public }}assets/js/main.js'></script>
 		<script>
 			{% if flash['global'] %}
