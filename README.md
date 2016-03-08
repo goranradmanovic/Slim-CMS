@@ -1,5 +1,5 @@
 Slim 2 CMS
 ===========
 
-This is simple CMS bulid with SLim 2 fremework
+This is simple CMS bulid with Slim 2 fremework
 -----------------------------------------------
