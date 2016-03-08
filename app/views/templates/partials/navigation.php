@@ -1,37 +1,42 @@
-<!--Navigacija stranice-->
+<menu class="main__menu">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="{{ urlFor('home') }}">Slim-CMS</a>
+			</div>
 
-{% if auth %}
-	<p>Hello, {{ auth.getFullNameOrUsername }} <img src="{{ auth.getProfileImg }}" title="{{ user.img_title }}" alt="Your profile picture"></p>
-{% endif %}
-<menu>
-	<ul>
-		<li><a href="{{ urlFor('home') }}">Home</a></li>
-		<li><a href="{{ urlFor('posts.all_posts') }}">News</a></li>
-		<li><a href="{{ urlFor('gallery') }}">Gallery</a></li>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="{{ urlFor('home') }}">Home <span class="sr-only">(current)</span></a></li>
+					<li><a href="{{ urlFor('posts.all_posts') }}">Blog</a></li>
+					<li><a href="{{ urlFor('gallery') }}">Gallery</a></li>
+				</ul>
 
-		<!--Ako je korisnik ulogovan onda ne zelimo da prikazjemo link za register i login stranicu,
-			a ako je korisnik potvrdjen autentificiran onda cemo prikazati link za logout-->
+				<form action="http://www.google.com/search" method="get" target="_blanck" autocomplete="off" class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" name="q" class="form-control" placeholder="Google Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
 
-		{% if auth %}
-			<li><a href="{{ urlFor('logout') }}">Logout</a></li>
-
-			<!--Propustamo placeholder username: i vrijednost auth.username da bi se generisao link profilnu stranicu odredjenog korisnika-->
-			<li><a href="{{ urlFor('user.profile', {username: auth.username}) }}">Your Profile</a></li>
-			<li><a href="{{ urlFor('register') }}">Register</a></li>
-			<li><a href="{{ urlFor('password.change') }}">Change password</a></li>
-			<li><a href="{{ urlFor('account.profile') }}">Update profile</a></li>
-			<li><a href="{{ urlFor('articles.article') }}">Publish Article</a></li>
-			<li><a href="{{ urlFor('articles.edit', {'uid': auth.id, 'aid': 0}) }}">Edit Article</a></li><!--'uid' - user id, 'aid' - article id-->
-			<li><a href="{{ urlFor('photos.photos') }}">Photos</a></li>
-
-			<!--Ako je korisnik admin prikazujemo mu ovaj link,a ako nije onda ga sakrijemo od njega-->
-			{% if auth.isAdmin %}
-				<li><a href="{{ urlFor('admin.example') }}">Admin area</a></li>
-				<li><a href="{{ urlFor('user.all') }}">All users</a></li>
-			{% endif %}
-			
-		{% else %}
-			<li><a href="{{ urlFor('login') }}">Login</a></li>
-		{% endif %}
-	</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<!--Provjera ako korisnik nije autentificiran-->
+					{% if not auth %}
+						<li><a href="{{ urlFor('register') }}">Register</a></li>
+						<li><a href="{{ urlFor('login') }}">Login</a></li>
+					{% else %}
+						<li><a href="{{ urlFor('logout') }}">Logout</a></li>
+					{% endif %}
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
 </menu>

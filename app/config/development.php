@@ -4,9 +4,9 @@
 
 return [
 	'app' => [
-		'url' => 'http://localhost',
-		'public' => '/Vijezbe/Church/public/',
-		'profile_uploads' => '/Vijezbe/Church/app/uploads/profile_img/',
+		'url' => 'http://192.168.1.4',
+		'public' => '/Vijezbe/Slim-CMS/public/',
+		'profile_uploads' => '/Vijezbe/Slim-CMS/app/uploads/profile_img/',
 		'hash' => [
 			'algo' => PASSWORD_BCRYPT,
 			'cost' => 10
