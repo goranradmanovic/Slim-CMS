@@ -30,10 +30,13 @@
 			<!--Prikazivanje sadrzaja stranice-->
 			{% block content %}{% endblock %}
 
+			<!--Footer stranice-->
+			{% include 'templates/partials/footer.html' %}
 		</div>
 
 		<script src='{{ baseUrl }}{{ public }}assets/js/sweetalert.min.js'></script>
 		<script defer src='https://www.google.com/recaptcha/api.js'></script>
+		<script src='http://js.nicedit.com/nicEdit-latest.js'></script>
 		<script defer src='{{ baseUrl }}{{ public }}assets/js/zepto-min.js'></script>
 		<script defer src='{{ baseUrl }}{{ public }}assets/js/jquery-2.1.4.min.js'></script>
 		<script defer src='{{ baseUrl }}{{ public }}assets/js/lightgallery.js'></script>
@@ -58,6 +61,9 @@
 					timer: 2200,
 				});
 			{% endif %}
+
+			//Nic text editor
+			bkLib.onDomLoaded(nicEditors.allTextAreas);
 		</script>
 	</body>
 </html>

@@ -3,16 +3,22 @@
 {% block title %} Post {% endblock%}
 
 {% block content %}
-	<a href="{{ urlFor('posts.all_posts') }}">Back</a>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="well well-lg">
+				<a href="{{ urlFor('posts.all_posts') }}"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
 
-	{% for post in post %}
+				{% for post in post %}
 
-		<h2>{{ post.title }}</h2>
+					<h2 class="text-center">{{ post.title }}</h2>
 
-		<p>{{ post.text }}</p>
+					<p class="text-center">{{ post.text }}</p>
 
-		<div class="author">
-			<p>By {{ post.getArticleAuthor() }} on {{ post.created_at|date('d/m/Y H:m:i') }}.</p>
-		</div> 
-	{% endfor %}
+					<div class="author">
+						<p>By <i class="glyphicon glyphicon-user"></i> {{ post.getArticleAuthor() }} on {{ post.created_at|date('d/m/Y H:m:i') }}</p>
+					</div> 
+				{% endfor %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

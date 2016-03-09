@@ -4,13 +4,13 @@ use Code\User\UserPermission; //Koristenje UserPermission klase
 
 //Stvaranje putanje do register.php iz views/auth foldera
 
-$app->get('/register', $authenticated(), function () use ($app) {
+$app->get('/register', $guest(), function () use ($app) {
 	$app->render('/auth/register.php');
 })->name('register');
 
 //Post putanja za obradu podataka
 
-$app->post('/register', $authenticated(), function () use ($app) {
+$app->post('/register', $guest(), function () use ($app) {
 
 	//Dohvatanje Slimovog request objekta u kome se nalaze svi podatci poslati iz forme
 	$request = $app->request;
@@ -20,7 +20,7 @@ $app->post('/register', $authenticated(), function () use ($app) {
 	$username = $request->post('username');
 	$password = $request->post('password');
 	$passwordConfirm = $request->post('password_confirm');
-	$gRecaptcha = $request->post('g-recaptcha-response'); //Google ReCaptcha polje
+	//$gRecaptcha = $request->post('g-recaptcha-response'); //Google ReCaptcha polje
 
 	//Validaciju izvrsavamo prije registracije korisnika i smijestanja u bazu p.
 
@@ -33,7 +33,7 @@ $app->post('/register', $authenticated(), function () use ($app) {
 		'username' => [$username, 'required|alnumDash|max(20)|uniqueUsername'],
 		'password' => [$password, 'required|min(6)'],
 		'password_confirm' => [$passwordConfirm, 'required|matches(password)'],
-		'g-recaptcha-response'=> [$gRecaptcha, 'validReCaptcha']
+		//'g-recaptcha-response'=> [$gRecaptcha, 'validReCaptcha']
 	]);
 
 	//Provjera da li je validacija prosla uspiejsno sa passes() m.

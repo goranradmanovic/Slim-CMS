@@ -14,7 +14,7 @@ class User extends Eloquent
 
 	//Putanja do default-ne Avatar.svg ikonice
 
-	protected $avatar = 'http://localhost/Vijezbe/Church/public/assets/icons/Avatar.svg';
+	protected $avatar = 'http://192.168.1.4/Vijezbe/Slim-CMS/public/assets/icons/Avatar.svg';
 
 	//Definiranje polja u koja ce se moci upisivati u bazi p.
 

@@ -7,16 +7,12 @@ $app->get('/admin/example', $admin(), function () use ($app) {
 	//Provjera ovlastenje korisnika - Ovo je samo primjer !! Ovo mjenjam
 	if ($app->auth->hasPermission('can_post_topic'))
 	{
-		echo 'User can post topic.';
+		//echo 'User can post topic.';
 	}
 
 	//Prikazivanje example.php stranice iz views/admin foldera
-
 	$app->render('admin/example.php');
 
 })->name('admin.example');
-
-
-
 
 ?>

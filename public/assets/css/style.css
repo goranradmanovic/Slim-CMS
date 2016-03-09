@@ -1,5 +1,17 @@
+body {
+	min-height: 100vh;
+}
 /*Main menu*/
 .main__menu {
 	margin: 0;
 	padding-left: 0;
+}
+
+.user-greetings {
+	margin-bottom: 50px;
+}
+
+.table__user--image {
+	width: 25px;
+	height: 25px;
 }
