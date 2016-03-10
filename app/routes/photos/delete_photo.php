@@ -8,7 +8,7 @@ $app->get('/delete_photo/:id', $authenticated(), function($id) use ($app) {
 	$photo = $app->photo;
 
 	//Dohvatanje putanje do slike koju brisemo
-	$photoPath = $app->photo->getPhotoPath($id);
+	echo $photoPath = $app->photo->getPhotoPath($id);
 
 	//Dohvatanje stare korisnikove slike i njeno brisanje it uploads/profile_img foldera
 	//Sistemska putanje do profilene slike korisnika

@@ -18,9 +18,7 @@
 		<title>Website | {% block title %}{% endblock %}</title>
 	</head>
 	<body>
-
 		<div class="container">
-
 			<!--Ukljucivanje fajla za navigaciju sjata-->
 			{% include 'templates/partials/navigation.php' %}
 
@@ -49,7 +47,7 @@
 					title: "{{ flash['global'] }}",
 					type: "success",
 					showConfirmButton: false,
-					timer: 1200,
+					timer: 1800,
 				});
 			{% endif %}
 

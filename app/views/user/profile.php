@@ -20,7 +20,7 @@
 						<span>Delete Profile picture</span>&nbsp;&nbsp;
 
 						{# Dugme za brisanje profil slike na PHP nacin #}
-						{#<a href="{{ urlFor('delete_img') }}" class="btn btn-danger" role="button">Button</a>#}
+						{#<a href="{{ urlFor('delete_img') }}" class="btn btn-danger" role="button">Delete picture</a>#}
 						<a href="#" class="btn btn-danger" id="btnDelete" role="button">Delete picture</a>
 					</p>
 				</div>

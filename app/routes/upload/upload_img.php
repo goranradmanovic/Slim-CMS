@@ -48,10 +48,17 @@ $app->post('/upload', $authenticated(), function() use ($app) {
 		$allowedMIME = ['jpg','jpeg','png']; //Dozvoljeni niz ekstenzija za upload
 
 		//Folder za smijestanje korisnickih slika od profila
-		$userDir = INC_ROOT . "\app\uploads\profile_img\\{$app->auth->username}\\";
+		$userDir = INC_ROOT . "/app/uploads/profile_img/{$app->auth->username}/";
 
-		//Stvaranje korisnickog foldera za profilne slike koji ce se zvati kao njihovo username
-		$userUploadFolder = fDirectory::create($userDir);
+		//Provjera da li korisnicki folder za profilena slike postoji
+		if (!is_dir($userDir))
+		{
+			//Stvaranje korisnickog foldera za profilne slike koji ce se zvati kao njihovo username
+			$userUploadFolder = fDirectory::create($userDir);
+		}
+
+		//Prebacujemo putanju do korisnickog upload foldera u novu var.
+		$userUploadFolder = $userDir;
 
 		//Namjestanje dozvoljenog niza estenzija,dozvoljene velicine fajla,dozvoljene dizmenzije slike,i smijestanje u profile_img folder.
 		$image->setMime($allowedMIME)->setSize(1000, 1048576)->setDimension(500, 500)->setLocation($userUploadFolder);
@@ -80,8 +87,8 @@ $app->post('/upload', $authenticated(), function() use ($app) {
 							$image->getMime(),
 							$image->getWidth(),
 							$image->getHeight(),
-							100,
-							100
+							250,
+							200
 				);
 
 				//Dohvatanje putanje do slike i imena slike

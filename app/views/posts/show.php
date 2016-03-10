@@ -9,9 +9,7 @@
 				<a href="{{ urlFor('posts.all_posts') }}"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
 
 				{% for post in post %}
-
 					<h2 class="text-center">{{ post.title }}</h2>
-
 					<p class="text-center">{{ post.text }}</p>
 
 					<div class="author">

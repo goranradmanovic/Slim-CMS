@@ -6,7 +6,7 @@ $app->get('/delete_img', function() use ($app) {
 	$app->response()->header('Content-Type', 'application/json'); //Namjestanje headera
 	
 	//Putanja do korisnickog foldera sa profilnim slikama
-	$dirPath = INC_ROOT . '\app\uploads\profile_img\\' . $app->auth->username;
+	$dirPath = INC_ROOT . '/app/uploads/profile_img/' . $app->auth->username;
 
 	//Rekurzivni Iterator Direktorija i Rekurzivni Iterator Iteratora
 	$recDir = new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS);
@@ -44,7 +44,8 @@ $app->get('/delete_img', function() use ($app) {
 		));
 	}
 
-	//Prikazivanje potvrdne poruke korisniku i redirekcija na user profile stranicu
+	//Prikazivanje potvrdne poruke korisniku i redirekcija na user profile stranicu.Ovo je zakomntarisano zbog AJAX brisanja slike
+	//na user/profile stranici
 	//$app->flash('global', 'Your profile picture is successfuly deleted.');
 	//return $app->response->redirect($app->urlFor('user.profile', ["username" => "{$app->auth->username}"]));
 

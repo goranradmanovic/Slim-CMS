@@ -24,7 +24,7 @@
 					<div class="form-group">
 						<input type="text" name="q" class="form-control" placeholder="Google Search">
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="submit" class="btn btn-default">Search</button>
 				</form>
 
 				<ul class="nav navbar-nav navbar-right">

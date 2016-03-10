@@ -3,27 +3,6 @@
 {% block title %}Reset password{% endblock %}
 
 {% block content %}
-	<!--<h3>Enter your new password.</h3>
-	
-	<form action="{{ urlFor('password.reset.post') }}?email={{ email }}&identifier={{ identifier|url_encode }}" method="post" autocomplete="off">
-		<div>
-			<label for="password">Password</label>
-			<input type="password" name="password" id="password">
-			{% if errors.has('password') %}{{ errors.first('password') }}{% endif %}
-		</div>
-
-		<div>
-			<label for="password_confirm">Confirm Password</label>
-			<input type="password" name="password_confirm" id="password_confirm">
-			{% if errors.has('password_confirm') %}{{ errors.first('password_confirm') }}{% endif %}
-		</div>
-
-		<div>
-			<input type="submit" value="Change password">
-			<input type="hidden" name="{{ csrf_key }}" value="{{ csrf_token }}">
-		</div>
-	</form> -->
-
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">

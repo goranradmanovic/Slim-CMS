@@ -42,7 +42,7 @@ $app->post('/create_album', $authenticated(), function () use ($app) {
 
 		//Redirekcija korisnika i prikazivanje info poruke
 		$app->flash('global', 'You have create new album');
-		$app->redirect($app->urlFor('photos.photos'));
+		return $app->redirect($app->urlFor('albums.create_album'));
 	}
 
 	//Dohvatanje st. iz views/post i slanje gresaka na nju ako su se dogodile

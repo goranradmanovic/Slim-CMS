@@ -10,7 +10,7 @@
 			{% if auth %}
 				<div class="media user-greetings">
 					<div class="media-left">
-						<img class="media-object" src="{{ auth.getProfileImg }}" title="{{ user.img_title }}" alt="Your profile picture">
+						<img class="media-object home__profile--image" src="{{ auth.getProfileImg }}" title="{{ user.img_title }}" alt="Your profile picture">
 					</div>
 					<div class="media-body">
 						<h4 class="media-heading">Hello, {{ auth.getFullNameOrUsername }}</h4>

@@ -10,7 +10,7 @@ $app->get('/delete_album/:id', $authenticated(), function($id) use($app) {
 	$albumTitle = $app->album->getAlbumTitle($id);
 
 	//Putanja do foldera koji brisemo
-	$dirPath = INC_ROOT . '\app\uploads\gallery\\' . $albumTitle->title;
+	$dirPath = INC_ROOT . "/app/uploads/gallery/{$albumTitle->title}";
 
 	//Rekurzivni Iterator Direktorija i Rekurzivni Iterator Iteratora
 	$recDir = new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS);

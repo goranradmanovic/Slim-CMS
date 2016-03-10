@@ -36,7 +36,7 @@ $app->post('/upload_photos', $authenticated(), function () use ($app) {
 	$albumName = $app->album->where('id', $albumId)->select('title')->first();
 
 	//Direktorijum za ucitavanje slika
-	$uploadDir = INC_ROOT . "\app\uploads\gallery\\$albumName->title\\";
+	$uploadDir = INC_ROOT . "/app/uploads/gallery/{$albumName->title}/";
 
 	//Dohvatanje validacijske klase
 	$v = $app->validation;
@@ -60,6 +60,7 @@ $app->post('/upload_photos', $authenticated(), function () use ($app) {
 			'image/jpg',
 			'image/jpeg',
 			'image/png',
+			'image/gif',
 		), 'The file uploaded in not an allowed image type.');
 
 		//Ogranicavanje velicine fajla

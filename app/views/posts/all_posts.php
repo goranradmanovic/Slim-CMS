@@ -34,9 +34,4 @@
 			</div>
 		</div>
 	</div>
-
-
-
 {% endblock %}
-
-
