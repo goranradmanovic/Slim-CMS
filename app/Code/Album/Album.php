@@ -16,6 +16,9 @@ class Album extends Eloquent
 
 	protected $fillable = ['user_id', 'title'];
 
+	//Putanja do defaultne album slike
+	protected $defaultAlbumImage = 'http://192.168.1.4/Vijezbe/Slim-CMS/public/assets/icons/Album.svg';
+
 	//Metod za dohvatanje svih albuma iz baze p.
 	public function getAlbums()
 	{
@@ -50,7 +53,10 @@ class Album extends Eloquent
 	public function getAlbumThumbnail()
 	{
 		//Dohvatanje prve slike iz albuma tj. njene putanje
-		return $this->photo()->where('album_id', $this->id)->first(['path']);
+		$imagePath = $this->photo()->where('album_id', $this->id)->first(['path']);
+
+		//Ako ne postoji ni jedna putanja slike u odredjenom albumu onda vracamo defaultnu sliku od albuma
+		return !$imagePath ? $this->defaultAlbumImage : $imagePath;
 	}
 
 	//Metod za povlacenje svih slika iz jednog albuma iz baze podataka

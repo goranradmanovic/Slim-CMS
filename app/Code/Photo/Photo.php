@@ -41,7 +41,7 @@ class Photo extends Eloquent
 	//Metod za dohvatanje jedne slike
 	public function getPhoto($id)
 	{
-		return $this->select('path')->where('id', $id)->first();
+		return $this->select('path','album_id')->where('id', $id)->first();
 	}
 
 	//Brisanje odredjene slike

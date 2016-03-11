@@ -180,7 +180,7 @@ $app->container->set('recaptcha', function () use ($app) {
 
 	//Vracamo novu instancu ReCaptcha klase
 
-	return new ReCaptcha('6LcOyw8TAAAAALgaLKfOQTNo39xuCOB16E8ZpAvr');
+	return new ReCaptcha('6LdtZxoTAAAAAEaIfs-sdd_wuCFw_NAISx_CWm12');
 });
 
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona

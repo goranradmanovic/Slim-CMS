@@ -9,7 +9,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="{{ urlFor('home') }}">Slim-CMS</a>
+				<a class="navbar-brand nopadding" href="{{ urlFor('home') }}"><img src="{{ baseUrl }}{{ public }}/assets/img/gr-logo.png" alt="Brand" class="brand-img"></a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -30,10 +30,10 @@
 				<ul class="nav navbar-nav navbar-right">
 					<!--Provjera ako korisnik nije autentificiran-->
 					{% if not auth %}
-						<li><a href="{{ urlFor('register') }}">Register</a></li>
-						<li><a href="{{ urlFor('login') }}">Login</a></li>
+						<li><a href="{{ urlFor('register') }}">Sign Up</a></li>
+						<li><a href="{{ urlFor('login') }}">Sign In</a></li>
 					{% else %}
-						<li><a href="{{ urlFor('logout') }}">Logout</a></li>
+						<li><a href="{{ urlFor('logout') }}">Sign Out</a></li>
 					{% endif %}
 				</ul>
 			</div><!-- /.navbar-collapse -->

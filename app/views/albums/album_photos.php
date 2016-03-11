@@ -3,18 +3,32 @@
 {% block title %} Album Photos {% endblock %}
 
 {% block content %}
-	
-	<div class="album-photos">
-		
-		{% if albumPhotos is null %}
-			<p>There's no photos in this album.</p>
-		{% else %}
-			{% for albumPhoto in albumPhotos %}
-				<a href="{{ urlFor('photos.photo', {'id': albumPhoto.id}) }}"><img src="{{ albumPhoto.path  }}" alt="Album Photo.jpg" width="206px" height="206px"></a>
-			{% endfor %}
-		{% endif %}
-
-		<a href="{{ urlFor('albums.all_albums') }}">Go back</a>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading text-center">
+					<div class="back pull-left">
+						<a href="{{ urlFor('gallery') }}" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
+					</div>
+					All Album Photos
+				</div>
+				<div class="panel-body">
+					<!--Provjera dali korisnik ima objavljenjih albuma za ucitavanje slika-->
+					{% if albumPhotos is null %}
+						<div class="alert alert-info" role="alert">
+							<p class="text-center">There's no photos in this album.</p>
+						</div>
+					{% else %}
+						<div class="row">
+							{% for albumPhoto in albumPhotos %}
+								<div class="col-xs-6 col-md-3">
+									<a href="{{ urlFor('photos.photo', {'id': albumPhoto.id}) }}"><img src="{{ albumPhoto.path  }}" alt="Album Photo.jpg" class="thumbnail thumb__img"></a>
+								</div>
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
 	</div>
-
 {% endblock %}

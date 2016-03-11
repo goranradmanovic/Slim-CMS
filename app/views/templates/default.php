@@ -11,6 +11,7 @@
 		<meta name="author" content="Goran Radmanovic">
 		<meta name="robots" content="index, follow, all">
 		<meta name="keywords" content="blog, cms, photos, articles">
+		<link  rel="icon" sizes="16x16" href="{{ baseUrl }}{{ public }}assets/img/favicon.ico">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/sweetalert.css">
 		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/lightgallery.css">

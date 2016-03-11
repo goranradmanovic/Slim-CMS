@@ -6,8 +6,14 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="panel panel-default">
+				<div class="panel-heading text-center">
+					<div class="back pull-left">
+						<a href="{{ urlFor('home') }}" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
+					</div>
+					<h3 class="panel-title">All Users</h3>
+				</div>
   				<div class="panel-body">
-					<h2 class="text-center">All users table</h2>
+					<h2 class="text-center">Users Table</h2>
 					<hr/>
 					<!--Provjera da li je korisnicki niz prazan koji se nalazi u routes/all.php falju u var. $users-->
 					{% if users is empty %}

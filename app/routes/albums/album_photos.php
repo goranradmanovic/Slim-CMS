@@ -18,7 +18,7 @@ $app->get('/album_photos/:id', function ($id) use ($app) {
 
 	//Slanje podataka na view od svih slika iz albuma
 	return $app->render('/albums/album_photos.php', [
-		'albumPhotos' => $albumPhotos,
+		'albumPhotos' => $albumPhotos
 	]);
 
 })->name('albums.album_photos');

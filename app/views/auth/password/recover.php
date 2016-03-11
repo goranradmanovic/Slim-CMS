@@ -6,7 +6,12 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<div class="panel panel-default">
-				<div class="panel-heading text-center">Enter your email address to start your password recovery.</div>
+				<div class="panel-heading text-center">
+					<div class="back pull-left">
+						<a href="{{ urlFor('home') }}" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
+					</div>
+					Enter your email address to start your password recovery.
+				</div>
 					<div class="panel-body">
 					<form class="form-horizontal" action="{{ urlFor('password.recover.post') }}" method="post" autocomplete="off">
 						<div class="form-group{{ (errors.has('email')) ? ' has-error' : '' }}">

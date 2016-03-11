@@ -50,7 +50,7 @@ $app->post('/change-password', $authenticated(), function() use ($app) {
 
 		//Slanje email poruke korisniku da je promjenio sifru
 
-		$app->mail->send('email/auth/password/changed.php', [], function ($message) use ($user) {
+		$app->mail->send('email/auth/password/changed.php', ['user' => $user], function ($message) use ($user) {
 			$message->to($user->email);
 			$message->subject('You changed your password.');
 		});
