@@ -104,7 +104,8 @@ $app->post('/upload_photos', $authenticated(), function () use ($app) {
 	
 	//Dohvatanje st. iz viewsa
 	return $app->render('upload/upload_photos.php', [
-		'errors' => $v->errors()
+		'errors' => $v->errors(),
+		'uploadFolder' => $dir
 	]);
 
 })->name('upload.photos.post');

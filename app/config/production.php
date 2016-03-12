@@ -1,6 +1,7 @@
 <?php
 
 //Konfiguracijsk niz sa najbitnijim postavkama za aplikaciju
+//U mail niz sam ubacio i mailgun podatke za slanje mailova
 
 return [
 	'app' => [
@@ -34,7 +35,11 @@ return [
 		'host' => 'milosdakic89@gmail.com',
 		'password' => 'm1I9l9O8s9',
 		'port' => 587,
-		'html' => true
+		'html' => true,
+
+		'secret' => 'key-fafbd1c6478f322cac6c8ec7e78e1b51',
+		'domain' => 'sandbox139f1c75dad64bf9a4a802340f9f74a2.mailgun.org',
+		'from' => 'grcms@gmail.com'
 	],
 
 	'twig' => [

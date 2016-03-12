@@ -32,6 +32,7 @@
         "samayo/bulletproof": "2.0.*",
         "tecnickcom/tcpdf": "~6.2",
         "mk-j/php_xlsxwriter": "~0.22",
-        "google/recaptcha": "~1.1"
+        "google/recaptcha": "~1.1",
+        "mailgun/mailgun-php": "^1.8"
     } 
 }

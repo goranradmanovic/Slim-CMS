@@ -9,6 +9,7 @@ use Noodlehaus\Config;
 use RandomLib\Factory as RandomLib;
 use BulletProof\Image;
 use ReCaptcha\ReCaptcha;
+use Mailgun\Mailgun;
 
 use Code\User\User;
 use Code\Helpers\Hash;
@@ -85,8 +86,8 @@ $app->container->singleton('validation', function() use ($app) {
 	return new Validator($app->user, $app->hash, $app->album, $app->recaptcha, $app->auth);
 });
 
-//Ukljucivanje PHPMailera i Mailer kalse u Slim container
-
+//Ukljucivanje PHPMailera i Mailer kalse u Slim container (zakomentarisano posto koristim mailgun uslugu)
+/*
 $app->container->singleton('mail', function() use ($app) {
 	$mailer = new PHPMailer;
 
@@ -102,6 +103,19 @@ $app->container->singleton('mail', function() use ($app) {
 	//Return mailer object. $app->view omogucava slanje view-sa sa emailom u sebi korisniku,a $mailer postavlja PHPMailer postavke
 
 	return new Mailer($app->view, $mailer);
+});
+*/
+
+//Ukljucivanje MailGun klase i Mailer kalse u Slim container
+
+$app->container->singleton('mail', function() use ($app) {
+
+	//Nova instanca mailgun kalse (arg. konstruktora je API Key od Mailguna)
+	$mailer = new Mailgun($app->config->get('mail.secret'));
+
+	//Return mailer object. $app->view omogucava slanje view-sa sa emailom u sebi korisniku,a $mailer postavlja PHPMailer postavke
+	//$app->config salje u Mailer kaslu konfiguracijske postavke koje mozemo tamo korisitit
+	return new Mailer($app->view, $app->config, $mailer);
 });
 
 //Uljucivanje RandomLib paketa u Slim conatiner

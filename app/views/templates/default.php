@@ -14,7 +14,6 @@
 		<link  rel="icon" sizes="16x16" href="{{ baseUrl }}{{ public }}assets/img/favicon.ico">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/sweetalert.css">
-		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/lightgallery.css">
 		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/style.css">
 		<title>Website | {% block title %}{% endblock %}</title>
 	</head>
@@ -37,10 +36,7 @@
 		<script defer src='https://www.google.com/recaptcha/api.js'></script>
 		<script src='http://js.nicedit.com/nicEdit-latest.js'></script>
 		<script defer src='{{ baseUrl }}{{ public }}assets/js/zepto-min.js'></script>
-		<script defer src='{{ baseUrl }}{{ public }}assets/js/jquery-2.1.4.min.js'></script>
-		<script defer src='{{ baseUrl }}{{ public }}assets/js/lightgallery.js'></script>
-		<script defer src='{{ baseUrl }}{{ public }}assets/js/lg-thumbnail.js'></script>
-		<script defer src='{{ baseUrl }}{{ public }}assets/js/lg-fullscreen.js'></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<script defer src='{{ baseUrl }}{{ public }}assets/js/main.js'></script>
 		<script>
 			{% if flash['global'] %}
