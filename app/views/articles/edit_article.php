@@ -17,7 +17,7 @@
 						<!--Provjeravamo da li imamo nekih naslova u bazi p.,ako nemamo ispisujemo poruku,a ako imamo prolazimo kroz te naslove-->
 						{% if titles is empty %}
 							<div class="alert alert-info" role="alert">
-								<p>You do not have any articles.</p>
+								<p class="text-center">You do not have any articles.</p>
 							</div>
 						{% else %}
 							<h3 class="text-center">User Article</h3><br/>

@@ -13,6 +13,8 @@ $app->get('/upload', $authenticated(), function() use ($app) {
 
 $app->post('/upload', $authenticated(), function() use ($app) {
 
+	$app->response()->header('Content-Type', 'application/json'); //Namjestanje headera
+
 	//Dohvatanje Slim request objekata
 	$request = $app->request;
 
@@ -103,20 +105,35 @@ $app->post('/upload', $authenticated(), function() use ($app) {
 					'img_title' => $img_title
 				]);
 
+				//Zakomentarisano zato sto saljemo podtake uz pomoc AJAX-a
 				//Ispis potvrdne poruke i redirekcija na upload_img.php stranicu
-				$app->flash('global', 'Your profile picture is uploaded sucessfully.');
-				$app->response->redirect($app->urlFor('upload'));
+				//$app->flash('global', 'Your profile picture is uploaded sucessfully.');
+				//$app->response->redirect($app->urlFor('upload'));
+
+				//Odgovor server o uspijesnom ili ne uspijesnom uploadu fajlova i foldera
+				echo json_encode(array(
+					"status" => true,
+					"message" => "Photos are successfully uploaded.",
+				));
 			}
 			else
-			{	
+			{
+				//Zakomentarisano zato sto saljemo podtake uz pomoc AJAX-a
 				//Ispis greske i redirekcija na upload_img.php stranicu
-				$app->flash('global', $image['error']);
-				return $app->response->redirect($app->urlFor('upload'));
+				//$app->flash('global', $image['error']);
+				//return $app->response->redirect($app->urlFor('upload'));
+				
+				//Odgovor server o ne uspijesnom uploadu fajlova i foldera
+				echo json_encode(array(
+					"status" => false,
+					"message" => $image['error'],
+				));
 			}
 		}
 	}
 
-	$app->render('/upload/upload_img.php', ['errors' => $v->errors()]);
+	//Zakomentarisano zato sto saljemo podtake uz pomoc AJAX-a
+	//$app->render('/upload/upload_img.php', ['errors' => $v->errors()]);
 
 })->name('upload.post');
 
