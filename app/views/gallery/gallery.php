@@ -21,17 +21,19 @@
 						{% for album in albums %}
 							<div class="col-xs-6 col-md-3">
 								<div class="album">
-									<a href="{{ urlFor('albums.album_photos', {'id': album.id}) }}">
+									<a href="{{ urlFor('albums.album_photos', {'id': album.id, 'gid': page, 'aid': 1}) }}"> <!--gid - je st. iz paginacije sa gallry st.-->
 										<!--Provjera da li ne postoji slika u albumu i onda prikazivanje defaultne slike albuma-->
 										<img src="{{ not album.getAlbumThumbnail.path ? album.getAlbumThumbnail : album.getAlbumThumbnail.path }}" alt="Album thumbnail.jpg" class="album__thumb">
 									</a>
 								</div>
-								<a href="{{ urlFor('albums.album_photos', {'id': album.id}) }}" class="btn btn-primary album__title">{{ album.title[:14] }} <span class="badge">{{ album.countPhotosInAlbum }} photos</span></a>
+								<a href="{{ urlFor('albums.album_photos', {'id': album.id}) }}" class="btn btn-primary album__title">{{ album.title[:10] }} <span class="badge">{{ album.countPhotosInAlbum }} photos</span></a>
 							</div>
 						{% endfor %}
 					{% endif %}
 				</div>
 			</div>
+			<!--Ukljucivanje paginacije st.-->
+			{% include 'templates/partials/pagination.php' %}
 		</div>
 	</div>
 {% endblock %}

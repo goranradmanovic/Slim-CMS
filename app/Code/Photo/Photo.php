@@ -26,16 +26,16 @@ class Photo extends Eloquent
 		return $this->select('*')->get();
 	}
 
-	//Dohvatanje svih korisnikovih slika
-	public function getUserPhotos($user_id)
+	//Dohvatanje svih korisnikovih slika i limitiranje rezultata radi paginacije
+	public function getUserPhotos($user_id, $start, $perPage)
 	{
-		return $this->select('id','path')->where('user_id', $user_id)->get();
+		return $this->select('id','path')->where('user_id', $user_id)->skip($start)->take($perPage)->get();
 	}
 
-	//Dohvatanje slika iz odredjenog albuma
-	public function getAlbumPhotos($album_id)
+	//Dohvatanje slika iz odredjenog albuma i limitiranje rezultata radi paginacije
+	public function getAlbumPhotos($album_id, $start, $perPage)
 	{
-		return $this->where('album_id', $album_id)->get();
+		return $this->select('id','path')->where('album_id', $album_id)->skip($start)->take($perPage)->get();
 	}
 
 	//Metod za dohvatanje jedne slike

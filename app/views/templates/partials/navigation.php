@@ -16,8 +16,8 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="{{ urlFor('home') }}">Home <span class="sr-only">(current)</span></a></li>
-					<li><a href="{{ urlFor('posts.all_posts') }}">Blog</a></li>
-					<li><a href="{{ urlFor('gallery') }}">Gallery</a></li>
+					<li><a href="{{ urlFor('posts.all_posts', {'id': 1}) }}">Blog</a></li>
+					<li><a href="{{ urlFor('gallery', {'id': 1}) }}">Gallery</a></li>
 				</ul>
 
 				<form action="http://www.google.com/search" method="get" target="_blanck" autocomplete="off" class="navbar-form navbar-left" role="search">

@@ -29,11 +29,11 @@
 			{% block content %}{% endblock %}
 
 			<!--Footer stranice-->
-			{% include 'templates/partials/footer.html' %}
+			{% include 'templates/partials/footer.php' %}
 		</div>
 
 		<script src="{{ baseUrl }}{{ public }}assets/js/sweetalert.min.js"></script>
-		<script defer src="https://www.google.com/recaptcha/api.js"></script>
+		<script src="https://www.google.com/recaptcha/api.js"></script>
 		<script src="http://js.nicedit.com/nicEdit-latest.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<script src="{{ baseUrl }}{{ public }}assets/js/jquery.form.min.js"></script>

@@ -14,7 +14,7 @@
 				</div>
 				<div class="panel-body">
 					{% if posts is empty %}
-						<div class="alert alert-warning" role="alert">
+						<div class="alert alert-info" role="alert">
 							<p class="text-center">No posts, yet.</p>
 						</div>
 					{% else %}
@@ -26,7 +26,6 @@
 									<p class="list-group-item-text text-center">{{ post.text[:50] }}</p>
 								</a>
 							</div>
-
 							<div class="author">
 								<p>By <i class="glyphicon glyphicon-user"></i> {{ post.getArticleAuthor() }}</p>
 							</div>
@@ -35,6 +34,8 @@
 					{% endif %}
 				</div>
 			</div>
+			<!--Ukljucivanje paginacije za st.-->
+			{% include 'templates/partials/pagination.php' %}
 		</div>
 	</div>
 {% endblock %}

@@ -28,7 +28,7 @@
 											<img src="{{ not album.getAlbumThumbnail.path ? album.getAlbumThumbnail : album.getAlbumThumbnail.path }}" alt="Album photos" class="album__thumb"/>
 										</a>
 									</div>
-									<a href="{{ urlFor('albums.album_photos', {'id': album.id}) }}" class="btn btn-primary album__title">{{ album.title[:14] }} <span class="badge">{{ album.countPhotosInAlbum }} photos</span></a>
+									<a href="{{ urlFor('albums.album_photos', {'id': album.id}) }}" class="btn btn-primary album__title">{{ album.title[:10] }} <span class="badge">{{ album.countPhotosInAlbum }} photos</span></a>
 
 									{# PHP nacin za brisanje slike #}
 									{#<a href="{{ urlFor('albums.delete_album', {'id': album.id}) }}" class="btn btn-danger btn-xs btn__delete"><i class="glyphicon glyphicon-trash"></i> Delete album</a>#}
@@ -41,6 +41,8 @@
 					{% endif %}
 				</div>
 			</div>
+			<!--Ukljucivanje paginacije st.-->
+			{% include 'templates/partials/pagination.php' %}
 		</div>
 	</div>
 {% endblock %}

@@ -20,9 +20,9 @@ class Album extends Eloquent
 	protected $defaultAlbumImage = 'http://192.168.1.4/Vijezbe/Slim-CMS/public/assets/icons/Album.svg';
 
 	//Metod za dohvatanje svih albuma iz baze p.
-	public function getAlbums()
+	public function getAlbums($start, $perPage)
 	{
-		return $this->select('*')->get();
+		return $this->select('*')->skip($start)->take($perPage)->get();
 	}
 
 	//Metod za dohvatanje naslova albuma
@@ -35,6 +35,12 @@ class Album extends Eloquent
 	public function getUserAlbums($user_id)
 	{
 		return $this->select('id','title')->where('user_id', $user_id)->get();
+	}
+
+	//Metod za dohvatanje imena albuma od specificnog korisnika radi stvaranja paginacije na all_albums
+	public function getUserAlbumsPagination($user_id, $start, $perPage)
+	{
+		return $this->select('id','title')->where('user_id', $user_id)->skip($start)->take($perPage)->get();
 	}
 
 	//Povezivanje photo tabele sa album tabelom

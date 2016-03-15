@@ -33,6 +33,8 @@
 					{% endif %}
 				</div>
 			</div>
+			<!--Ukljucivanje paginacije st.-->
+			{% include 'templates/partials/pagination.php' %}
 		</div>
 	</div>
 {% endblock %}

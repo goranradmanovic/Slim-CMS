@@ -9,12 +9,14 @@
 				<a href="{{ urlFor('posts.all_posts') }}"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
 
 				{% for post in post %}
-					<h2 class="text-center">{{ post.title }}</h2>
-					<p class="text-center">{{ post.text }}</p>
+					<article>
+						<h2 class="text-center">{{ post.title }}</h2>
+						<p class="text-center">{{ post.text }}</p>
 
-					<div class="author">
-						<p>By <i class="glyphicon glyphicon-user"></i> {{ post.getArticleAuthor() }} on {{ post.created_at|date('d/m/Y H:m:i') }}</p>
-					</div> 
+						<div class="author">
+							<p>By <i class="glyphicon glyphicon-user"></i> {{ post.getArticleAuthor() }} on {{ post.created_at|date('d/m/Y H:m:i') }}</p>
+						</div>
+					</article>
 				{% endfor %}
 			</div>
 		</div>

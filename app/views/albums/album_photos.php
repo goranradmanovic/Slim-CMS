@@ -8,7 +8,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading text-center">
 					<div class="back pull-left">
-						<a href="{{ urlFor('gallery') }}" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
+						<a href="{{ urlFor('gallery', {'id': gid}) }}" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
 					</div>
 					All Album Photos
 				</div>
@@ -29,6 +29,8 @@
 					{% endif %}
 				</div>
 			</div>
+			<!--Ukljucivanje paginacije st.-->
+			{% include 'templates/partials/pagination.php' %}
 		</div>
 	</div>
 {% endblock %}
