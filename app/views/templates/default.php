@@ -14,6 +14,7 @@
 		<link  rel="icon" sizes="16x16" href="{{ baseUrl }}{{ public }}assets/img/favicon.ico">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/sweetalert.css">
+		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/chartist.min.css">
 		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/style.css">
 		<title>Website | {% block title %}{% endblock %}</title>
 	</head>
@@ -37,6 +38,7 @@
 		<script src="http://js.nicedit.com/nicEdit-latest.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<script src="{{ baseUrl }}{{ public }}assets/js/jquery.form.min.js"></script>
+		<script src="{{ baseUrl }}{{ public }}assets/js/chartist.min.js"></script>
 		<script src="{{ baseUrl }}{{ public }}assets/js/main.js"></script>
 		<script>
 			{% if flash['global'] %}
@@ -59,6 +61,37 @@
 
 			//Pozivamo Nic text editor
 			bkLib.onDomLoaded(nicEditors.allTextAreas);
+
+var data = {
+  labels: ['Admin', 'Moderator'],
+  series: [20, 15]
+};
+
+var options = {
+  labelInterpolationFnc: function(value) {
+    return value[0]
+  }
+};
+
+var responsiveOptions = [
+  ['screen and (min-width: 640px)', {
+    chartPadding: 30,
+    labelOffset: 100,
+    labelDirection: 'explode',
+    labelInterpolationFnc: function(value) {
+      return value;
+    }
+  }],
+  ['screen and (min-width: 1024px)', {
+    labelOffset: 80,
+    chartPadding: 20
+  }]
+];
+
+new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
+
+
+
 		</script>
 	</body>
 </html>

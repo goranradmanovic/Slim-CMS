@@ -21,7 +21,7 @@
 
 						{% for post in posts %}
 							<div class="list-group">
-								<a href="{{ urlFor('post.show', {'postId': post.id}) }}" class="list-group-item">
+								<a href="{{ urlFor('post.show', {'pageId': page, 'postId': post.id}) }}" class="list-group-item">
 									<h2 class="list-group-item-heading text-center">{{ post.title }}</h2>
 									<p class="list-group-item-text text-center">{{ post.text[:50] }}</p>
 								</a>

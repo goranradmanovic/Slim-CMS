@@ -13,16 +13,16 @@
 					<h3 class="panel-title">Edit Article</h3>
 				</div>
 				<div class="panel-body">
-					<div class="col-md-6">
-						<!--Provjeravamo da li imamo nekih naslova u bazi p.,ako nemamo ispisujemo poruku,a ako imamo prolazimo kroz te naslove-->
-						{% if titles is empty %}
-							<div class="alert alert-info" role="alert">
-								<p class="text-center">You do not have any articles.</p>
-							</div>
-						{% else %}
-							<h3 class="text-center">User Article</h3><br/>
-							
-							{% for title in titles %}
+					<!--Provjeravamo da li imamo nekih naslova u bazi p.,ako nemamo ispisujemo poruku,a ako imamo prolazimo kroz te naslove-->
+					{% if titles is empty %}
+						<div class="alert alert-info" role="alert">
+							<p class="text-center">You do not have any articles.</p>
+						</div>
+					{% else %}
+						<h3 class="text-center">User Article</h3><br/>
+						
+						{% for title in titles %}
+							<div class="col-md-6">
 								<div class="panel panel-default">
 									<div class="panel-heading">{{ title.title }}</div>
 									<div class="panel-body">
@@ -34,20 +34,36 @@
 										<p>{{ title.text[:50]}} ...</p>
 									
 										<div class="panel-footer">
-											<a href="{{ urlFor('articles.edit', {'uid': auth.id, 'aid': title.id}) }}" class="btn btn-info">Edit {{ title.title[:15] }}</a>&nbsp;&nbsp;
+											<a href="{{ urlFor('articles.edit', {'uid': auth.id, 'aid': title.id, 'pid': page}) }}#editForm" class="btn btn-info">Edit {{ title.title[:15] }}</a>&nbsp;&nbsp;
 										<a href="{{ urlFor('articles.delete', {'id': title.id}) }}" class="btn btn-danger">Delete Article</a>
 										</div>
 									</div>
 								</div>
-							{% endfor %}
-						{% endif %}
+							</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+				<!--Ukljucivanje paginacije st.-->
+				{% include 'templates/partials/pagination.php' %}
+			</div>
+		</div>
+	</div>
+
+	<!-- Article Editing Form (pojavljuje se na klik editing dugmeta). Provjeravamo da nije prazana articles niz-->
+	{% if articles %}
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="panel panel-default">
+		 			<div class="panel-heading text-center">
+						<div class="back pull-left">
+							<a href="{{ urlFor('home') }}" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
+						</div>
+						<h3 class="panel-title text-center">Article editing form</h3>
 					</div>
-					<div class="col-md-6">
+					<div class="panel-body">
 						{% for article in articles %} <!--Prolaz korz sve el. clanka-->
 							{% if article.id %} <!--Ako postoji clanak u bazi sa specificnim id dohvatamo taj clanak na get routu i saljemo ga ovamo u articles var.-->
-								<h3 class="text-center">Article editing form</h3><br/>
-			
-								<form class="form-horizontal" action="{{ urlFor('articles.edit.post', {'id': article.id}) }}" method="post" autocomplete="off">
+								<form class="form-horizontal" action="{{ urlFor('articles.edit.post', {'id': article.id}) }}" method="post" autocomplete="off" id="editForm">
 									<div class="form-group{{ errors.has('title') ? ' has-error' : '' }}">
 										<label for="inputEmail3" class="col-sm-2 control-label">Title</label>
 										<div class="col-sm-10">
@@ -79,5 +95,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	{% endif %}
 {% endblock %}

@@ -30,12 +30,12 @@
 							<a href="{{ urlFor('password.change') }}" class="list-group-item text-center">Change password</a>
 							<a href="{{ urlFor('account.profile') }}" class="list-group-item text-center">Update profile</a>
 							<a href="{{ urlFor('articles.article') }}" class="list-group-item text-center">Publish Article</a>
-							<a href="{{ urlFor('articles.edit', {'uid': auth.id, 'aid': 0}) }}" class="list-group-item text-center">Edit Article</a><!--'uid' - user id, 'aid' - article id-->
+							<a href="{{ urlFor('articles.edit', {'uid': auth.id, 'aid': 0, 'pid': 1}) }}" class="list-group-item text-center">Edit Article</a><!--'uid' - user id, 'aid' - article id, 'pid' - pagination id -->
 							<a href="{{ urlFor('photos.photos') }}" class="list-group-item text-center">Photos Options</a>
 
 							<!--Ako je korisnik admin prikazujemo mu ovaj link,a ako nije onda ga sakrijemo od njega-->
 							{% if auth.isAdmin %}
-								<a href="{{ urlFor('admin.example') }}" class="list-group-item text-center">Admin area</a>
+								<a href="{{ urlFor('admin.area') }}" class="list-group-item text-center">Admin area</a>
 								<a href="{{ urlFor('user.all') }}" class="list-group-item text-center">All users</a>
 							{% endif %}
 						</div>

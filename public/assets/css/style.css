@@ -1,6 +1,7 @@
 body {
-	
+	background-image: url('../img/bg.png');
 }
+
 /*Main menu*/
 .main__menu {
 	margin: 0;

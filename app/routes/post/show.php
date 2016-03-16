@@ -4,7 +4,7 @@
 //Propsutanje var. kojoj mozemo pistupiti i vidjti koji post iz baze zelimo prikazati korisniku,i koju dohvatamo
 //uz pomoc URL-a i GET-a,prvi param je putanja,onda tu var. postId propustamo u closure funck kao param
 
-$app->get('/posts/:postId', function($postId) use ($app) {
+$app->get('/posts/:pageId/:postId', function($pageId, $postId) use ($app) {
 
 	//Dohvatanje postova iz baze sa specificnim id-em npr. (1,2,3) kojeg dobijamo kroz URL
 
@@ -20,7 +20,10 @@ $app->get('/posts/:postId', function($postId) use ($app) {
 	//'views/posts/show.php' je lokacija gdje ce prikazivati post iz routes/posts/show.php fajla,a ['post' => $post] je vrijednost
 	//iz sql query koja ce se prikazivati na stranici,ova $post var. se salje u views/posts/show.php
 
-	$app->render('posts/show.php', ['post' => $post]);
+	$app->render('posts/show.php', [
+		'post' => $post,
+		'page' => $pageId
+	]);
 
 })->name('post.show');
 
