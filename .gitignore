@@ -2,4 +2,4 @@
 
 # Ignore config production.php file
 
-app/config/production.php
+/app/config/production.php
