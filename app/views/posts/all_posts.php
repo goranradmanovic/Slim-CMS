@@ -23,9 +23,13 @@
 							<div class="list-group">
 								<a href="{{ urlFor('post.show', {'pageId': page, 'postId': post.id}) }}" class="list-group-item">
 									<h2 class="list-group-item-heading text-center">{{ post.title }}</h2>
-									<p class="list-group-item-text text-center">{{ post.text[:50] }}</p>
+									<!--Izbjegavamo html el. i css style koji se dodaju sa Tinymce editorom.Ovo priakazuje normalni text-->
+									{% autoescape %} 
+										<p class="list-group-item-text text-center">{{ post.text[:245]|raw }}</p>
+									{% endautoescape %}
 								</a>
 							</div>
+
 							<div class="author">
 								<p>By <i class="glyphicon glyphicon-user"></i> {{ post.getArticleAuthor() }}</p>
 							</div>

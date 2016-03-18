@@ -13,54 +13,69 @@
 					<h3 class="panel-title text-center">Special Admin Options</h3>
 				</div>
 				<div class="panel-body">
-					<p class="text-center">This is example views and this will be changed soon!</p>
+					<h3 class="text-center">Admin/Moderator Ratio</h3>
 
-					<div class="ct-chart ct-golden-section"></div>
+					{# Setiramo inicijalne vrijednosti var. za admina i moderatora #}
+					{% set admin = 0 %}
+					{% set moderator = 0 %}
+
+					{# Provjeravamo da li nam stizu podatci sa routa o korisnicima #}
+					{% if users %}
+						{# Prolaz kroz niz sa podacima o korisnicima #}
+						{% for user in users %}
+							{# Provjera da li korisnik ima Admin priviligije i dodavanje 1 na admin var. u suprotnome dodajemo 1 na moderator var i tako racanumo koliko imamo admina ili moderatora #}
+							{% if user.isAdmin %}
+								{% set admin = admin + 1 %}
+							{% else %}
+								{% set moderator = moderator + 1 %}
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+
+					{% set vars = [admin, moderator] %}
 					
-					<hr>
+					<div class="ct-chart ct-golden-section"></div>
 
-					<div class="photo__info">
-						<h2 class="text-center">Photo Table</h2>
-						<hr/>
-						<!--Provjera da li je korisnicki niz prazan koji se nalazi u routes/all.php falju u var. $users-->
-						{% if photos is empty %}
-							<div class="alert alert-info" role="alert">
-								<p class="text-center">There is no photos, yet.</p>
-							</div>
-						{% else %}
-							<div class="photo__table">
-								<table class="table table-striped">
-									<thead>
-										<tr>
-											<th>User</th>
-											<th>Album</th>
-											<th>Image</th>
-											<th>Size</th>
-											<th>Type</th>
-											<th>Created at</th>
-										</tr>
-									</thead>
-									<tbody>
-										<!--Prolaz kroz sve el. $users var koja je niz sa svim korisnicim aiz baze-->
-										{% for photo in photos %}
-											<tr>
-												<td>{{ photo.user_id }}</td>
-												<td>{{ photo.getAlbumTitle(album_id) }}</td>
-
-												<!--Provjera da li korisnik ima puno ime i prezime i ispis ako ima-->
-												<td><img src="{{ photo.path }}" width="30px" height="25px"></td>
-												<td>{{ (photo.size < 1048576) ? photo.size // 1024 ~ ' KB' : photo.size // 1024 ~ ' MB'}}</td>
-												<td>{{ photo.type }}</td>
-												<td>{{ photo.created_at|date("m/d/Y") }}
-											</tr>
-										{% endfor %}
-									</tbody>
-								</table>
-							</div>
-						{% endif %}
+					<div class="map">
+						<p><span class="dot red"></span> Admin</p>
+						<p><span class="dot light-red"></span> Moderator</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<script>
+		//Varijable za prebacivanje vrijednosti iz Twig.a i JS
+		var admin = "{{ admin }}";
+		var moderator = "{{ moderator }}";
+
+		var data = {
+			//labels: ['Bananas', 'Apples', 'Grapes'],
+			series: [admin, moderator]
+		};
+
+		var options = {
+			labelInterpolationFnc: function(value) {
+				return value[0]
+			}
+		};
+
+		var responsiveOptions = [
+			['screen and (min-width: 640px)', {
+				chartPadding: 30,
+				labelOffset: 100,
+				labelDirection: 'explode',
+				labelInterpolationFnc: function(value) {
+					return value;
+				}
+		}],
+		['screen and (min-width: 1024px)', {
+				labelOffset: 80,
+				chartPadding: 20
+			}]
+		];
+
+		new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
+	</script>
 {% endblock %}

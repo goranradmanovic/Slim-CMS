@@ -92,3 +92,18 @@ body {
 .progress-hide {
 	display: none;
 }
+
+.dot {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+}
+
+.red {
+	background-color: #d70206;
+}
+
+.light-red {
+	background-color: #F05B4F;
+}

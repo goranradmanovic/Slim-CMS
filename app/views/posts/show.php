@@ -16,8 +16,10 @@
 					{% for post in post %}
 						<article>
 							<h2 class="text-center">{{ post.title }}</h2>
-							<p class="text-center">{{ post.text }}</p>
-
+							<!--Izbjegavamo html el. i css style koji se dodaju sa Tinymce editorom.Ovo priakazuje normalni text-->
+							{% autoescape %} 
+								<p class="text-center">{{ post.text|raw }}</p>
+							{% endautoescape %}
 							<div class="author">
 								<p>By <i class="glyphicon glyphicon-user"></i> {{ post.getArticleAuthor() }} on {{ post.created_at|date('d/m/Y H:m:i') }}</p>
 							</div>

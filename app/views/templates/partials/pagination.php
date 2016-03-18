@@ -10,7 +10,7 @@
 
 			{% set prev = page - 1 %}
 
-			{% if  page > 1 %}
+			{% if page > 1 %}
 				<li><a href="{{ prev }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 			{% endif %}
 
@@ -24,7 +24,7 @@
 
 			{% if page != pages %}
 
-				{% set  next = page + 1 %}
+				{% set next = page + 1 %}
 
 				<li><a href="{{ next }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 				<li><a href="{{ pages }}">Last</a></li>

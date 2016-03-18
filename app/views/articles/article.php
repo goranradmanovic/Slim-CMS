@@ -26,7 +26,7 @@
 						<div class="form-group{{ (errors.has('article')) ? ' has-error' : '' }}">
 							<label for="inputEmail3" class="col-sm-2 control-label">Content</label>
 							<div class="col-sm-10">
-								<textarea name="article" id="inputEmail3" class="form-control" rows="8"></textarea>
+								<textarea name="article" id="inputEmail3" class="form-control" rows="12"></textarea>
 								{% if errors.has('article') %}
 									<span class="help-block">{{ errors.first('article') }}</span>
 								{% endif %}

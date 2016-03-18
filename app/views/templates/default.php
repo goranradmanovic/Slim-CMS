@@ -16,6 +16,7 @@
 		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/sweetalert.css">
 		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/chartist.min.css">
 		<link rel="stylesheet" href="{{ baseUrl }}{{ public }}assets/css/style.css">
+		<script src="{{ baseUrl }}{{ public }}assets/js/chartist.min.js"></script>
 		<title>Website | {% block title %}{% endblock %}</title>
 	</head>
 	<body>
@@ -35,10 +36,9 @@
 
 		<script src="{{ baseUrl }}{{ public }}assets/js/sweetalert.min.js"></script>
 		<script src="https://www.google.com/recaptcha/api.js"></script>
-		<script src="http://js.nicedit.com/nicEdit-latest.js"></script>
+		<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<script src="{{ baseUrl }}{{ public }}assets/js/jquery.form.min.js"></script>
-		<script src="{{ baseUrl }}{{ public }}assets/js/chartist.min.js"></script>
 		<script src="{{ baseUrl }}{{ public }}assets/js/main.js"></script>
 		<script>
 			{% if flash['global'] %}
@@ -59,39 +59,8 @@
 				});
 			{% endif %}
 
-			//Pozivamo Nic text editor
-			bkLib.onDomLoaded(nicEditors.allTextAreas);
-
-var data = {
-  labels: ['Admin', 'Moderator'],
-  series: [20, 15]
-};
-
-var options = {
-  labelInterpolationFnc: function(value) {
-    return value[0]
-  }
-};
-
-var responsiveOptions = [
-  ['screen and (min-width: 640px)', {
-    chartPadding: 30,
-    labelOffset: 100,
-    labelDirection: 'explode',
-    labelInterpolationFnc: function(value) {
-      return value;
-    }
-  }],
-  ['screen and (min-width: 1024px)', {
-    labelOffset: 80,
-    chartPadding: 20
-  }]
-];
-
-new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
-
-
-
+			//Pozivamo Tinymce editor
+			tinymce.init({ selector:'textarea' });
 		</script>
 	</body>
 </html>

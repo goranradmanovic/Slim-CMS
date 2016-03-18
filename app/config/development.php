@@ -2,6 +2,8 @@
 
 //Konfiguracijsk niz sa najbitnijim postavkama za aplikaciju
 //U mail niz sam ubacio i mailgun podatke za slanje mailova
+//Ako zelimo koristiti SMTP moramo u kljuc username navesti email koji koristimo i u password
+//obezbjediti sifu
 
 return [
 	'app' => [
@@ -34,8 +36,8 @@ return [
 		'smtp_auth' => true,
 		'smtp_secure' => 'tls',
 		'host' => 'smtp.gmail.com',
-		'username' => 'milosdakic89@gmail.com',
-		'password' => 'm1I9l9O8s9',
+		'username' => '',
+		'password' => '',
 		'port' => 587,
 		'html' => true,
 

@@ -31,8 +31,9 @@
 											<span>Created:</span>
 											<time pubdate datetime="{{ title.created_at|date('d/m/Y @ H:i:s') }}">{{ title.created_at|date('d/m/Y @ H:i:s') }}</time>
 											</small><hr>
-										<p>{{ title.text[:50]}} ...</p>
-									
+										{% autoescape %} 
+											<div>{{ title.text[:50]|raw }} ...</div>
+										{% endautoescape %}
 										<div class="panel-footer">
 											<a href="{{ urlFor('articles.edit', {'uid': auth.id, 'aid': title.id, 'pid': page}) }}#editForm" class="btn btn-info">Edit {{ title.title[:15] }}</a>&nbsp;&nbsp;
 										<a href="{{ urlFor('articles.delete', {'id': title.id}) }}" class="btn btn-danger">Delete Article</a>

@@ -1,0 +1,5 @@
+# Files and folders ignored by Git
+
+# Ignore config production.php file
+
+app/config/production.php

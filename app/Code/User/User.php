@@ -138,11 +138,6 @@ class User extends Eloquent
 		return (bool) $this->permission->{$permission};
 	}
 
-	public function countAdminModerator()
-	{
-		return $this->permission()->select('*')->where('id', $this->id)->get();
-	}
-
 	//Pomocni metod za funk hasPermission koji provjerava admin ovlastenja.Dovoljno je da ovaj metod pozovemo na korisnika
 	//i on ce vratiti iz baze p. true ili false
 

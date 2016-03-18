@@ -2,11 +2,14 @@
 
 //Konfiguracijsk niz sa najbitnijim postavkama za aplikaciju
 //U mail niz sam ubacio i mailgun podatke za slanje mailova
+//Ako zelimo koristiti SMTP moramo u kljuc username navesti email koji koristimo i u password
+//obezbjediti sifu
 
 return [
 	'app' => [
-		'url' => '',
-		'public' => '',
+		'url' => 'http://slim-cms.byethost13.com/',
+		'public' => 'public/',
+		'profile_uploads' => '/Vijezbe/Slim-CMS/app/uploads/profile_img/',
 		'hash' => [
 			'algo' => PASSWORD_BCRYPT,
 			'cost' => 10
@@ -15,9 +18,9 @@ return [
 
 	'db' => [
 		'driver' => 'mysql',
-		'host' => '127.0.0.1',
-		'name' => 'church',
-		'username' => 'root',
+		'host' => 'sql103.byethost13.com',
+		'name' => 'b13_15075048_slimcms',
+		'username' => 'b13_15075048',
 		'password' => 'g1o2r3a8n4',
 		'charset' => 'utf8',
 		'collation' => 'utf8_unicode_ci',
@@ -32,8 +35,8 @@ return [
 	'mail' => [
 		'smtp_auth' => true,
 		'smtp_secure' => 'tls',
-		'host' => 'milosdakic89@gmail.com',
-		'password' => 'm1I9l9O8s9',
+		'host' => '',
+		'password' => '',
 		'port' => 587,
 		'html' => true,
 
