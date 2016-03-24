@@ -38,6 +38,7 @@
 		<script src="https://www.google.com/recaptcha/api.js"></script>
 		<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="{{ baseUrl }}{{ public }}assets/js/jquery.form.min.js"></script>
 		<script src="{{ baseUrl }}{{ public }}assets/js/main.js"></script>
 		<script>
