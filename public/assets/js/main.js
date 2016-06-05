@@ -120,7 +120,7 @@ function getAllAlbums()
 	});
 }
 
-// Render list of all cars
+// Render list of all albums
 function renderList(data) {
 	$.each(data, function(index, album) {
 		$('#album').append('<li><a href="#" data-identity="' + album.id + '">' + album.title + '</a></li>');
@@ -167,7 +167,7 @@ function deleteAlbum(id)
 					swal("Deleted!", "Your album has been deleted.", "success");
 				}, 550);
 
-				//Refresh st. sa zadrskom od 3sec
+				//Refresh st. sa zadrskom od 1sec
 				setTimeout(function () {
 					location.reload();
 				}, 1000);

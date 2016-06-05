@@ -1,7 +1,16 @@
 <?php
 
 //Get putanja
-$app->get('/all_albums/:id', $authenticated(), function ($id) use ($app) {
+$app->get('/all_albums/:id/:gid/:aid', $authenticated(), function ($id,$gid,$aid) use ($app) {
+
+	//$id - Album ID, $gid - Gallery br. st., $aid - Album br. st. paginacije)
+	//$aid kad dolazimo sa gallery st. zelimo da sletimo na prvu st. paginacije od slika iz odredjenog albuma
+	//Provjera da li u GET-u postoji ID od albuma, paginacije od galerije i paginacije od trenutnog albuma i njegovih slika
+	if (!isset($id, $gid, $aid) && is_numeric($id, $gid, $aid))
+	{	
+		//Redirekcija korisnika na st. sa svim albumima
+		return $app->redirect($app->urlFor('albums.all_albums'));
+	}
 
 	//Paginacija
 	$page = $id; //Dohvatamo redni broj stranice preko URL-a i smijestamo ga u $page var
@@ -26,7 +35,9 @@ $app->get('/all_albums/:id', $authenticated(), function ($id) use ($app) {
 	return $app->render('/albums/all_albums.php', [
 		'albums' => $albums,
 		'page' => $page,
-		'pages' => $pages
+		'pages' => $pages,
+		'gid' => $gid,
+		'aid' => $aid
 	]);
 
 })->name('albums.all_albums');

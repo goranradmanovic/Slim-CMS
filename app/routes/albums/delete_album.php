@@ -4,7 +4,7 @@
 
 $app->get('/delete_album/:id', $authenticated(), function($id) use($app) {
 
-	$app->response()->header('Content-Type', 'application/json'); //Namjestanje headera
+	//$app->response()->header('Content-Type', 'application/json'); //Namjestanje headera
 
 	//Dohvatanje imena albuma
 	$albumTitle = $app->album->getAlbumTitle($id);
@@ -32,7 +32,7 @@ $app->get('/delete_album/:id', $authenticated(), function($id) use($app) {
 	(bool) $result = $app->album->DeleteAlbum($id, $app->auth->id);
 
 	//Odgovor server o uspijesnom ili ne uspijesnom brisanju fajlova i foldera
-	if ($result)
+	/*if ($result)
 	{
 		echo json_encode(array(
 			"status" => true,
@@ -45,7 +45,11 @@ $app->get('/delete_album/:id', $authenticated(), function($id) use($app) {
 			"status" => false,
 			"message" => "Album id {$id} does not exist."
 		));
-	}
+	}*/
+
+	//Redirekcija korisnika i prikazivanje info poruke
+	$app->flash('global', 'You have deleted the album.');
+	return $app->redirect($app->urlFor('photos.photos'));
 
 })->name('albums.delete_album');
 

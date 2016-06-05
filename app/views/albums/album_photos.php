@@ -14,7 +14,7 @@
 				</div>
 				<div class="panel-body">
 					<!--Provjera dali korisnik ima objavljenjih albuma za ucitavanje slika-->
-					{% if albumPhotos is null %}
+					{% if albumPhotos is empty %}
 						<div class="alert alert-info" role="alert">
 							<p class="text-center">There's no photos in this album.</p>
 						</div>
@@ -22,15 +22,19 @@
 						<div class="row">
 							{% for albumPhoto in albumPhotos %}
 								<div class="col-xs-6 col-md-3">
-									<a href="{{ urlFor('photos.photo', {'id': albumPhoto.id}) }}"><img src="{{ albumPhoto.path  }}" alt="Album Photo.jpg" class="thumbnail thumb__img"></a>
+									<a href="{{ urlFor('photos.photo', {'id': albumPhoto.id, 'gid': gid, 'aid': page}) }}"><img src="{{ albumPhoto.path  }}" alt="Album Photo.jpg" class="thumbnail thumb__img"></a>
 								</div>
 							{% endfor %}
 						</div>
 					{% endif %}
 				</div>
 			</div>
-			<!--Ukljucivanje paginacije st.-->
-			{% include 'templates/partials/pagination.php' %}
+
+			<!--Ukljucujemo paginaciju samo ako ima nekih slika u odredjenom Albumu-->
+			{% if not albumPhotos is empty %}
+				<!--Ukljucivanje paginacije st.-->
+				{% include 'templates/partials/pagination.php' %}
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}

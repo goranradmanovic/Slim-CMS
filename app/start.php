@@ -193,8 +193,7 @@ $app->container->set('fupload', function () use ($app) {
 $app->container->set('recaptcha', function () use ($app) {
 
 	//Vracamo novu instancu ReCaptcha klase
-
-	return new ReCaptcha('6LdtZxoTAAAAAEaIfs-sdd_wuCFw_NAISx_CWm12');
+	return new ReCaptcha('6LdFxiETAAAAAH3BZXPQKyymErlSlbob4bn2YXNW');
 });
 
 //Konfigurisanje views omogucuje ukljucivanje debugginga i parser_extensiona

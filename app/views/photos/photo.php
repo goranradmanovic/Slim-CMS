@@ -8,7 +8,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading text-center">
 					<div class="back pull-left">
-						<a href="{{ urlFor('albums.album_photos', {'id': photo.album_id}) }}" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
+						<a href="{{ urlFor('albums.album_photos', {'id': photo.album_id, 'gid': gid, 'aid': aid}) }}" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-menu-left"></i> Back</a>
 					</div>
 					<h3 class="panel-title">Photo</h3>
 				</div>

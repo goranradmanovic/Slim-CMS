@@ -67,6 +67,8 @@ body {
 .album__thumb {
 	width: 195px;
 	height: 195px;
+	margin: 1px;
+	padding: 1.5px;
 }
 
 .single__image {

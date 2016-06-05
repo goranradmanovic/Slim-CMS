@@ -67,7 +67,8 @@ $app->post('/register', $guest(), function () use ($app) {
 
 		//Slanje emaila sa potvrdom o registraciji korisnika,$app->mail je objekat u Slim containeru
 
-		$app->mail->send('email/auth/registered.php', ['user' => $user, 'identifier' => $identifier], function($message) use ($user) {
+		$app->mail->send('email/auth/registered.php', ['user' => $user, 'identifier' => $identifier], function($message) use ($user)
+		{
 			$message->to($user->email); //Slanje email na email korisnika koji je unijo u registracijuku formu
 			$message->subject('Thanks for registering.');
 		});

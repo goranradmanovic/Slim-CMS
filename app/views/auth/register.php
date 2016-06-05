@@ -53,7 +53,7 @@
 						<div class="form-group{{ (errors.has('g-recaptcha-response')) ? ' has-error' : '' }}">
 							<label for="inputPassword3" class="col-sm-2 control-label">Google ReCaptcha</label>
 							<div class="col-sm-10">
-								<div class="g-recaptcha" data-sitekey="6LdtZxoTAAAAAGeoEFz2o43v2xB-eMnhhH2Fo_m1"></div>
+								<div class="g-recaptcha" data-sitekey="6LdFxiETAAAAAH3BZXPQKyymErlSlbob4bn2YXNW"></div>
 								{% if errors.has('g-recaptcha-response') %}
 									<span class="help-block">{{ errors.first('g-recaptcha-response') }}</span>
 								{% endif %}

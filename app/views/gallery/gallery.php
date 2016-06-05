@@ -26,7 +26,7 @@
 										<img src="{{ not album.getAlbumThumbnail.path ? album.getAlbumThumbnail : album.getAlbumThumbnail.path }}" alt="Album thumbnail.jpg" class="album__thumb">
 									</a>
 								</div>
-								<a href="{{ urlFor('albums.album_photos', {'id': album.id}) }}" class="btn btn-primary album__title">{{ album.title[:10] }} <span class="badge">{{ album.countPhotosInAlbum }} photos</span></a>
+								<a href="{{ urlFor('albums.album_photos', {'id': album.id, 'gid': page, 'aid': 1}) }}" class="btn btn-primary album__title">{{ album.title[:10] }} <span class="badge">{{ album.countPhotosInAlbum }} photos</span></a>
 							</div>
 						{% endfor %}
 					{% endif %}

@@ -23,7 +23,7 @@ $app->get('/album_photos/:id/:gid/:aid', function ($id, $gid, $aid) use ($app) {
 	$count = $app->photo->count();
 
 	//Racunanje ukupnog broja st. na osnovu redova iz baze i br. rezultata po st.
-	$pages = ceil($count / $per_page);
+	$pages = ceil($count / $per_page) - 1;
 
 	//Ako je br.st.veci od 1 onda mnozimo br. st. sa br. rezultata po st. i od tog broja oduzimamo br. rezultata po st. u  suprotnome je start var. 0 tj. vracanje redova iz baze krece od 0 pa do 12
 	$start = ($page > 1) ? ($page * $per_page) - $per_page : 0;
